@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B243C32BF6F10300144AB1 /* SecondMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B243C22BF6F10300144AB1 /* SecondMain.storyboard */; };
 		17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CC2BF6250600472B10 /* AppDelegate.swift */; };
 		17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */; };
 		17A8E3D12BF6250600472B10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3D02BF6250600472B10 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10B243C22BF6F10300144AB1 /* SecondMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondMain.storyboard; sourceTree = "<group>"; };
 		17A8E3C92BF6250600472B10 /* SportingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A8E3CC2BF6250600472B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				17A8E4072BF63DF200472B10 /* Main.storyboard */,
 				17A8E4092BF63E2700472B10 /* LaunchScreen.storyboard */,
+				10B243C22BF6F10300144AB1 /* SecondMain.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17A8E40A2BF63E2700472B10 /* LaunchScreen.storyboard in Resources */,
+				10B243C32BF6F10300144AB1 /* SecondMain.storyboard in Resources */,
 				17A8E3D92BF6253200472B10 /* Assets.xcassets in Resources */,
 				17A8E4082BF63DF200472B10 /* Main.storyboard in Resources */,
 			);
