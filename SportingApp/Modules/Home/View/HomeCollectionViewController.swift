@@ -10,21 +10,33 @@ import UIKit
 
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
-     let sports = ["Football", "Basketball", "Cricket", "Hockey", "Baseball", "American Football"
+     let sports = ["football", "basketball", "cricket", "hockey", "baseball", "american Football"
 ]
     let imageNames: [String: String] = [
-        "Football": "football_image",
-        "Basketball": "basketball_image",
-        "Cricket": "cricket_image",
+        "football": "football_image",
+        "basketball": "basketball_image",
+        "cricket": "cricket_image",
         "Hockey": "hockey_image",
         "Baseball": "baseball_image",
         "American Football": "american_football_image"
     ]
+    
+    var homeViewModel:HomeViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
    let layout = UICollectionViewFlowLayout()
    layout.minimumLineSpacing = 0 // Set the minimum line spacing to zero to remove space between rows
    collectionView.collectionViewLayout = layout
+        homeViewModel = HomeViewModel()
+//        homeViewModel?.fetchLeaguesViewModel(for: "football")
+        homeViewModel?.bindResultToViewController = {
+            [weak self] in
+            DispatchQueue.main.async {
+                print(self?.homeViewModel?.LeagueResultVar as? [League])
+                
+            }
+            
+        }
 
     }
 
@@ -97,5 +109,13 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     
     }
     */
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedSport = sports[indexPath.item]
+        print(selectedSport)
+        homeViewModel?.sport_name = selectedSport
+        homeViewModel?.fetchLeaguesViewModel(for: selectedSport)
+        }
+    
+
 
 }
