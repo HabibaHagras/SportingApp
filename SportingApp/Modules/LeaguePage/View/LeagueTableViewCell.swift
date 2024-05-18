@@ -25,4 +25,10 @@ class LeagueTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func layoutSubviews() {
+        imgLeague.layer.cornerRadius = imgLeague.bounds.width / 2
+        imgLeague.clipsToBounds = true
+
+    }
+
 }

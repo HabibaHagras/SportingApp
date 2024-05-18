@@ -52,8 +52,11 @@ class LeagueTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
         let current =  homeViewModel?.LeagueResultVar?[indexPath.item]
-        cell.imgLeague.layer.cornerRadius =  (cell.imgLeague.frame.size.width)/2
-        cell.imgLeague.layer.masksToBounds = true
+//        let image = UIImage(named: "d")
+//        cell.imgLeague?.image = image
+//        cell.imgLeague?.layer.cornerRadius = (cell.imgLeague?.frame.height)!/2
+//        cell.imgLeague.layer.cornerRadius =  (cell.imgLeague.frame.size.width)/2
+//        cell.imgLeague.layer.masksToBounds = true
         cell.labelLeagueCell.text = current?.leagueName
         
         return cell
