@@ -6,7 +6,6 @@
 //  Copyright © 2024 habiba. All rights reserved.
 //
 import Foundation
-import SDWebImage
 import Alamofire
 //func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?) -> Void) {
 //let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Leagues&APIkey=c89682f0a5d6ea43d1961761ea5adfb507df5320a61e1918ed0781e03ad20081&fbclid=IwZXh0bgNhZW0CMTAAAR3O-bHItUbdiNodf1zmAi48ZNdhsGe46gNYq972gXP-i-XPCsH--77FzX4_aem_AU8yYQORBt5XB1HWT_K3V6a4Zba6exdup7WqhG7ZbImoNE5nf3tt1KmwX3vtuLlQWPmZqksrypWvPPLjjMjhBU51"
