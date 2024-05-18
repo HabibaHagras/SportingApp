@@ -16,10 +16,11 @@ struct LeagueResponse: Codable {
 struct League: Codable {
     var leagueKey: Int
     var leagueName: String
-    var countryKey: Int
-    var countryName: String
+    var countryKey: Int?
+    var countryName: String?
     var leagueLogo: String?
     var countryLogo: String?
+    var league_year:String?
 
     enum CodingKeys: String, CodingKey {
         case leagueKey = "league_key"
@@ -28,6 +29,7 @@ struct League: Codable {
         case countryName = "country_name"
         case leagueLogo = "league_logo"
         case countryLogo = "country_logo"
+        case league_year = "league_year"
     }
 }
 

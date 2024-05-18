@@ -22,10 +22,17 @@ class HomeViewModel {
                 self?.bindResultToViewController() 
 
     }
-        
-    
-    
-    
     
 }
+    
+    func getSports() -> [Sport] {
+          return [
+              Sport(name: "football", imageName: "football_image"),
+              Sport(name: "basketball", imageName: "basketball_image"),
+              Sport(name: "cricket", imageName: "cricket_image"),
+              Sport(name: "hockey", imageName: "hockey_image"),
+              Sport(name: "baseball", imageName: "baseball_image"),
+              Sport(name: "american Football", imageName: "american_football_image")
+          ]
+      }
 }
