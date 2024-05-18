@@ -15,9 +15,9 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     var homeViewModel:HomeViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-   let layout = UICollectionViewFlowLayout()
-   layout.minimumLineSpacing = 0 // Set the minimum line spacing to zero to remove space between rows
-   collectionView.collectionViewLayout = layout
+//   let layout = UICollectionViewFlowLayout()
+//   collectionView.minimumLineSpacing = 0
+//   collectionView.collectionViewLayout = layout
         homeViewModel = HomeViewModel()
 //        homeViewModel?.fetchLeaguesViewModel(for: "football")
         homeViewModel?.bindResultToViewController = {
@@ -51,9 +51,9 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
    
         return CGSize(width: view.frame.width / 2.2, height: view.frame.width / 1.4)
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1
+//    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -70,6 +70,9 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
       
         return cell
     }
+    
+    
+    
 
     // MARK: UICollectionViewDelegate
 
@@ -113,5 +116,21 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         }
     
 
+ func collectionView(
+         _ collectionView: UICollectionView,
+         layout collectionViewLayout: UICollectionViewLayout,
+         minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat { return 0.0 }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {return 0.0 }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    }
+    
  
 }

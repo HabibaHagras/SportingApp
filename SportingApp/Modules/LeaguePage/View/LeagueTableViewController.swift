@@ -53,14 +53,10 @@ class LeagueTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
         let currentLeague =  homeViewModel?.LeagueResultVar?[indexPath.item]
-//        let image = UIImage(named: "d")
-//        cell.imgLeague?.image = image
-//        cell.imgLeague?.layer.cornerRadius = (cell.imgLeague?.frame.height)!/2
-//        cell.imgLeague.layer.cornerRadius =  (cell.imgLeague.frame.size.width)/2
       if let logoURLString = currentLeague?.leagueLogo, let logoURL = URL(string: logoURLString) {
             cell.imgLeague.sd_setImage(with: logoURL, completed: nil)
         } else {
-            cell.imgLeague.image = UIImage(named: "d") // Placeholder image
+            cell.imgLeague.image = UIImage(named: "d") 
         }
         cell.labelLeagueCell.text = currentLeague?.leagueName
         
