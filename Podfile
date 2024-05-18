@@ -19,4 +19,6 @@ target 'SportingApp' do
   end
 pod 'SDWebImage', '~> 4.0'
 pod 'Alamofire', '~> 4.0'
+pod 'ReachabilitySwift'
+
 end
