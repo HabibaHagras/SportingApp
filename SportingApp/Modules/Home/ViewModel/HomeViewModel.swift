@@ -29,7 +29,7 @@ class HomeViewModel {
     
     func getSports() -> [Sport] {
           return [
-              Sport(name: "football", imageName: "football_image"),
+              Sport(name: "football", imageName: "fooot"),
               Sport(name: "basketball", imageName: "basketball_image"),
               Sport(name: "cricket", imageName: "cricket_image"),
               Sport(name: "tennis", imageName: "tennis_image"),

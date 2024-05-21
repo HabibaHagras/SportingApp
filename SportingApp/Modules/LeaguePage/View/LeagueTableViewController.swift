@@ -27,6 +27,8 @@ class LeagueTableViewController: UITableViewController {
                     }
                     
                 }
+        tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+
     }
 
     // MARK: - Table view data source
@@ -36,14 +38,24 @@ class LeagueTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Leagues"
-        
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Leagues"
+//        
+//    }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
-    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as? CustomHeaderView else {
+            return nil
+        }
+        headerView.titleLabel.text = "Leagues"
+        return headerView
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return homeViewModel?.LeagueResultVar?.count ?? 0
@@ -53,16 +65,41 @@ class LeagueTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
         let currentLeague =  homeViewModel?.LeagueResultVar?[indexPath.item]
+        
+        
+        var placeholderImageName: String
+        if let sportName = nameSport {
+            switch sportName{
+            case "football":
+                placeholderImageName = "fooot"
+            case "basketball":
+                placeholderImageName = "basketball_image"
+            case "cricket":
+                placeholderImageName = "cricket_image"
+            default:
+                placeholderImageName = "tennis_image"
+            }
+        } else {
+            placeholderImageName = "tennis_image"
+        }
+        
       if let logoURLString = currentLeague?.leagueLogo, let logoURL = URL(string: logoURLString) {
             cell.imgLeague.sd_setImage(with: logoURL, completed: nil)
         } else {
-            cell.imgLeague.image = UIImage(named: "d") 
+            cell.imgLeague.image = UIImage(named: placeholderImageName)
         }
         cell.labelLeagueCell.text = currentLeague?.leagueName
         
         return cell
     }
-   
+//   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//       return 1000
+//   }
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.black.cgColor
+    }
+
 
     /*
     // Override to support conditional editing of the table view.

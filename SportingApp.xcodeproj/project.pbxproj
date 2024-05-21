@@ -18,6 +18,7 @@
 		173D00302BFD18F500DF1206 /* MockingNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173D002F2BFD18F500DF1206 /* MockingNetwork.swift */; };
 		173D00322BFD1EBA00DF1206 /* MockingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173D00312BFD1EBA00DF1206 /* MockingTest.swift */; };
 		173D00352BFD207300DF1206 /* ApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173D00342BFD207300DF1206 /* ApiTest.swift */; };
+		173D00372BFD295E00DF1206 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173D00362BFD295E00DF1206 /* CustomHeaderView.swift */; };
 		17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CC2BF6250600472B10 /* AppDelegate.swift */; };
 		17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */; };
 		17A8E3D12BF6250600472B10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3D02BF6250600472B10 /* ViewController.swift */; };
@@ -64,6 +65,7 @@
 		173D002F2BFD18F500DF1206 /* MockingNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingNetwork.swift; sourceTree = "<group>"; };
 		173D00312BFD1EBA00DF1206 /* MockingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingTest.swift; sourceTree = "<group>"; };
 		173D00342BFD207300DF1206 /* ApiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTest.swift; sourceTree = "<group>"; };
+		173D00362BFD295E00DF1206 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		17A8E3C92BF6250600472B10 /* SportingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A8E3CC2BF6250600472B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				17399B392BF8EC0E00EE238A /* LeagueTableViewController.swift */,
 				17399B3B2BF8EE1800EE238A /* LeagueTableViewCell.swift */,
+				173D00362BFD295E00DF1206 /* CustomHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				17399B2E2BF8AF2600EE238A /* HomeViewModel.swift in Sources */,
 				17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */,
 				17A8E40C2BF645F800472B10 /* HomeCollectionViewController.swift in Sources */,
+				173D00372BFD295E00DF1206 /* CustomHeaderView.swift in Sources */,
 				17399B3A2BF8EC0E00EE238A /* LeagueTableViewController.swift in Sources */,
 				17A8E3D72BF6250600472B10 /* SportingApp.xcdatamodeld in Sources */,
 				17399B302BF8AF9A00EE238A /* NetworkServices.swift in Sources */,
