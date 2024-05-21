@@ -7,12 +7,14 @@
 //
 
 import Foundation
-
+import Reachability
 class HomeViewModel {
+    var reachability: Reachability?
     var leagueResponseVar: LeagueResponse?
     var LeagueResultVar : [League]? = []
     var sport_name :String!
     var bindResultToViewController :(()->()) = {}
+    var bindResultNetworkToViewController :(()->()) = {}
 
     
      func fetchLeaguesViewModel(for sport: String) {
@@ -30,9 +32,41 @@ class HomeViewModel {
               Sport(name: "football", imageName: "football_image"),
               Sport(name: "basketball", imageName: "basketball_image"),
               Sport(name: "cricket", imageName: "cricket_image"),
-              Sport(name: "hockey", imageName: "hockey_image"),
-              Sport(name: "baseball", imageName: "baseball_image"),
-              Sport(name: "american Football", imageName: "american_football_image")
+              Sport(name: "tennis", imageName: "tennis_image"),
+//              Sport(name: "baseball", imageName: "baseball_image"),
+//              Sport(name: "american Football", imageName: "american_football_image")
           ]
       }
+    
+    func checkNetwork() {
+         do {
+                     reachability = try Reachability()
+                 } catch {
+                     print("Unable to create Reachability")
+                 }
+                 
+                  NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+
+                 do {
+                     try reachability?.startNotifier()
+                   
+
+                 } catch {
+                     print("Unable to start Reachability notifier")
+                 }
+    }
+    
+    @objc func reachabilityChanged(_ notification: Notification) {
+          guard let reachability = notification.object as? Reachability else { return }
+          
+          if reachability.connection != .unavailable {
+            self.bindResultToViewController()
+            }
+
+     else {
+              print("Network is unavailable")
+          }
+      }
+
+
 }

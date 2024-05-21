@@ -12,7 +12,7 @@ import Reachability
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var noconnection: UIView!
-    
+    var noConnectionView: UIView!
     var reachability: Reachability?
 
     var homeViewModel:HomeViewModel?
@@ -43,22 +43,62 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
             [weak self] in
             DispatchQueue.main.async {
                 print(self?.homeViewModel?.LeagueResultVar as? [League])
+              
+
                 self?.collectionView!.reloadData()
             }
             
         }
+        homeViewModel?.bindResultNetworkToViewController = {
+                   [weak self] in
+                   DispatchQueue.main.async {
+                       self?.noConnectionView.isHidden = self?.homeViewModel?.reachability?.connection != .unavailable
+            }}
+        setupNoConnectionView()
+
+            self.homeViewModel?.checkNetwork()
 
     }
+    func setupNoConnectionView() {
+           noConnectionView = UIView()
+           noConnectionView.backgroundColor = .red
+           noConnectionView.isHidden = true
+           view.addSubview(noConnectionView)
+
+           noConnectionView.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               noConnectionView.topAnchor.constraint(equalTo: view.topAnchor),
+               noConnectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+               noConnectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+               noConnectionView.heightAnchor.constraint(equalToConstant: 50)
+           ])
+
+           let noConnectionLabel = UILabel()
+           noConnectionLabel.text = "No Network Connection"
+           noConnectionLabel.textColor = .white
+           noConnectionLabel.textAlignment = .center
+           noConnectionView.addSubview(noConnectionLabel)
+
+           noConnectionLabel.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               noConnectionLabel.topAnchor.constraint(equalTo: noConnectionView.topAnchor),
+               noConnectionLabel.leadingAnchor.constraint(equalTo: noConnectionView.leadingAnchor),
+               noConnectionLabel.trailingAnchor.constraint(equalTo: noConnectionView.trailingAnchor),
+               noConnectionLabel.bottomAnchor.constraint(equalTo: noConnectionView.bottomAnchor)
+           ])
+       }
+
 
     @objc func reachabilityChanged(_ notification: Notification) {
           guard let reachability = notification.object as? Reachability else { return }
-          
+
           if reachability.connection != .unavailable {
               noconnection.isHidden = true
             print("Network is available")
 
           } else {
-            noconnection.isHidden = false
+            setupNoConnectionView()
+       //     noconnection.isHidden = false
             print("Network is unavailable")
           }
       }
@@ -104,16 +144,16 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
          _ collectionView: UICollectionView,
          layout collectionViewLayout: UICollectionViewLayout,
          minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat { return 0.0 }
+    ) -> CGFloat { return 10.9 }
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAt section: Int
-    ) -> CGFloat {return 0.0 }
+    ) -> CGFloat {return 4.9 }
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return UIEdgeInsets(top: 0, left: 16, bottom: 3, right: 16)
     }
     
  
