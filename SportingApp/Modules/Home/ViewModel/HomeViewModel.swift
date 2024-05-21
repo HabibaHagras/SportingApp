@@ -18,7 +18,7 @@ class HomeViewModel {
 
     
      func fetchLeaguesViewModel(for sport: String) {
-       fetchLeagues(for: sport) { [weak self] league in
+        NetworkServices.fetchLeagues(for: sport) { [weak self] league in
                    self?.leagueResponseVar = league
         self?.LeagueResultVar = league?.result
                 self?.bindResultToViewController() 
