@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1047D4CD2BFC338600D32B12 /*  EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1047D4CC2BFC338600D32B12 /*  EventsResponse.swift */; };
 		10B243C32BF6F10300144AB1 /* SecondMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B243C22BF6F10300144AB1 /* SecondMain.storyboard */; };
 		10B243F62BF99E5B00144AB1 /* LeagueDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B243F52BF99E5B00144AB1 /* LeagueDetailsTableViewController.swift */; };
 		10B243F92BF9A73A00144AB1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B243F72BF9A73900144AB1 /* CustomTableViewCell.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1047D4CC2BFC338600D32B12 /*  EventsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " EventsResponse.swift"; sourceTree = "<group>"; };
 		10B243C22BF6F10300144AB1 /* SecondMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondMain.storyboard; sourceTree = "<group>"; };
 		10B243F52BF99E5B00144AB1 /* LeagueDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsTableViewController.swift; sourceTree = "<group>"; };
 		10B243F72BF9A73900144AB1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		17A8E4022BF63D2100472B10 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1047D4CC2BFC338600D32B12 /*  EventsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */,
 				17A8E40C2BF645F800472B10 /* HomeCollectionViewController.swift in Sources */,
 				17A8E3D72BF6250600472B10 /* SportingApp.xcdatamodeld in Sources */,
+				1047D4CD2BFC338600D32B12 /*  EventsResponse.swift in Sources */,
 				10B243F62BF99E5B00144AB1 /* LeagueDetailsTableViewController.swift in Sources */,
 				17A8E40E2BF6471B00472B10 /* HomeCollectionViewCell.swift in Sources */,
 			);
