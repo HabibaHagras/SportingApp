@@ -12,7 +12,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     @IBOutlet weak var eventsCollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-       let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
+       let nib = UINib(nibName: "CustomEventCell", bundle: nil)
         eventsCollection.register(nib, forCellWithReuseIdentifier: "cell")
        eventsCollection.delegate = self
           eventsCollection.dataSource = self
