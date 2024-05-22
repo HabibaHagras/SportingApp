@@ -12,6 +12,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageCell: UIImageView!
 
+    @IBOutlet weak var homeTeamLB: UILabel!
+    
+    @IBOutlet weak var awayTeamLB: UILabel!
+    @IBOutlet weak var timeLB: UILabel!
+    
+    @IBOutlet weak var dateLB: UILabel!
+    @IBOutlet weak var awayImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         
