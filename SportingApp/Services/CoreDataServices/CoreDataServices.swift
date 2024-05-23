@@ -18,8 +18,8 @@ class CoreDataServices {
                self.context = context
            }
            
-           func fetchData(completion: @escaping ([NSManagedObject]?, Error?) -> Void) {
-               let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "News")
+             func fetchData(completion: @escaping ([NSManagedObject]?, Error?) -> Void) {
+               let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "")
                
                do {
                    let fetchedItems = try context.fetch(fetchRequest)
@@ -32,3 +32,4 @@ class CoreDataServices {
         
        
     }
+

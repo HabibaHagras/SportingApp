@@ -9,31 +9,27 @@
 import Foundation
 import CoreData
 class FavoriteViewModel {
-    private let coreDataServices: CoreDataServices
-    var news: [NSManagedObject] = []
-    var bindResultCoreDataToViewController :(()->()) = {}
-
- //   var news: [NewsViewModel] = []//
-    
-    init(coreDataServices: CoreDataServices) {
-        self.coreDataServices = coreDataServices
-    }
-    
-    func fetchData(completion: @escaping (Error?) -> Void) {
-        coreDataServices.fetchData { [weak self] (fetchedItems, error) in
-            if let error = error {
-                completion(error)
-                return
-            }
-            
-            // Assuming your entity is called "News"
-            self?.news = fetchedItems!
-            self?.bindResultCoreDataToViewController()
-            completion(nil)
+      var news: [NSManagedObject] = []
+        var bindResultCoreDataToViewController: (() -> ()) = {}
+        let coreDataServices: CoreDataServices // Creating an instance of CoreDataServices
+        
+        init(coreDataServices: CoreDataServices) {
+            self.coreDataServices = coreDataServices
         }
-    }
-    
-    
-    
-    
-}
+        
+        func fetchData(completion: @escaping (Error?) -> Void) {
+            coreDataServices.fetchData { [weak self] (fetchedItems, error) in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                print("fffffffffffffffffff")
+             self?.news = fetchedItems ?? []
+                self?.bindResultCoreDataToViewController()
+                completion(nil)
+            }
+        }
+     
+     }
+
+
