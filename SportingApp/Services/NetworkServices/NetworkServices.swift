@@ -67,4 +67,31 @@ static func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?)
         }
     }
 }
+    
+    
+    
+    static func fetchVideos(for sport: String, handler: @escaping (VideoResponse?) -> Void) {
+        let urlString = "https://apiv2.allsportsapi.com/\(sport)/?&met=Videos&eventId=86392&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644"
+
+        Alamofire.request(urlString).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                    let videoResponse = try JSONDecoder().decode(VideoResponse.self, from: jsonData)
+                    handler(videoResponse)
+                } catch {
+                    print("Error decoding JSON: \(error.localizedDescription)")
+                    handler(nil)
+                }
+            case .failure(let error):
+                print("Error fetching leagues: \(error.localizedDescription)")
+                handler(nil)
+            }
+        }
+    }
+    
+    
+    
+    
 }
