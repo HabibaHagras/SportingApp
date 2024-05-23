@@ -26,6 +26,7 @@ class LeagueTableViewCell: UITableViewCell {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         imgLeague.layer.cornerRadius = imgLeague.bounds.width / 2
         imgLeague.clipsToBounds = true
 
