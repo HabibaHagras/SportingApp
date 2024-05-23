@@ -16,7 +16,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     @IBOutlet weak var eventsCollection: UICollectionView!
        //var reachability: Reachability?
         var eventsViewModel:EventsViewModle?
-    
+    /*
       override func viewDidLoad() {
             super.viewDidLoad()
             eventsViewModel =  EventsViewModle()
@@ -45,17 +45,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
 
 
 
-        /*func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
-         wikimedia
-    //
-    //        cell.imageCell.sd_setImage(with: URL(string: eventsViewModel?.eventResult?[0].eventHomeTeamLogo ?? "1.jpeg"), placeholderImage: UIImage(named: "1.jpeg"))
-            if let event = self.eventsViewModel?.eventResult?[0] {
-                       cell.imageCell.sd_setImage(with: URL(string: event.eventHomeTeamLogo ?? "https://upload..org/wikipedia/commons/thumb/f/f0/Error.svg/1200px-Error.svg.png"), placeholderImage: UIImage(named: "1.jpeg"))
-                   }
-            
-            return cell
-        }*/
+
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
             
@@ -124,4 +114,162 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
+ */
+    override func viewDidLoad() {
+           super.viewDidLoad()
+           eventsViewModel = EventsViewModle()
+           
+           let nib = UINib(nibName: "CustomEventCell", bundle: nil)
+           eventsCollection.register(nib, forCellWithReuseIdentifier: "cell")
+           resultsCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+           //let resultNib = UINib(nibName: "CustomEventCell", bundle: nil)
+           //resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "/*")
+           eventsCollection.delegate = self
+           eventsCollection.dataSource = self
+           resultsCollectionView.delegate = self
+           resultsCollectionView.dataSource = self
+           
+           eventsViewModel?.fetchUpcomingEvents()
+           
+           eventsViewModel?.bindResultToViewController = { [weak self] in
+               DispatchQueue.main.async {
+                   self?.eventsCollection.reloadData()
+                   self?.resultsCollectionView.reloadData()
+               }
+           }
+       }
+       
+       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+           return eventsViewModel?.eventResult?.count ?? 0
+       }
+       
+       /*func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
+           
+           if let event = eventsViewModel?.eventResult?[indexPath.item] {
+               cell.dateLB.text = event.eventDate
+               cell.timeLB.text = event.eventTime
+               cell.homeTeamLB.text = event.eventHomeTeam
+               cell.awayTeamLB.text = event.eventAwayTeam
+               
+               if let urlString = event.homeTeamLogo, let url = URL(string: urlString) {
+                   cell.imageCell.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   cell.imageCell.image = UIImage(named: "1.jpeg")
+               }
+               
+               if let urlString = event.awayTeamLogo, let url = URL(string: urlString) {
+                   cell.awayImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   cell.awayImage.image = UIImage(named: "1.jpeg")
+               }
+           }
+           
+           return cell
+       }*/
+    
+    /* eroor
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == eventsCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
+            
+            if let event = eventsViewModel?.eventResult?[indexPath.item] {
+                cell.dateLB.text = event.eventDate
+                cell.timeLB.text = event.eventTime
+                cell.homeTeamLB.text = event.eventHomeTeam
+                cell.awayTeamLB.text = event.eventAwayTeam
+                cell.resultLb.text = ""
+                
+                if let urlString = event.homeTeamLogo, let url = URL(string: urlString) {
+                    cell.imageCell.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+                } else {
+                    cell.imageCell.image = UIImage(named: "1.jpeg")
+                }
+                
+                if let urlString = event.awayTeamLogo, let url = URL(string: urlString) {
+                    cell.awayImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+                } else {
+                    cell.awayImage.image = UIImage(named: "1.jpeg")
+                }
+            }
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! CustomCollectionViewCell
+            
+            if let result = eventsViewModel?.eventResult?[indexPath.item] {
+                // Configure the result cell with data
+//                cell.dateLabel.text = result.eventDate
+//                cell.scoreLabel.text = "\(result.homeTeamScore) - \(result.awayTeamScore)"
+//                cell.homeTeamLabel.text = result.eventHomeTeam
+//                cell.awayTeamLabel.text = result.eventAwayTeam
+                
+          if let urlString = result.homeTeamLogo, let url = URL(string: urlString) {
+                        cell.imageCell.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+                    } else {
+                        cell.imageCell.image = UIImage(named: "1.jpeg")
+                    }
+                    
+                    if let urlString = result.awayTeamLogo, let url = URL(string: urlString) {
+                        cell.awayImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+                    } else {
+                        cell.awayImage.image = UIImage(named: "1.jpeg")
+                    }
+                }
+            
+            return cell
+        }
+    }*/
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
+        
+        if let event = eventsViewModel?.eventResult?[indexPath.item] {
+            cell.dateLB.text = event.eventDate
+            cell.timeLB.text = event.eventTime
+            cell.homeTeamLB.text = event.eventHomeTeam
+            cell.awayTeamLB.text = event.eventAwayTeam
+            
+            if let urlString = event.homeTeamLogo, let url = URL(string: urlString) {
+                cell.imageCell.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+            } else {
+                cell.imageCell.image = UIImage(named: "1.jpeg")
+            }
+            
+            if let urlString = event.awayTeamLogo, let url = URL(string: urlString) {
+                cell.awayImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+            } else {
+                cell.awayImage.image = UIImage(named: "1.jpeg")
+            }
+            
+            if collectionView == resultsCollectionView {
+                cell.resultLb.text = event.eventFinalResult
+            } else {
+                cell.resultLb.text = ""
+            }
+        }
+        
+        return cell
+    }
+       
+//       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//           let cellWidth = collectionView.frame.width
+//           let cellHeight: CGFloat = 150
+//           return CGSize(width: cellWidth, height: cellHeight)
+//       }
+       
+       override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+      //  return 300
+        if indexPath.section == 0 {
+               // Change this value to the desired height for the first section
+               return 50
+           } else  {
+               // Change this value to the desired height for the second section
+               return 300
+           }
+       }
+ 
+
+
 }

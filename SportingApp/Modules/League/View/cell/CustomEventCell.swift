@@ -19,6 +19,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var dateLB: UILabel!
     @IBOutlet weak var awayImage: UIImageView!
+    @IBOutlet weak var resultLb: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
          setupView()

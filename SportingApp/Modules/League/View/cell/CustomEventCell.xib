@@ -12,7 +12,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="240" id="KGk-i7-Jjw" customClass="CustomCollectionViewCell" customModule="SportingApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="487" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="487" height="240"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -63,16 +63,27 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I06-c8-Gfj">
+                        <rect key="frame" x="128" y="155" width="229" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="3aC-Xf-Cfx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.53572430420533546" green="0.66666668653488159" blue="0.60329844881764216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="ySh-Ng-u0r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="8yA-TU-YRh"/>
+                    <constraint firstItem="I06-c8-Gfj" firstAttribute="top" secondItem="n9x-fw-Znd" secondAttribute="bottom" constant="31" id="DCN-Td-qVn"/>
                     <constraint firstItem="qAb-Gl-3Jz" firstAttribute="leading" secondItem="855-15-acv" secondAttribute="trailing" constant="10" id="EVN-Pz-0hN"/>
                     <constraint firstItem="kvF-Pi-Hvt" firstAttribute="top" secondItem="ySh-Ng-u0r" secondAttribute="bottom" constant="35" id="GG0-BE-NSN"/>
                     <constraint firstItem="kvF-Pi-Hvt" firstAttribute="trailing" secondItem="ySh-Ng-u0r" secondAttribute="trailing" id="Ght-gj-mdd"/>
                     <constraint firstAttribute="bottom" secondItem="ZX1-fC-9Cc" secondAttribute="bottom" constant="20" symbolic="YES" id="KHO-B1-5iT"/>
                     <constraint firstItem="qAb-Gl-3Jz" firstAttribute="leading" secondItem="n9x-fw-Znd" secondAttribute="trailing" constant="10" id="L1X-aI-JAH"/>
                     <constraint firstItem="855-15-acv" firstAttribute="leading" secondItem="ySh-Ng-u0r" secondAttribute="trailing" constant="10" id="MGk-aH-OzB"/>
+                    <constraint firstItem="I06-c8-Gfj" firstAttribute="leading" secondItem="n9x-fw-Znd" secondAttribute="leading" id="Ucd-q8-uFc"/>
                     <constraint firstItem="n9x-fw-Znd" firstAttribute="leading" secondItem="ySh-Ng-u0r" secondAttribute="trailing" constant="8" id="b09-Pj-JSi"/>
                     <constraint firstAttribute="trailing" secondItem="qAb-Gl-3Jz" secondAttribute="trailing" constant="20" symbolic="YES" id="bup-Zq-lqy"/>
                     <constraint firstItem="n9x-fw-Znd" firstAttribute="top" secondItem="855-15-acv" secondAttribute="bottom" constant="30" id="fPK-1k-e4a"/>
@@ -82,7 +93,9 @@
                     <constraint firstItem="855-15-acv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="hyr-gv-RC3"/>
                     <constraint firstAttribute="bottomMargin" secondItem="kvF-Pi-Hvt" secondAttribute="bottom" id="p6s-mQ-S8R"/>
                     <constraint firstItem="ZX1-fC-9Cc" firstAttribute="leading" secondItem="qAb-Gl-3Jz" secondAttribute="leading" id="qm0-Cr-YQx"/>
+                    <constraint firstItem="I06-c8-Gfj" firstAttribute="trailing" secondItem="n9x-fw-Znd" secondAttribute="trailing" id="rC3-zN-Zon"/>
                     <constraint firstItem="kvF-Pi-Hvt" firstAttribute="leading" secondItem="ySh-Ng-u0r" secondAttribute="leading" id="uYj-iy-MBK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="I06-c8-Gfj" secondAttribute="bottom" id="wt7-0o-Jcr"/>
                     <constraint firstItem="qAb-Gl-3Jz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="yF6-L9-ujw"/>
                 </constraints>
             </tableViewCellContentView>
@@ -93,6 +106,7 @@
                 <outlet property="dateLB" destination="855-15-acv" id="5XV-mw-jjq"/>
                 <outlet property="homeTeamLB" destination="kvF-Pi-Hvt" id="DxX-Mh-okH"/>
                 <outlet property="imageCell" destination="ySh-Ng-u0r" id="nv8-8U-bbf"/>
+                <outlet property="resultLb" destination="I06-c8-Gfj" id="Ctj-tQ-65K"/>
                 <outlet property="timeLB" destination="n9x-fw-Znd" id="8Tj-x2-H5U"/>
             </connections>
             <point key="canvasLocation" x="-2400.7246376811595" y="45.535714285714285"/>

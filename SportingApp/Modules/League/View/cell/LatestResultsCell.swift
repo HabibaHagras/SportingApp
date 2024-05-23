@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LatestResultsCell: UITableViewCell {
+class LatestResultsCell: UICollectionViewCell {
 
     @IBOutlet weak var imageHomeTeam: UIImageView!
     override func awakeFromNib() {
@@ -16,10 +16,6 @@ class LatestResultsCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
     
 }
