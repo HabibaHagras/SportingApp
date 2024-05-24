@@ -147,7 +147,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyt-at-2aW">
-                                            <rect key="frame" x="350" y="40" width="56" height="37"/>
+                                            <rect key="frame" x="328" y="45" width="70" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="6QD-1U-e2v"/>
+                                                <constraint firstAttribute="height" constant="27" id="G64-df-M8g"/>
+                                            </constraints>
                                             <state key="normal" title="Button" image="images"/>
                                             <connections>
                                                 <action selector="YoutubeBtn:" destination="kGi-kk-6iU" eventType="touchUpInside" id="8Hd-CS-LFc"/>
@@ -155,16 +159,15 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Cyt-at-2aW" secondAttribute="bottom" constant="39" id="FQN-kU-bTm"/>
+                                        <constraint firstAttribute="bottom" secondItem="Cyt-at-2aW" secondAttribute="bottom" constant="44" id="5lX-q1-Xkk"/>
                                         <constraint firstItem="iWe-Gk-ocB" firstAttribute="leading" secondItem="eFY-CN-pZu" secondAttribute="trailing" constant="33" id="FVt-Fr-Frs"/>
-                                        <constraint firstItem="Cyt-at-2aW" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="top" constant="40" id="IQE-2N-LEA"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="iWe-Gk-ocB" secondAttribute="bottom" constant="25" id="JSN-MH-IET"/>
+                                        <constraint firstItem="Cyt-at-2aW" firstAttribute="leading" secondItem="iWe-Gk-ocB" secondAttribute="trailing" constant="8" id="UJO-Rs-odG"/>
                                         <constraint firstItem="eFY-CN-pZu" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="topMargin" id="akZ-Ai-hXB"/>
                                         <constraint firstItem="iWe-Gk-ocB" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="topMargin" constant="31" id="daP-rf-dfw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="iWe-Gk-ocB" secondAttribute="trailing" constant="74" id="hjc-V5-LZ4"/>
-                                        <constraint firstAttribute="trailing" secondItem="Cyt-at-2aW" secondAttribute="trailing" constant="8" id="l2x-52-JxA"/>
-                                        <constraint firstItem="Cyt-at-2aW" firstAttribute="leading" secondItem="iWe-Gk-ocB" secondAttribute="trailing" constant="30" id="mYS-f3-HCC"/>
                                         <constraint firstItem="eFY-CN-pZu" firstAttribute="leading" secondItem="MSv-ed-9YD" secondAttribute="leadingMargin" id="mjm-9U-XMZ"/>
+                                        <constraint firstItem="Cyt-at-2aW" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="top" constant="45" id="wcB-L3-bUS"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="eFY-CN-pZu" secondAttribute="bottom" constant="-6" id="xTV-cI-SRG"/>
                                     </constraints>
                                 </tableViewCellContentView>
