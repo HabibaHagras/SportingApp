@@ -13,12 +13,19 @@ class EventsViewModle{
         var eventResult: [Event]? = []
         var latestResults: [Event]? = []
     var legueTeams: [Team]? = []
-        
+    var sportName: String?
+    var leagueId :Int!
+    
         var bindResultToViewController :(()->()) = {}
 
         
          func fetchUpcomingEvents() {
-                let url = "\(Constants.bseUrl)football?met=Fixtures&leagueId=200&from=\(Utlies.currentTime!)&to=\(Utlies.futureTime!)&APIkey=\(Constants.apiKey)"
+            print("----------------------------------")
+            print(sportName!)
+            print("----------------------------------")
+            print("----------------------------------")
+            print("----------------------------------")
+                let url = "\(Constants.bseUrl)\(sportName!)?met=Fixtures&leagueId=\(leagueId!)&from=\(Utlies.currentTime!)&to=\(Utlies.futureTime!)&APIkey=\(Constants.apiKey)"
             print("after fetch")
             fetchData(url: url) { [weak self]  (league: EventsResponse?) in
                              self?.eventResponse = league

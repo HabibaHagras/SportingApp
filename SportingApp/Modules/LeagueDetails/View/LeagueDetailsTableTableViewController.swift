@@ -17,6 +17,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     //var reachability: Reachability?
         var eventsViewModel:EventsViewModle?
+    var nameSport :String?
+    var leagueId :Int!
+
     /*
       override func viewDidLoad() {
             super.viewDidLoad()
@@ -119,6 +122,8 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     override func viewDidLoad() {
            super.viewDidLoad()
            eventsViewModel = EventsViewModle()
+        eventsViewModel?.sportName = nameSport
+        eventsViewModel?.leagueId = leagueId 
         Utlies.dateForCurrentEvents()
         Utlies.dateForLatestResEvents()
        print("past time\(Utlies.pastTime)")

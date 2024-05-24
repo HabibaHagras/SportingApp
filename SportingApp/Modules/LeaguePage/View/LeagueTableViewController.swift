@@ -13,6 +13,7 @@ class LeagueTableViewController: UITableViewController {
     var homeViewModel:HomeViewModel?
     var nameSport:String?
     var leagueName:String?
+    var eventsViewModel:EventsViewModle?
     override func viewDidLoad() {
         super.viewDidLoad()
            homeViewModel = HomeViewModel()
@@ -121,7 +122,23 @@ class LeagueTableViewController: UITableViewController {
         cell.contentView.layer.borderColor = UIColor.black.cgColor
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+          let storyBoard = UIStoryboard(name: "SecondMain", bundle: nil)
 
+        guard let league = homeViewModel?.LeagueResultVar?[indexPath.item] else { return }
+        guard let viewController = storyBoard.instantiateViewController(withIdentifier: "leagueDetails") as? LeagueDetailsTableViewController else {
+                   print("Could not instantiate view controller with identifier 'leagueDetails'")
+                   return
+               }
+
+        viewController.nameSport = nameSport
+        viewController.leagueId = league.leagueKey
+        print(league.leagueName)
+                      viewController.modalPresentationStyle = .fullScreen
+                     present(viewController, animated: true, completion: nil)
+                 }
+             
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
