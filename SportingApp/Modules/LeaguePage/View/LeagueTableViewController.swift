@@ -27,6 +27,18 @@ class LeagueTableViewController: UITableViewController {
                     }
                     
                 }
+        homeViewModel?.bindResultNetworkVideosToViewController = {
+            
+            [weak self] in DispatchQueue.main.async {
+                let alert = UIAlertController(title: "No Video Available", message: "There is no video available right now. Please try again later.", preferredStyle: .alert)
+                              
+                              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                              
+                              self?.present(alert, animated: true, completion: nil)
+                
+            }
+            
+        }
         tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
 
     }
@@ -34,12 +46,7 @@ class LeagueTableViewController: UITableViewController {
     
     
     @IBAction func YoutubeBtn(_ sender: UIButton) {
-        
-               let alert = UIAlertController(title: "No Video Available", message: "There is no video available right now. Please try again later.", preferredStyle: .alert)
-               
-               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-               
-               self.present(alert, animated: true, completion: nil)
+        homeViewModel?.fetchVideoViewModel(for: nameSport!)
         
     }
     
