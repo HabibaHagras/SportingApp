@@ -30,6 +30,20 @@ class LeagueTableViewController: UITableViewController {
         tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
 
     }
+    
+    
+    
+    @IBAction func YoutubeBtn(_ sender: UIButton) {
+        
+               let alert = UIAlertController(title: "No Video Available", message: "There is no video available right now. Please try again later.", preferredStyle: .alert)
+               
+               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+               
+               self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
 
     // MARK: - Table view data source
 
