@@ -262,7 +262,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomTeamsCell
             
            // if let team = eventsViewModel?.eventResult?[indexPath.item] {
-                cell.teamNameLB.text = "maha"
+              //  cell.teamNameLB.text = "maha"
             
         //}
         
@@ -272,11 +272,12 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     }
     
  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.frame.width
         if collectionView == teamsCollectionView {
              
-              return CGSize(width: 180, height: 180)
+            return CGSize(width:100, height: 100)
         }
-    let cellWidth = collectionView.frame.width
+
                let cellHeight: CGFloat = 150
                return CGSize(width: cellWidth, height: cellHeight)
       
@@ -290,7 +291,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
                // Change this value to the desired height for the first section
                return 50
         } else if  indexPath.section == 2 {
-            return 300
+            return 150
         } else  {
                // Change this value to the desired height for the second section
                return 300

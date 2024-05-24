@@ -12,9 +12,22 @@ class CustomTeamsCell: UICollectionViewCell {
 
     @IBOutlet weak var teamImage: UIImageView!
     @IBOutlet weak var teamNameLB: UILabel!
+  
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+         super.awakeFromNib()
+        
+         makeImageCircular()
+     }
+
+     private func makeImageCircular() {
+         teamImage.layer.cornerRadius = teamImage.frame.size.width / 2
+         teamImage.clipsToBounds = true
+     }
+
+     override func layoutSubviews() {
+         super.layoutSubviews()
+
+         makeImageCircular()
+     }
 
 }
