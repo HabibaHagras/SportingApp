@@ -146,13 +146,24 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyt-at-2aW">
+                                            <rect key="frame" x="350" y="40" width="56" height="37"/>
+                                            <state key="normal" title="Button" image="images"/>
+                                            <connections>
+                                                <action selector="YoutubeBtn:" destination="kGi-kk-6iU" eventType="touchUpInside" id="8Hd-CS-LFc"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Cyt-at-2aW" secondAttribute="bottom" constant="39" id="FQN-kU-bTm"/>
                                         <constraint firstItem="iWe-Gk-ocB" firstAttribute="leading" secondItem="eFY-CN-pZu" secondAttribute="trailing" constant="33" id="FVt-Fr-Frs"/>
+                                        <constraint firstItem="Cyt-at-2aW" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="top" constant="40" id="IQE-2N-LEA"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="iWe-Gk-ocB" secondAttribute="bottom" constant="25" id="JSN-MH-IET"/>
                                         <constraint firstItem="eFY-CN-pZu" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="topMargin" id="akZ-Ai-hXB"/>
                                         <constraint firstItem="iWe-Gk-ocB" firstAttribute="top" secondItem="MSv-ed-9YD" secondAttribute="topMargin" constant="31" id="daP-rf-dfw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="iWe-Gk-ocB" secondAttribute="trailing" constant="74" id="hjc-V5-LZ4"/>
+                                        <constraint firstAttribute="trailing" secondItem="Cyt-at-2aW" secondAttribute="trailing" constant="8" id="l2x-52-JxA"/>
+                                        <constraint firstItem="Cyt-at-2aW" firstAttribute="leading" secondItem="iWe-Gk-ocB" secondAttribute="trailing" constant="30" id="mYS-f3-HCC"/>
                                         <constraint firstItem="eFY-CN-pZu" firstAttribute="leading" secondItem="MSv-ed-9YD" secondAttribute="leadingMargin" id="mjm-9U-XMZ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="eFY-CN-pZu" secondAttribute="bottom" constant="-6" id="xTV-cI-SRG"/>
                                     </constraints>
@@ -206,7 +217,7 @@
         <!--Favorite-->
         <scene sceneID="V4S-Lz-TLI">
             <objects>
-                <tableViewController id="qXf-gT-U6N" sceneMemberID="viewController">
+                <tableViewController id="qXf-gT-U6N" customClass="FavoriteTableViewController" customModule="SportingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wYo-EE-vzR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,5 +294,6 @@
         <image name="football_image" width="296" height="285"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="house" catalog="system" width="64" height="54"/>
+        <image name="images" width="270" height="187"/>
     </resources>
 </document>

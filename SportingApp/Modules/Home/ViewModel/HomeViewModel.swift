@@ -12,9 +12,12 @@ class HomeViewModel {
     var reachability: Reachability?
     var leagueResponseVar: LeagueResponse?
     var LeagueResultVar : [League]? = []
+    var videoResponseVar: VideoResponse?
+    var videoResultVar : [Video]? = []
     var sport_name :String!
     var bindResultToViewController :(()->()) = {}
     var bindResultNetworkToViewController :(()->()) = {}
+    var bindResultNetworkVideosToViewController :(()->()) = {}
 
     
      func fetchLeaguesViewModel(for sport: String) {
@@ -26,6 +29,18 @@ class HomeViewModel {
     }
     
 }
+    
+    
+      func fetchVideoViewModel(for sport: String) {
+            NetworkServices.fetchVideos(for: sport) { [weak self] video in
+                       self?.videoResponseVar = video
+            self?.videoResultVar = video?.result
+                    self?.bindResultNetworkVideosToViewController()
+
+        }
+        
+    }
+    
     
     func getSports() -> [Sport] {
           return [

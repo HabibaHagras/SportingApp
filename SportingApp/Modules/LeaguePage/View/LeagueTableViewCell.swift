@@ -24,11 +24,30 @@ class LeagueTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
     override func layoutSubviews() {
+        super.layoutSubviews()
+        imgLeague.round()
         imgLeague.layer.cornerRadius = imgLeague.bounds.width / 2
         imgLeague.clipsToBounds = true
 
     }
 
 }
+extension UIView {
+    func round() {
+        let scaleFactor: CGFloat = 1.2 // Adjust this value to make the circular mask larger
+        let diameter = min(bounds.width, bounds.height) * scaleFactor
+        let mask = CAShapeLayer()
+        mask.path = UIBezierPath(ovalIn: CGRect(x: bounds.midX - diameter / 2, y: bounds.midY - diameter / 2, width: diameter, height: diameter)).cgPath
+        layer.mask = mask
+    }
+}
+
+
+
+
+
+
+
