@@ -14,7 +14,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     @IBOutlet weak var resultsCollectionView: UICollectionView!
 
     @IBOutlet weak var eventsCollection: UICollectionView!
-       //var reachability: Reachability?
+    
+    @IBOutlet weak var teamsCollectionView: UICollectionView!
+    //var reachability: Reachability?
         var eventsViewModel:EventsViewModle?
     /*
       override func viewDidLoad() {
@@ -120,14 +122,18 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            eventsViewModel = EventsViewModle()
            
            let nib = UINib(nibName: "CustomEventCell", bundle: nil)
+        let teamNib = UINib(nibName: "CustomTeamsCell", bundle: nil)
            eventsCollection.register(nib, forCellWithReuseIdentifier: "cell")
            resultsCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "cell")
            //let resultNib = UINib(nibName: "CustomEventCell", bundle: nil)
            //resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "/*")
            eventsCollection.delegate = self
            eventsCollection.dataSource = self
            resultsCollectionView.delegate = self
            resultsCollectionView.dataSource = self
+        teamsCollectionView.dataSource = self
+        teamsCollectionView.delegate = self
            
            eventsViewModel?.fetchUpcomingEvents()
            
@@ -135,6 +141,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
                DispatchQueue.main.async {
                    self?.eventsCollection.reloadData()
                    self?.resultsCollectionView.reloadData()
+                self?.teamsCollectionView.reloadData()
                }
            }
        }
@@ -222,6 +229,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     }*/
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == eventsCollection || collectionView == resultsCollectionView{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         
         if let event = eventsViewModel?.eventResult?[indexPath.item] {
@@ -250,13 +258,30 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         }
         
         return cell
+        }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomTeamsCell
+            
+           // if let team = eventsViewModel?.eventResult?[indexPath.item] {
+                cell.teamNameLB.text = "maha"
+            
+        //}
+        
+    
+        return cell
     }
-       
-//       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//           let cellWidth = collectionView.frame.width
-//           let cellHeight: CGFloat = 150
-//           return CGSize(width: cellWidth, height: cellHeight)
-//       }
+    }
+    
+ func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == teamsCollectionView {
+             
+              return CGSize(width: 180, height: 180)
+        }
+    let cellWidth = collectionView.frame.width
+               let cellHeight: CGFloat = 150
+               return CGSize(width: cellWidth, height: cellHeight)
+      
+    }
+
        
        override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
@@ -264,7 +289,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         if indexPath.section == 0 {
                // Change this value to the desired height for the first section
                return 50
-           } else  {
+        } else if  indexPath.section == 2 {
+            return 300
+        } else  {
                // Change this value to the desired height for the second section
                return 300
            }
