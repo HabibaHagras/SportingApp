@@ -141,6 +141,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            
            eventsViewModel?.fetchUpcomingEvents()
         eventsViewModel?.fetchLatestResults()
+        eventsViewModel?.fetchTeams()
            
            eventsViewModel?.bindResultToViewController = { [weak self] in
                DispatchQueue.main.async {
@@ -350,6 +351,15 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
        } else {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomTeamsCell
            // Set up your cell for teams collection view
+       if let event = eventsViewModel?.legueTeams, indexPath.item < event.count {
+       let eventItem = event[indexPath.item]
+        if let urlString = eventItem.teamLogo, let url = URL(string: urlString) {
+            cell.teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+        } else {
+            cell.teamImage.image = UIImage(named: "1.jpeg")
+        }
+        
+        }
            return cell
        }
    }
