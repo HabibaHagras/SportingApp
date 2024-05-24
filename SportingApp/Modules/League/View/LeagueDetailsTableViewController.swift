@@ -120,6 +120,10 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     override func viewDidLoad() {
            super.viewDidLoad()
            eventsViewModel = EventsViewModle()
+        Utlies.dateForCurrentEvents()
+        Utlies.dateForLatestResEvents()
+       print("past time\(Utlies.pastTime)")
+        print("current time\(Utlies.myCurrentTime)")
            
            let nib = UINib(nibName: "CustomEventCell", bundle: nil)
         let teamNib = UINib(nibName: "CustomTeamsCell", bundle: nil)
@@ -136,6 +140,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         teamsCollectionView.delegate = self
            
            eventsViewModel?.fetchUpcomingEvents()
+        eventsViewModel?.fetchLatestResults()
            
            eventsViewModel?.bindResultToViewController = { [weak self] in
                DispatchQueue.main.async {
@@ -228,6 +233,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         }
     }*/
     
+    /* correct
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == eventsCollection || collectionView == resultsCollectionView{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
@@ -269,7 +275,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     
         return cell
     }
-    }
+    }*/
     
  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.frame.width
@@ -298,6 +304,55 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            }
        }
  
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       if collectionView == eventsCollection {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
+           if let event = eventsViewModel?.eventResult, indexPath.item < event.count {
+               let eventItem = event[indexPath.item]
+               cell.dateLB.text = eventItem.eventDate
+               cell.timeLB.text = eventItem.eventTime
+               cell.homeTeamLB.text = eventItem.eventHomeTeam
+               cell.awayTeamLB.text = eventItem.eventAwayTeam
+               if let urlString = eventItem.homeTeamLogo, let url = URL(string: urlString) {
+                   cell.imageCell.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   cell.imageCell.image = UIImage(named: "1.jpeg")
+               }
+               if let urlString = eventItem.awayTeamLogo, let url = URL(string: urlString) {
+                   cell.awayImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   cell.awayImage.image = UIImage(named: "1.jpeg")
+               }
+               cell.resultLb.text = ""
+           }
+           return cell
+       } else if collectionView == resultsCollectionView {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
+           if let event = eventsViewModel?.latestResults, indexPath.item < event.count {
+               let eventItem = event[indexPath.item]
+               cell.dateLB.text = eventItem.eventDate
+               cell.timeLB.text = eventItem.eventTime
+               cell.homeTeamLB.text = eventItem.eventHomeTeam
+               cell.awayTeamLB.text = eventItem.eventAwayTeam
+               if let urlString = eventItem.homeTeamLogo, let url = URL(string: urlString) {
+                   cell.imageCell.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   cell.imageCell.image = UIImage(named: "1.jpeg")
+               }
+               if let urlString = eventItem.awayTeamLogo, let url = URL(string: urlString) {
+                   cell.awayImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   cell.awayImage.image = UIImage(named: "1.jpeg")
+               }
+               cell.resultLb.text = eventItem.eventFinalResult
+           }
+           return cell
+       } else {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomTeamsCell
+           // Set up your cell for teams collection view
+           return cell
+       }
+   }
 
 
 }
