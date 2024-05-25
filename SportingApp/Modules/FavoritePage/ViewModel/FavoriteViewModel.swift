@@ -11,14 +11,14 @@ import CoreData
 class FavoriteViewModel {
       var news: [NSManagedObject] = []
         var bindResultCoreDataToViewController: (() -> ()) = {}
-        let coreDataServices: CoreDataServices // Creating an instance of CoreDataServices
+        let coreDataServices: CoreDataServices 
         
         init(coreDataServices: CoreDataServices) {
             self.coreDataServices = coreDataServices
         }
         
         func fetchData(completion: @escaping (Error?) -> Void) {
-            coreDataServices.fetchData { [weak self] (fetchedItems, error) in
+            coreDataServices.fetchSavedEventsAndTeams{ [weak self] (fetchedItems, error) in
                 if let error = error {
                     completion(error)
                     return

@@ -15,6 +15,8 @@ class EventsViewModle{
     var legueTeams: [Team]? = []
     var sportName: String?
     var leagueId :Int!
+    var leagueName  :String!
+    var leagueLogo:String!
     var selectedEvent: Event?
        var selectedTeam: Team?
     var coreDataServices: CoreDataServices
@@ -22,6 +24,7 @@ class EventsViewModle{
           self.coreDataServices = coreDataServices
       }
         var bindResultToViewController :(()->()) = {}
+    var bindResultCoreDataToViewController :(()->()) = {}
 
         
          func fetchUpcomingEvents() {
@@ -88,5 +91,6 @@ class EventsViewModle{
         
         print("Displayed events and teams saved successfully!")
     }
+      
 }
 

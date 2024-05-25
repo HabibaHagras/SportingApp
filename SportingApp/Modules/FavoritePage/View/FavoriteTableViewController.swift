@@ -9,10 +9,29 @@
 import UIKit
 
 class FavoriteTableViewController: UITableViewController {
-
+    var favViewModel:FavoriteViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+         favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
 
+           // Set up the binding closure
+           favViewModel?.bindResultCoreDataToViewController = { [weak self] in
+               DispatchQueue.main.async {
+                   if let news = self?.favViewModel?.news, !news.isEmpty {
+                       print (" data")
+                   } else {
+                    print ("No data")
+                   }
+                self?.tableView.reloadData() // Reload table view after data is fetched
+               }
+           }
+
+           // Fetch data from CoreData
+           favViewModel?.fetchData { error in
+               if let error = error {
+                   print("Error fetching data: \(error)")
+               }
+           }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,23 +43,46 @@ class FavoriteTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return favViewModel?.news.count ?? 0
     }
 
-    /*
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+       let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
+        let currentLeague =  favViewModel?.news[indexPath.item]
+              
+              
+//              var placeholderImageName: String
+//              if let sportName = nameSport {
+//                  switch sportName{
+//                  case "football":
+//                      placeholderImageName = "fooot"
+//                  case "basketball":
+//                      placeholderImageName = "basketball_image"
+//                  case "cricket":
+//                      placeholderImageName = "cricket_image"
+//                  default:
+//                      placeholderImageName = "tennis_image"
+//                  }
+//              } else {
+//                  placeholderImageName = "tennis_image"
+//              }
+//
+        if let logoURLString = currentLeague!.value(forKey:"leagueLogo") , let logoURL = URL(string: logoURLString as! String) {
+                  cell.imgLeague.sd_setImage(with: logoURL, completed: nil)
+              } else {
+                  cell.imgLeague.image = UIImage(named: "football")
+              }
+              cell.labelLeagueCell.text = currentLeague!.value(forKey:"leagueName")  as! String
+              
+              return cell
     }
-    */
+  
 
     /*
     // Override to support conditional editing of the table view.

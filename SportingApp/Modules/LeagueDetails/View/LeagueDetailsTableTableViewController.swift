@@ -20,6 +20,8 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         var eventsViewModel:EventsViewModle?
     var nameSport :String?
     var leagueId :Int!
+    var leagueName  :String!
+    var leagueLogo:String!
 
 
     override func viewDidLoad() {
@@ -32,7 +34,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         let coreDataServices = DependencyInjector.shared.resolveCoreDataServices()
         eventsViewModel = EventsViewModle(coreDataServices: coreDataServices)
         eventsViewModel?.sportName = nameSport
-        eventsViewModel?.leagueId = leagueId 
+        eventsViewModel?.leagueId = leagueId
+        eventsViewModel?.leagueName = leagueName
+        eventsViewModel?.leagueLogo = leagueLogo
         Utlies.dateForCurrentEvents()
         Utlies.dateForLatestResEvents()
        print("past time\(Utlies.pastTime)")
@@ -190,6 +194,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     @IBAction func favBtn(_ sender: Any) {
  //save
         eventsViewModel?.saveDisplayedEventsAndTeams()
+
         //fetch
 //        let coreDataServices = DependencyInjector.shared.resolveCoreDataServices()
 //           coreDataServices.fetchSavedEventsAndTeams()

@@ -133,6 +133,9 @@ class LeagueTableViewController: UITableViewController {
 
         viewController.nameSport = nameSport
         viewController.leagueId = league.leagueKey
+        viewController.leagueName = league.leagueName
+        viewController.leagueLogo = league.leagueLogo
+
         print(league.leagueName)
                       viewController.modalPresentationStyle = .fullScreen
                      present(viewController, animated: true, completion: nil)

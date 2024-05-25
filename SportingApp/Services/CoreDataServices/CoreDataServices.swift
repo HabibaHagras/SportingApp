@@ -11,6 +11,7 @@ import CoreData
 
 class CoreDataServices {
             var fetchedItems: [NSManagedObject] = []
+ 
 
            let context: NSManagedObjectContext
            
@@ -66,7 +67,9 @@ class CoreDataServices {
            }
        }
 
-   func fetchSavedEventsAndTeams() {
+
+      func fetchSavedEventsAndTeams(completion: @escaping ([NSManagedObject]?, Error?) -> Void){
+
          let eventFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueTable")
          let teamFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueTable")
 
