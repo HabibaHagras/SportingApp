@@ -25,6 +25,7 @@
 		10D5EA882C01427A006B1D03 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5EA872C01427A006B1D03 /* Player.swift */; };
 		10D5EA8D2C014D97006B1D03 /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5EA8C2C014D96006B1D03 /* TeamDetailsViewController.swift */; };
 		10D5EA8F2C0165CC006B1D03 /* ApiNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5EA8E2C0165CC006B1D03 /* ApiNetworkService.swift */; };
+		10D5EA912C01778E006B1D03 /* testGit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5EA902C01778E006B1D03 /* testGit.swift */; };
 		17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CC2BF6250600472B10 /* AppDelegate.swift */; };
 		17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */; };
 		17A8E3D12BF6250600472B10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3D02BF6250600472B10 /* ViewController.swift */; };
@@ -79,6 +80,7 @@
 		10D5EA872C01427A006B1D03 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		10D5EA8C2C014D96006B1D03 /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
 		10D5EA8E2C0165CC006B1D03 /* ApiNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiNetworkService.swift; sourceTree = "<group>"; };
+		10D5EA902C01778E006B1D03 /* testGit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testGit.swift; sourceTree = "<group>"; };
 		1395EE249F5C9819CD473FEE /* Pods-SportingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportingApp.release.xcconfig"; path = "Target Support Files/Pods-SportingApp/Pods-SportingApp.release.xcconfig"; sourceTree = "<group>"; };
 		17A8E3C92BF6250600472B10 /* SportingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A8E3CC2BF6250600472B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				1047D4CC2BFC338600D32B12 /*  EventsResponse.swift */,
 				10B40FD62C0033CA003F25F5 /* Team.swift */,
 				10D5EA872C01427A006B1D03 /* Player.swift */,
+				10D5EA902C01778E006B1D03 /* testGit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */,
 				1078678E2C008A8E00875173 /* TeamsViewModle.swift in Sources */,
 				10D5EA8F2C0165CC006B1D03 /* ApiNetworkService.swift in Sources */,
+				10D5EA912C01778E006B1D03 /* testGit.swift in Sources */,
 				10B243F92BF9A73A00144AB1 /* CustomEventCell.swift in Sources */,
 				17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */,
 				17A8E40C2BF645F800472B10 /* HomeCollectionViewController.swift in Sources */,
