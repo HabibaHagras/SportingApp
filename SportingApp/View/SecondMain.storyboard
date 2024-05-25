@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -189,9 +190,144 @@
             </objects>
             <point key="canvasLocation" x="-3742.0289855072465" y="228.34821428571428"/>
         </scene>
+        <!--Team Details View Controller-->
+        <scene sceneID="7dn-2W-TWy">
+            <objects>
+                <viewController id="Azz-CB-7wz" customClass="TeamDetailsViewController" customModule="SportingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oOY-MM-RS9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5f-4C-8fY">
+                                <rect key="frame" x="20" y="44" width="75" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Iej-42-TgQ"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-FG-QIY">
+                                <rect key="frame" x="158" y="44" width="132.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gHj-Fs-wIF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baseball_image" translatesAutoresizingMaskIntoConstraints="NO" id="8OE-RW-5Zr">
+                                <rect key="frame" x="0.0" y="104" width="414" height="161.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cricket_image" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-ZB-IW2">
+                                <rect key="frame" x="16" y="281.5" width="145" height="125"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teame Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXh-DF-fC5">
+                                <rect key="frame" x="181" y="295.5" width="217" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KSb-oq-jaZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-Qo-pEw">
+                                <rect key="frame" x="0.0" y="487" width="414" height="375"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u47-B4-KW6">
+                                    <size key="itemSize" width="235" height="184"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fMd-Ki-cYV">
+                                        <rect key="frame" x="89.5" y="0.0" width="235" height="184"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wKA-Ec-MgA">
+                                            <rect key="frame" x="0.0" y="0.0" width="235" height="184"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football_image" translatesAutoresizingMaskIntoConstraints="NO" id="x4l-d1-MsQ">
+                                                    <rect key="frame" x="20" y="20" width="195" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="kML-h8-GrV"/>
+                                                        <constraint firstAttribute="width" constant="100" id="v4A-eh-Twg"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-zD-FTN">
+                                                    <rect key="frame" x="20" y="134" width="195" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="zLh-ea-Pcg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x4l-d1-MsQ" firstAttribute="top" secondItem="wKA-Ec-MgA" secondAttribute="top" constant="20" symbolic="YES" id="00I-hm-r4n"/>
+                                                <constraint firstItem="O4w-zD-FTN" firstAttribute="leading" secondItem="wKA-Ec-MgA" secondAttribute="leading" constant="20" symbolic="YES" id="9Ya-Jd-iyc"/>
+                                                <constraint firstAttribute="trailing" secondItem="O4w-zD-FTN" secondAttribute="trailing" constant="20" symbolic="YES" id="C2W-VN-9J6"/>
+                                                <constraint firstAttribute="bottom" secondItem="O4w-zD-FTN" secondAttribute="bottom" constant="20" symbolic="YES" id="CIq-jY-amZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="x4l-d1-MsQ" secondAttribute="trailing" constant="20" symbolic="YES" id="VmH-iX-9ES"/>
+                                                <constraint firstItem="x4l-d1-MsQ" firstAttribute="leading" secondItem="wKA-Ec-MgA" secondAttribute="leading" constant="20" symbolic="YES" id="ave-yQ-BdF"/>
+                                                <constraint firstItem="O4w-zD-FTN" firstAttribute="top" secondItem="x4l-d1-MsQ" secondAttribute="bottom" constant="14" id="hCF-An-o41"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="235" height="184"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnk-Ga-w7r">
+                                <rect key="frame" x="16" y="438" width="382" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qmh-FG-QIY" firstAttribute="leading" secondItem="J5f-4C-8fY" secondAttribute="trailing" constant="63" id="0EL-o8-Mvo"/>
+                            <constraint firstItem="oXh-DF-fC5" firstAttribute="leading" secondItem="xN6-ZB-IW2" secondAttribute="trailing" constant="20" id="2Px-kw-gEM"/>
+                            <constraint firstItem="R3k-qh-rpB" firstAttribute="trailing" secondItem="wnk-Ga-w7r" secondAttribute="trailing" constant="16" id="2eo-k7-NMm"/>
+                            <constraint firstItem="xN6-ZB-IW2" firstAttribute="top" secondItem="8OE-RW-5Zr" secondAttribute="bottom" constant="16" id="45P-1g-Kbn"/>
+                            <constraint firstItem="oXh-DF-fC5" firstAttribute="top" secondItem="8OE-RW-5Zr" secondAttribute="bottom" constant="30" id="6c8-39-pZt"/>
+                            <constraint firstItem="R3k-qh-rpB" firstAttribute="trailing" secondItem="oXh-DF-fC5" secondAttribute="trailing" constant="16" id="9pM-KE-7kh"/>
+                            <constraint firstItem="J5f-4C-8fY" firstAttribute="leading" secondItem="R3k-qh-rpB" secondAttribute="leading" constant="20" id="EiI-bB-cqy"/>
+                            <constraint firstItem="xN6-ZB-IW2" firstAttribute="leading" secondItem="R3k-qh-rpB" secondAttribute="leading" constant="16" id="Hm8-mb-HC3"/>
+                            <constraint firstItem="wnk-Ga-w7r" firstAttribute="top" secondItem="xN6-ZB-IW2" secondAttribute="bottom" constant="31.5" id="HzG-OF-ySh"/>
+                            <constraint firstItem="8OE-RW-5Zr" firstAttribute="height" secondItem="oOY-MM-RS9" secondAttribute="height" multiplier="0.18" id="IsY-78-UWM"/>
+                            <constraint firstItem="wnk-Ga-w7r" firstAttribute="leading" secondItem="R3k-qh-rpB" secondAttribute="leading" constant="16" id="TFL-0l-GRO"/>
+                            <constraint firstItem="xN6-ZB-IW2" firstAttribute="width" secondItem="oOY-MM-RS9" secondAttribute="width" multiplier="0.35" id="YC2-Us-VTo"/>
+                            <constraint firstItem="R3k-qh-rpB" firstAttribute="trailing" secondItem="8OE-RW-5Zr" secondAttribute="trailing" id="bjT-RD-w83"/>
+                            <constraint firstItem="h4n-Qo-pEw" firstAttribute="top" secondItem="wnk-Ga-w7r" secondAttribute="bottom" constant="20" id="cR5-gM-4hI"/>
+                            <constraint firstItem="R3k-qh-rpB" firstAttribute="trailing" secondItem="h4n-Qo-pEw" secondAttribute="trailing" id="gCZ-ON-4Xb"/>
+                            <constraint firstItem="8OE-RW-5Zr" firstAttribute="top" secondItem="qmh-FG-QIY" secondAttribute="bottom" constant="20" id="hg5-vl-Xo9"/>
+                            <constraint firstItem="h4n-Qo-pEw" firstAttribute="leading" secondItem="R3k-qh-rpB" secondAttribute="leading" id="i7O-ta-IAl"/>
+                            <constraint firstItem="qmh-FG-QIY" firstAttribute="top" secondItem="R3k-qh-rpB" secondAttribute="top" id="jEg-XL-a5B"/>
+                            <constraint firstItem="xN6-ZB-IW2" firstAttribute="height" secondItem="oOY-MM-RS9" secondAttribute="height" multiplier="0.14" id="sCx-hB-Ypp"/>
+                            <constraint firstItem="R3k-qh-rpB" firstAttribute="bottom" secondItem="h4n-Qo-pEw" secondAttribute="bottom" id="sh6-b8-0Gw"/>
+                            <constraint firstItem="8OE-RW-5Zr" firstAttribute="leading" secondItem="R3k-qh-rpB" secondAttribute="leading" id="slK-FA-cCk"/>
+                            <constraint firstItem="J5f-4C-8fY" firstAttribute="top" secondItem="R3k-qh-rpB" secondAttribute="top" id="xqh-G0-DJe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R3k-qh-rpB"/>
+                    </view>
+                    <connections>
+                        <outlet property="playersCollectionView" destination="h4n-Qo-pEw" id="zgg-xA-Pul"/>
+                        <outlet property="teamImage" destination="xN6-ZB-IW2" id="L70-HK-nfx"/>
+                        <outlet property="teamNameLB" destination="oXh-DF-fC5" id="c3s-uv-6ms"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R26-gQ-B67" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2823.1884057971015" y="217.63392857142856"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.left" catalog="system" width="64" height="52"/>
         <image name="arrowshape.turn.up.left.2" catalog="system" width="64" height="42"/>
+        <image name="baseball_image" width="300" height="168"/>
+        <image name="cricket_image" width="275" height="183"/>
+        <image name="football_image" width="296" height="285"/>
         <image name="star" catalog="system" width="64" height="58"/>
     </resources>
 </document>
