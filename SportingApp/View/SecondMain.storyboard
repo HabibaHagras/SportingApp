@@ -11,7 +11,7 @@
         <!--League Details Table View Controller-->
         <scene sceneID="EUC-QC-1yI">
             <objects>
-                <tableViewController id="qJh-Uc-mBc" customClass="LeagueDetailsTableViewController" customModule="SportingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="leagueDetails" id="qJh-Uc-mBc" customClass="LeagueDetailsTableViewController" customModule="SportingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cdO-P2-zNk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
