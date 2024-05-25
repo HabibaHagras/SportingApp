@@ -9,6 +9,7 @@
 import UIKit
 
 class TeamDetailsViewController: UIViewController {
+     var team: Team?
     @IBOutlet weak var teamImage: UIImageView!
     
     @IBOutlet weak var teamNameLB: UILabel!
@@ -16,8 +17,14 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var playersCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        teamNameLB.text = team?.teamName
+        if let imageUrl = team?.teamLogo, let url = URL(string: imageUrl) {
+                   teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
+               } else {
+                   teamImage.image = UIImage(named: "1.jpeg")
+               }
+   
+       
     }
     
 
