@@ -12,31 +12,50 @@ class FavoriteTableViewController: UITableViewController {
     var favViewModel:FavoriteViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-         favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
+                super.viewDidLoad()
+             favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
 
-           // Set up the binding closure
-           favViewModel?.bindResultCoreDataToViewController = { [weak self] in
-               DispatchQueue.main.async {
-                   if let news = self?.favViewModel?.news, !news.isEmpty {
-                       print (" data")
-                   } else {
-                    print ("No data")
-                   }
-                self?.tableView.reloadData() // Reload table view after data is fetched
-               }
+             // Set up the binding closure
+             favViewModel.bindResultCoreDataToViewController = { [weak self] in
+                 DispatchQueue.main.async {
+                     if let news = self?.favViewModel?.news, !news.isEmpty {
+                         print("Data fetched successfully")
+                     } else {
+                         print("No data")
+                     }
+                     self?.tableView.reloadData() // Reload table view after data is fetched
+                 }
+             }
+
+             favViewModel.fetchData { error in
+                 if let error = error {
+                     print("Error fetching data: \(error)")
+                 }
+
+
            }
+    
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
 
-           // Fetch data from CoreData
-           favViewModel?.fetchData { error in
-               if let error = error {
-                   print("Error fetching data: \(error)")
-               }
-           }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // Set up the binding closure
+        favViewModel?.bindResultCoreDataToViewController = { [weak self] in
+            DispatchQueue.main.async {
+                if let news = self?.favViewModel?.news, !news.isEmpty {
+                    print (" data")
+                } else {
+                 print ("No data")
+                }
+             self?.tableView.reloadData() // Reload table view after data is fetched
+            }
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // Fetch data from CoreData
+        favViewModel?.fetchData { error in
+            if let error = error {
+                print("Error fetching data: \(error)")
+            }}
     }
 
     // MARK: - Table view data source
@@ -47,13 +66,24 @@ class FavoriteTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("gggggggggggggggggggggggg \(favViewModel?.news.count ?? 0)")
+
         // #warning Incomplete implementation, return the number of rows
         return favViewModel?.news.count ?? 0
     }
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+          return 150
+      }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         cell.contentView.layer.borderWidth = 1.0
+         cell.contentView.layer.borderColor = UIColor.black.cgColor
+     }
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
+       let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FavoriteTableViewCell
         let currentLeague =  favViewModel?.news[indexPath.item]
               
               
@@ -74,11 +104,11 @@ class FavoriteTableViewController: UITableViewController {
 //              }
 //
         if let logoURLString = currentLeague!.value(forKey:"leagueLogo") , let logoURL = URL(string: logoURLString as! String) {
-                  cell.imgLeague.sd_setImage(with: logoURL, completed: nil)
+                  cell.ImgFav.sd_setImage(with: logoURL, completed: nil)
               } else {
-                  cell.imgLeague.image = UIImage(named: "football")
+                  cell.ImgFav.image = UIImage(named: "football")
               }
-              cell.labelLeagueCell.text = currentLeague!.value(forKey:"leagueName")  as! String
+        cell.labelFav.text = currentLeague!.value(forKey:"leagueName")  as? String
               
               return cell
     }

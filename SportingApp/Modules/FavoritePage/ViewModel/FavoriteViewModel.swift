@@ -18,7 +18,7 @@ class FavoriteViewModel {
         }
         
         func fetchData(completion: @escaping (Error?) -> Void) {
-            coreDataServices.fetchSavedEventsAndTeams{ [weak self] (fetchedItems, error) in
+            coreDataServices.FetchSavedLeagues{ [weak self] (fetchedItems, error) in
                 if let error = error {
                     completion(error)
                     return

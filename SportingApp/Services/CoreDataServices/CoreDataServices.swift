@@ -116,7 +116,7 @@ class CoreDataServices {
                print("Could not save. \(error), \(error.userInfo)")
            }
        }
-    func printSavedLeagues() {
+    func printSavedLeagues(){
          let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueEntitiy")
 
          do {
@@ -132,5 +132,26 @@ class CoreDataServices {
              print("Could not fetch. \(error), \(error.userInfo)")
          }
      }
+    
+    func FetchSavedLeagues(completion: @escaping ([NSManagedObject]?, Error?) -> Void) {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueEntitiy")
+
+            do {
+                let leagues = try context.fetch(fetchRequest)
+                completion(leagues, nil)
+                for league in leagues {
+                    let id = league.value(forKey: "leagueKey") as? Int ?? 0
+                    let name = league.value(forKey: "leagueName") as? String ?? "Unknown"
+                    let sport = league.value(forKey: "sportName") as? String ?? "Unknown"
+                   let logo = league.value(forKey: "leagueLogo") as? String ?? "Unknown"
+                    print("League ID: \(id), Name: \(name), Sport: \(sport),logo: \(logo)")
+                }
+            } catch let error as NSError {
+                completion(nil, error)
+
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+    
     }
 
