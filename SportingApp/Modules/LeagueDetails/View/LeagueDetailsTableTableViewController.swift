@@ -194,7 +194,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     @IBAction func favBtn(_ sender: Any) {
  //save
 
-        eventsViewModel?.saveDisplayedEventsAndTeams()
+       // eventsViewModel?.saveDisplayedEventsAndTeams()
 
 
        // eventsViewModel?.saveDisplayedEventsAndTeams()
