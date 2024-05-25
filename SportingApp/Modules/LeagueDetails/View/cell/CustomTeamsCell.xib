@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CustomTeamsCell" customModule="SportingApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cricket_image" translatesAutoresizingMaskIntoConstraints="NO" id="hdI-QG-tck">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="SmO-sR-6KC"/>
+                            <constraint firstAttribute="height" constant="120" id="uGx-F7-5lX"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="hdI-QG-tck" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1V2-OU-oOz"/>
+                <constraint firstItem="hdI-QG-tck" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2dW-iz-OkA"/>
+                <constraint firstAttribute="bottom" secondItem="hdI-QG-tck" secondAttribute="bottom" id="N75-c5-y7n"/>
+                <constraint firstAttribute="trailing" secondItem="hdI-QG-tck" secondAttribute="trailing" id="vaP-V6-ehw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="197" height="130"/>
+            <connections>
+                <outlet property="teamImage" destination="hdI-QG-tck" id="QEW-gQ-xQ6"/>
+            </connections>
+            <point key="canvasLocation" x="55.797101449275367" y="6.0267857142857144"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="cricket_image" width="275" height="183"/>
+    </resources>
+</document>
