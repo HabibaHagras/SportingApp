@@ -15,7 +15,6 @@ class FavoriteTableViewController: UITableViewController {
                 super.viewDidLoad()
              favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
 
-             // Set up the binding closure
              favViewModel.bindResultCoreDataToViewController = { [weak self] in
                  DispatchQueue.main.async {
                      if let news = self?.favViewModel?.news, !news.isEmpty {
@@ -23,7 +22,7 @@ class FavoriteTableViewController: UITableViewController {
                      } else {
                          print("No data")
                      }
-                     self?.tableView.reloadData() // Reload table view after data is fetched
+                     self?.tableView.reloadData()
                  }
              }
   
@@ -51,7 +50,6 @@ class FavoriteTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
 
-        // Set up the binding closure
         favViewModel?.bindResultCoreDataToViewController = { [weak self] in
             DispatchQueue.main.async {
                 if let news = self?.favViewModel?.news, !news.isEmpty {
@@ -59,11 +57,10 @@ class FavoriteTableViewController: UITableViewController {
                 } else {
                  print ("No data")
                 }
-             self?.tableView.reloadData() // Reload table view after data is fetched
+             self?.tableView.reloadData()
             }
         }
 
-        // Fetch data from CoreData
         favViewModel?.fetchData { error in
             if let error = error {
                 print("Error fetching data: \(error)")
