@@ -40,6 +40,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
             customBackgroundView.layer.cornerRadius = 10
             customBackgroundView.layer.masksToBounds = true
         }
+        imageCell.layer.cornerRadius = imageCell.frame.width / 2
+        imageCell.layer.masksToBounds = true
+        awayImage.layer.cornerRadius = awayImage.frame.width / 2
+        awayImage.layer.masksToBounds = true
     }
 
  

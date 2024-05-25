@@ -74,6 +74,10 @@ class TeamDetailsViewController: UIViewController,UICollectionViewDataSource ,UI
         
         return cell
     }
-      }
+    
+    @IBAction func backBtn(_ sender: Any) {
+         self.dismiss(animated: true, completion: nil)
+    }
+}
 
     
