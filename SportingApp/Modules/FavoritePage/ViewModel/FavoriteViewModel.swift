@@ -11,7 +11,8 @@ import CoreData
 class FavoriteViewModel {
       var news: [NSManagedObject] = []
         var bindResultCoreDataToViewController: (() -> ()) = {}
-        let coreDataServices: CoreDataServices 
+        var bindResultDeleteCoreDataToViewController: (() -> ()) = {}
+        let coreDataServices: CoreDataServices
         
         init(coreDataServices: CoreDataServices) {
             self.coreDataServices = coreDataServices
@@ -29,7 +30,32 @@ class FavoriteViewModel {
                 completion(nil)
             }
         }
+    
+    
+    func delete(item: NSManagedObject,completion: @escaping (Error?) -> Void) {
+        coreDataServices.deleteSavedLeague(item) { [weak self] error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            print("Leagues deleted successfully")
+            guard let index = self?.news.firstIndex(where: { $0 == item }) else {       completion(nil) 
+                     return}
+                self?.news.remove(at: index)
+                
+            
+            self?.bindResultDeleteCoreDataToViewController()
+            completion(nil)
+        }
+    }
+    
+    
+    
+    
+ 
+    }
+
      
-     }
+     
 
 

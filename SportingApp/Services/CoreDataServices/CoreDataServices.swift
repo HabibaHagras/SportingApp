@@ -152,6 +152,18 @@ class CoreDataServices {
                 print("Could not fetch. \(error), \(error.userInfo)")
             }
         }
-    
+    func deleteSavedLeague(_ item: NSManagedObject,completion: @escaping (Error?) -> Void) {
+           let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LeagueEntitiy")
+           let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+           do {
+            context.delete(item)
+            try context.save()
+               completion(nil)
+           } catch let error {
+               completion(error)
+               print("Error deleting saved leagues: \(error)")
+           }
+       }
     }
 
