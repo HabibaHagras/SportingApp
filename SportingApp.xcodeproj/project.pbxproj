@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		10B243C32BF6F10300144AB1 /* SecondMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B243C22BF6F10300144AB1 /* SecondMain.storyboard */; };
 		10FA9D892C01870900A391AE /* ApiNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FA9D882C01870900A391AE /* ApiNetworkService.swift */; };
+		10FA9D8D2C01879F00A391AE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FA9D8A2C01879E00A391AE /* Player.swift */; };
+		10FA9D8E2C01879F00A391AE /*  EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FA9D8B2C01879E00A391AE /*  EventsResponse.swift */; };
+		10FA9D8F2C01879F00A391AE /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FA9D8C2C01879E00A391AE /* Team.swift */; };
 		17399B2E2BF8AF2600EE238A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17399B2D2BF8AF2600EE238A /* HomeViewModel.swift */; };
 		17399B302BF8AF9A00EE238A /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17399B2F2BF8AF9A00EE238A /* NetworkServices.swift */; };
 		17399B332BF8B29800EE238A /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17399B322BF8B29800EE238A /* League.swift */; };
@@ -62,6 +65,9 @@
 		0EB208FF14662030E3751399 /* Pods-SportingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportingAppTests.debug.xcconfig"; path = "Target Support Files/Pods-SportingAppTests/Pods-SportingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		10B243C22BF6F10300144AB1 /* SecondMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondMain.storyboard; sourceTree = "<group>"; };
 		10FA9D882C01870900A391AE /* ApiNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiNetworkService.swift; sourceTree = "<group>"; };
+		10FA9D8A2C01879E00A391AE /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		10FA9D8B2C01879E00A391AE /*  EventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " EventsResponse.swift"; sourceTree = "<group>"; };
+		10FA9D8C2C01879E00A391AE /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		17399B2D2BF8AF2600EE238A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		17399B2F2BF8AF9A00EE238A /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		17399B322BF8B29800EE238A /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
@@ -305,6 +311,9 @@
 				17399B322BF8B29800EE238A /* League.swift */,
 				17399B342BF8CE7400EE238A /* Sport.swift */,
 				1771721B2BFFA839000A00C9 /* Video.swift */,
+				10FA9D8B2C01879E00A391AE /*  EventsResponse.swift */,
+				10FA9D8A2C01879E00A391AE /* Player.swift */,
+				10FA9D8C2C01879E00A391AE /* Team.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -609,8 +618,10 @@
 			files = (
 				17399B352BF8CE7400EE238A /* Sport.swift in Sources */,
 				17A8E3D12BF6250600472B10 /* ViewController.swift in Sources */,
+				10FA9D8E2C01879F00A391AE /*  EventsResponse.swift in Sources */,
 				17399B332BF8B29800EE238A /* League.swift in Sources */,
 				17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */,
+				10FA9D8D2C01879F00A391AE /* Player.swift in Sources */,
 				17399B3E2BF8F44500EE238A /* LeagueViewModel.swift in Sources */,
 				1771720F2BFF8FF4000A00C9 /* FavoriteTableViewController.swift in Sources */,
 				17399B2E2BF8AF2600EE238A /* HomeViewModel.swift in Sources */,
@@ -624,6 +635,7 @@
 				17A8E3D72BF6250600472B10 /* SportingApp.xcdatamodeld in Sources */,
 				17399B302BF8AF9A00EE238A /* NetworkServices.swift in Sources */,
 				1771721C2BFFA839000A00C9 /* Video.swift in Sources */,
+				10FA9D8F2C01879F00A391AE /* Team.swift in Sources */,
 				17399B3C2BF8EE1800EE238A /* LeagueTableViewCell.swift in Sources */,
 				177172112BFF900E000A00C9 /* FavoriteViewModel.swift in Sources */,
 				17A8E40E2BF6471B00472B10 /* HomeCollectionViewCell.swift in Sources */,
