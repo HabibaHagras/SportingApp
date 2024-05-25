@@ -7,38 +7,102 @@
 //
 
 import UIKit
+import Reachability
 
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
-     let sports = ["Football", "Basketball", "Cricket", "Hockey", "Baseball", "American Football"
-]
-    let imageNames: [String: String] = [
-        "Football": "football_image",
-        "Basketball": "basketball_image",
-        "Cricket": "cricket_image",
-        "Hockey": "hockey_image",
-        "Baseball": "baseball_image",
-        "American Football": "american_football_image"
-    ]
+    @IBOutlet weak var noconnection: UIView!
+    var noConnectionView: UIView!
+    var reachability: Reachability?
+
+    var homeViewModel:HomeViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-   let layout = UICollectionViewFlowLayout()
-   layout.minimumLineSpacing = 0 // Set the minimum line spacing to zero to remove space between rows
-   collectionView.collectionViewLayout = layout
+//   let layout = UICollectionViewFlowLayout()
+//   collectionView.minimumLineSpacing = 0
+//   collectionView.collectionViewLayout = layout
+        homeViewModel = HomeViewModel()
+//        homeViewModel?.fetchLeaguesViewModel(for: "football")
+        do {
+                     reachability = try Reachability()
+                 } catch {
+                     print("Unable to create Reachability")
+                 }
+                 
+                  NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+
+                 do {
+                     try reachability?.startNotifier()
+                   
+
+                 } catch {
+                     print("Unable to start Reachability notifier")
+                 }
+               ///
+        homeViewModel?.bindResultToViewController = {
+            [weak self] in
+            DispatchQueue.main.async {
+                print(self?.homeViewModel?.LeagueResultVar as? [League])
+              
+
+                self?.collectionView!.reloadData()
+            }
+            
+        }
+        homeViewModel?.bindResultNetworkToViewController = {
+                   [weak self] in
+                   DispatchQueue.main.async {
+                       self?.noConnectionView.isHidden = self?.homeViewModel?.reachability?.connection != .unavailable
+            }}
+        setupNoConnectionView()
+
+            self.homeViewModel?.checkNetwork()
 
     }
+    func setupNoConnectionView() {
+           noConnectionView = UIView()
+           noConnectionView.backgroundColor = .red
+           noConnectionView.isHidden = true
+           view.addSubview(noConnectionView)
 
-    /*
-    // MARK: - Navigation
+           noConnectionView.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               noConnectionView.topAnchor.constraint(equalTo: view.topAnchor),
+               noConnectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+               noConnectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+               noConnectionView.heightAnchor.constraint(equalToConstant: 50)
+           ])
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destin/Users/habiba/Documents/SportingApp/SportingApp/SportingApp/Modules/Home/View/HomeCollectionViewCell.swiftationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+           let noConnectionLabel = UILabel()
+           noConnectionLabel.text = "No Network Connection"
+           noConnectionLabel.textColor = .white
+           noConnectionLabel.textAlignment = .center
+           noConnectionView.addSubview(noConnectionLabel)
 
-    // MARK: UICollectionViewDataSource
+           noConnectionLabel.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               noConnectionLabel.topAnchor.constraint(equalTo: noConnectionView.topAnchor),
+               noConnectionLabel.leadingAnchor.constraint(equalTo: noConnectionView.leadingAnchor),
+               noConnectionLabel.trailingAnchor.constraint(equalTo: noConnectionView.trailingAnchor),
+               noConnectionLabel.bottomAnchor.constraint(equalTo: noConnectionView.bottomAnchor)
+           ])
+       }
+
+
+    @objc func reachabilityChanged(_ notification: Notification) {
+          guard let reachability = notification.object as? Reachability else { return }
+
+          if reachability.connection != .unavailable {
+              noconnection.isHidden = true
+            print("Network is available")
+
+          } else {
+            setupNoConnectionView()
+       //     noconnection.isHidden = false
+            print("Network is unavailable")
+          }
+      }
+
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -48,54 +112,49 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
    
         return CGSize(width: view.frame.width / 2.2, height: view.frame.width / 1.4)
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0 // Set the minimum interitem spacing to zero to remove the space between cells
-    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return sports.count
+        return homeViewModel?.getSports().count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-    
-        cell.cellLabel.text = sports[indexPath.item]
-        if let imageName = imageNames[sports[indexPath.item]] {
-               cell.cellImg.image = UIImage(named: imageName)
-           }
+    if let sport = homeViewModel?.getSports()[indexPath.item] {
+             cell.cellLabel.text = sport.name
+             cell.cellImg.image = UIImage(named: sport.imageName)
+         }
+
+      
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let selectedSport = homeViewModel?.getSports()[indexPath.item]
+        print(selectedSport)
+        homeViewModel?.sport_name = selectedSport?.name
+        homeViewModel?.fetchLeaguesViewModel(for: selectedSport!.name)
+        let LeaguePage = storyBoard.instantiateViewController(withIdentifier: "LeaguePage") as! LeagueTableViewController
+        LeaguePage.nameSport = selectedSport!.name
+        self.navigationController?.pushViewController(LeaguePage, animated: true)
+        }
     
-    }
-    */
 
+ func collectionView(
+         _ collectionView: UICollectionView,
+         layout collectionViewLayout: UICollectionViewLayout,
+         minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat { return 10.9 }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {return 4.9 }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 3, right: 16)
+    }
+    
+ 
 }
