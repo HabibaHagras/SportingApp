@@ -362,22 +362,22 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            return cell
        }
    }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if collectionView == teamsCollectionView {
-//            // Ensure the storyboard identifier is correct
-//            if let viewController = storyboard?.instantiateViewController(withIdentifier: "TeamsDetails") as? TeamDetailsViewController {
-//                
-//                if let team = eventsViewModel?.legueTeams?[indexPath.item] {
-//                    viewController.team = team
-//                }
-//         
-//                 viewController.modalPresentationStyle = .fullScreen
-//                present(viewController, animated: true, completion: nil)
-//            } else {
-//                print("Could not instantiate view controller with identifier 'TeamsDetails'")
-//            }
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == teamsCollectionView {
+            // Ensure the storyboard identifier is correct
+            if let viewController = storyboard?.instantiateViewController(withIdentifier: "TeamsDetails") as? TeamDetailsViewController {
+
+                if let team = eventsViewModel?.legueTeams?[indexPath.item] {
+                    viewController.team = team
+                }
+
+                 viewController.modalPresentationStyle = .fullScreen
+                present(viewController, animated: true, completion: nil)
+            } else {
+                print("Could not instantiate view controller with identifier 'TeamsDetails'")
+            }
+        }
+    }
 
   
      
