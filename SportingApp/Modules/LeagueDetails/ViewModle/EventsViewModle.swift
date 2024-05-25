@@ -43,7 +43,7 @@ class EventsViewModle{
         
        
     func fetchLatestResults(){
-        let url = "\(Constants.bseUrl)football?met=Fixtures&leagueId=200&from=\(Utlies.pastTime!)&to=\(Utlies.myCurrentTime!)&APIkey=\(Constants.apiKey)"
+        let url = "\(Constants.bseUrl)\(sportName!)?met=Fixtures&leagueId=\(leagueId!)&from=\(Utlies.pastTime!)&to=\(Utlies.myCurrentTime!)&APIkey=\(Constants.apiKey)"
                   print("after fetch")
                   fetchData(url: url) { [weak self]  (league: EventsResponse?) in
                                    self?.eventResponse = league
