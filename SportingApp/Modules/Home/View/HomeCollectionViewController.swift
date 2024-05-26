@@ -12,7 +12,7 @@ import Reachability
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     var reachability: Reachability?
-
+    var networkCheckTimer: Timer?
     @IBOutlet weak var noconnection: UIView!
     var noConnectionView: UIView!
 
@@ -21,21 +21,19 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         super.viewDidLoad()
 
         homeViewModel = HomeViewModel()
-        do {
-                     reachability = try Reachability()
-                 } catch {
-                     print("Unable to create Reachability")
-                 }
-                 
-                  NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+       do {
+                  reachability = try Reachability()
+              } catch {
+                  print("Unable to create Reachability")
+              }
 
-                 do {
-                     try reachability?.startNotifier()
-                   
-
-                 } catch {
-                     print("Unable to start Reachability notifier")
-                 }
+              // Start observing reachability changes
+              NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+              do {
+                try reachability?.startNotifier()
+              } catch {
+                  print("Unable to start Reachability notifier")
+              }
         homeViewModel?.bindResultToViewController = {
             [weak self] in
             DispatchQueue.main.async {
@@ -44,9 +42,15 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
                 self?.collectionView!.reloadData()
             }
-            
+    
         }
-     
+        
+        self.updateNetworkStatusUI()
+                   
+                   // Start periodic network status check
+                   startNetworkCheckTimer()
+     // Start periodic network status check
+
 //        homeViewModel?.bindNetworkStatusToViewController = { [weak self] in
 //                   DispatchQueue.main.async {
 //
@@ -65,22 +69,34 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
     }
     
+    func startNetworkCheckTimer() {
+        networkCheckTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+            self?.updateNetworkStatusUI()
+        }
+    }
     
-    @objc func reachabilityChanged(_ notification: Notification) {
-           guard let reachability = notification.object as? Reachability else { return }
-           
-           if reachability.connection != .unavailable {
-              print("Network is available")
-            self.noconnection.isHidden = true
-                       self.collectionView.isHidden = false
-
-           } else {
-               print("Network is unavailable")
-              self.noconnection.isHidden = false
-            self.collectionView.isHidden = true
-           }
-       }
+    // Stop periodic network status check
+    func stopNetworkCheckTimer() {
+        networkCheckTimer?.invalidate()
+        networkCheckTimer = nil
+    }
+  @objc func reachabilityChanged(_ notification: Notification) {
+    guard (notification.object as? Reachability) != nil else { return }
+        updateNetworkStatusUI()
+    }
     
+    // Update UI based on network status
+    func updateNetworkStatusUI() {
+        if reachability?.connection != .unavailable {
+            print("Network is available")
+            noconnection.isHidden = true
+            collectionView.reloadData() // Reload collection view to hide cells
+        } else {
+            print("Network is unavailable")
+            noconnection.isHidden = false
+            collectionView.reloadData() // Reload collection view to hide cells
+        }
+    }
     
     
     
