@@ -15,7 +15,12 @@ class EventsViewModle{
     var legueTeams: [Team]? = []
     var sportName: String?
     var leagueId :Int!
-    
+    var selectedEvent: Event?
+       var selectedTeam: Team?
+    var coreDataServices: CoreDataServices
+    init(coreDataServices: CoreDataServices) {
+          self.coreDataServices = coreDataServices
+      }
         var bindResultToViewController :(()->()) = {}
 
         
@@ -64,6 +69,24 @@ class EventsViewModle{
                       print("fetch on view modle")
             
         }
+    }
+    
+  
+    func saveDisplayedEventsAndTeams() {
+        guard let events = eventResult, let teams = legueTeams else {
+            print("No events or teams to save")
+            return
+        }
+        
+        for event in events {
+            coreDataServices.saveEvent(event: event)
+        }
+        
+        for team in teams {
+            coreDataServices.saveTeam(team: team)
+        }
+        
+        print("Displayed events and teams saved successfully!")
     }
 }
 

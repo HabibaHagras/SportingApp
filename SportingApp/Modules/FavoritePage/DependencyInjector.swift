@@ -18,4 +18,7 @@ class DependencyInjector {
         let coreDataServices = CoreDataServices(context: context)
         return FavoriteViewModel(coreDataServices: coreDataServices)
     }
+    func resolveCoreDataServices() -> CoreDataServices {
+           return CoreDataServices(context: context)
+       }
 }

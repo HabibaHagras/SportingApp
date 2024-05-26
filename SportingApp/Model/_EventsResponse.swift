@@ -34,6 +34,7 @@ struct Event: Codable {
     let secondPlayerKey: String?
     let eventFirstPlayerLogo: String?
     let eventSecondPlayerLogo: String?
+    let leagueLogo: String?
     
     enum CodingKeys: String, CodingKey {
         case eventKey = "event_key"
@@ -62,5 +63,6 @@ struct Event: Codable {
         case secondPlayerKey = "second_player_key"
         case eventFirstPlayerLogo = "event_first_player_logo"
         case eventSecondPlayerLogo = "event_second_player_logo"
+        case leagueLogo = "league_logo"
     }
 }
