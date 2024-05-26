@@ -120,6 +120,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="miq-ZE-j0t">
+                            <rect key="frame" x="0.0" y="172" width="414" height="896"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noInternet" translatesAutoresizingMaskIntoConstraints="NO" id="spO-EM-J0M">
+                                    <rect key="frame" x="38" y="279" width="338" height="338"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="spO-EM-J0M" firstAttribute="centerY" secondItem="miq-ZE-j0t" secondAttribute="centerY" id="Bqk-z7-9Yb"/>
+                                <constraint firstItem="spO-EM-J0M" firstAttribute="centerX" secondItem="miq-ZE-j0t" secondAttribute="centerX" id="nt6-Wh-Le6"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="Gsi-Ng-WLF"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="116" id="p5y-3j-XBn" customClass="LeagueTableViewCell" customModule="SportingApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="116"/>
@@ -175,6 +190,9 @@
                             <outlet property="delegate" destination="kGi-kk-6iU" id="ZeG-GE-aAM"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="noDataView" destination="miq-ZE-j0t" id="tj5-Sh-eme"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLk-qT-V5X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,36 +236,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="bks-PB-b3S">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="bks-PB-b3S">
+                            <rect key="frame" x="0.0" y="281" width="414" height="725"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyFav" translatesAutoresizingMaskIntoConstraints="NO" id="zNF-tG-XDJ">
-                                    <rect key="frame" x="39" y="60" width="342" height="531"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry Empty Favroite List !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLu-2G-t6T">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry Empty Favroite List !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLu-2G-t6T">
                                     <rect key="frame" x="8" y="500" width="398" height="178"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                     <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyFav" translatesAutoresizingMaskIntoConstraints="NO" id="zNF-tG-XDJ">
+                                    <rect key="frame" x="56" y="0.0" width="296" height="562"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstItem="zNF-tG-XDJ" firstAttribute="leading" secondItem="HwZ-jY-4NS" secondAttribute="leading" constant="39" id="0S8-mz-mbB"/>
-                                <constraint firstItem="HwZ-jY-4NS" firstAttribute="bottom" secondItem="zNF-tG-XDJ" secondAttribute="bottom" constant="134" id="7Q3-ho-0dg"/>
-                                <constraint firstItem="HwZ-jY-4NS" firstAttribute="bottom" secondItem="GLu-2G-t6T" secondAttribute="bottom" constant="47" id="BD9-dP-4rX"/>
-                                <constraint firstItem="GLu-2G-t6T" firstAttribute="top" secondItem="HwZ-jY-4NS" secondAttribute="top" constant="500" id="Lf7-al-rb5"/>
-                                <constraint firstItem="HwZ-jY-4NS" firstAttribute="trailing" secondItem="zNF-tG-XDJ" secondAttribute="trailing" constant="33" id="NoL-xt-3gp"/>
-                                <constraint firstItem="HwZ-jY-4NS" firstAttribute="trailing" secondItem="GLu-2G-t6T" secondAttribute="trailing" constant="8" id="VKz-yk-iUW"/>
-                                <constraint firstItem="zNF-tG-XDJ" firstAttribute="top" secondItem="HwZ-jY-4NS" secondAttribute="top" constant="60" id="WMr-qW-egD"/>
-                                <constraint firstItem="GLu-2G-t6T" firstAttribute="leading" secondItem="HwZ-jY-4NS" secondAttribute="leading" constant="8" id="n7Z-6o-VzY"/>
-                            </constraints>
                             <viewLayoutGuide key="safeArea" id="HwZ-jY-4NS"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFav" rowHeight="109" id="z1L-vP-ERc" customClass="FavoriteTableViewCell" customModule="SportingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="753" width="414" height="109"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z1L-vP-ERc" id="0Jk-UC-bAt">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
@@ -272,7 +282,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="116" id="MKT-HR-xaw" customClass="LeagueTableViewCell" customModule="SportingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="862" width="414" height="116"/>
+                                <rect key="frame" x="0.0" y="137" width="414" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MKT-HR-xaw" id="ANV-al-pmd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>

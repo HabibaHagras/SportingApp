@@ -12,6 +12,11 @@ class FavoriteTableViewController: UITableViewController {
     var favViewModel:FavoriteViewModel!
     
     @IBOutlet weak var NoFavview: UIImageView!
+    
+    
+    @IBOutlet var no: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 super.viewDidLoad()
@@ -53,11 +58,22 @@ class FavoriteTableViewController: UITableViewController {
            }
     
     }
+   private func updateNoFavViewVisibility() {
+                 let hasFavorites = (favViewModel?.news.count ?? 0) > 0
+            NoFavview.isHidden = hasFavorites
+             
+        if !hasFavorites {
     
-    private func updateNoFavViewVisibility() {
-          let hasFavorites = (favViewModel?.news.count ?? 0) > 0
-          NoFavview.isHidden = hasFavorites
-      }
+            
+            let alertController = UIAlertController(title: "You have no favorite news.", message: nil, preferredStyle: .alert)
+              alertController.addAction(UIAlertAction(title: "OK",style: UIAlertAction.Style.default,handler:nil))
+           
+
+            // Present the alert controller
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+
 
     override func viewWillAppear(_ animated: Bool) {
         favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()

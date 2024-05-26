@@ -14,16 +14,33 @@ class LeagueTableViewController: UITableViewController {
     var nameSport:String?
     var leagueName:String?
     var eventsViewModel:EventsViewModle?
+    
+    
+    @IBOutlet weak var noDataView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
            homeViewModel = HomeViewModel()
+        self.noDataView.isHidden = true
+       
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if let count = self.homeViewModel?.LeagueResultVar?.count, count == 0 {
+                self.noDataView.isHidden = false
+            } else {
+                self.noDataView.isHidden = true
+            }
+        }
          homeViewModel?.fetchLeaguesViewModel(for: nameSport!)
         
         
                     homeViewModel?.bindResultToViewController = {
                     [weak self] in
-                    DispatchQueue.main.async {
-                        print(self?.homeViewModel?.LeagueResultVar as? [League])
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                              if let count = self?.homeViewModel?.LeagueResultVar?.count, count == 0 {
+                                  self?.noDataView.isHidden = false
+                              } else {
+                                  self?.noDataView.isHidden = true
+                        }
+                        
                         self?.tableView!.reloadData()
                     }
                     

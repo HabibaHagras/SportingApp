@@ -21,19 +21,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         super.viewDidLoad()
 
         homeViewModel = HomeViewModel()
-       do {
-                  reachability = try Reachability()
-              } catch {
-                  print("Unable to create Reachability")
-              }
-
-              // Start observing reachability changes
-              NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
-              do {
-                try reachability?.startNotifier()
-              } catch {
-                  print("Unable to start Reachability notifier")
-              }
+ 
         homeViewModel?.bindResultToViewController = {
             [weak self] in
             DispatchQueue.main.async {
@@ -44,60 +32,9 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
             }
     
         }
-        
-        self.updateNetworkStatusUI()
-                   
-                   // Start periodic network status check
-                   startNetworkCheckTimer()
-     // Start periodic network status check
-
-//        homeViewModel?.bindNetworkStatusToViewController = { [weak self] in
-//                   DispatchQueue.main.async {
-//
-//                       let isNetworkAvailable = self?.homeViewModel?.isNetworkAvailable ?? false
-//                       self?.noconnection.isHidden = isNetworkAvailable
-//                       self?.collectionView.isHidden = !isNetworkAvailable
-//                    if !isNetworkAvailable {
-//                        let alertController = UIAlertController(title: "No Connection", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-//                             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                             alertController.addAction(okAction)
-//                        self?.present(alertController, animated: true, completion: nil)
-//                        }
-//                   }
-//               }
-      //      self.homeViewModel?.checkNetwork()
 
     }
-    
-    func startNetworkCheckTimer() {
-        networkCheckTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
-            self?.updateNetworkStatusUI()
-        }
-    }
-    
-    // Stop periodic network status check
-    func stopNetworkCheckTimer() {
-        networkCheckTimer?.invalidate()
-        networkCheckTimer = nil
-    }
-  @objc func reachabilityChanged(_ notification: Notification) {
-    guard (notification.object as? Reachability) != nil else { return }
-        updateNetworkStatusUI()
-    }
-    
-    // Update UI based on network status
-    func updateNetworkStatusUI() {
-        if reachability?.connection != .unavailable {
-            print("Network is available")
-            noconnection.isHidden = true
-            collectionView.reloadData() // Reload collection view to hide cells
-        } else {
-            print("Network is unavailable")
-            noconnection.isHidden = false
-            collectionView.reloadData() // Reload collection view to hide cells
-        }
-    }
-    
+ 
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,8 +68,9 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.homeViewModel?.checkNetwork()
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let reachability = try! Reachability()
+         if reachability.connection != .unavailable {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let selectedSport = homeViewModel?.getSports()[indexPath.item]
         print(selectedSport)
         homeViewModel?.sport_name = selectedSport?.name
@@ -140,9 +78,17 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         let LeaguePage = storyBoard.instantiateViewController(withIdentifier: "LeaguePage") as! LeagueTableViewController
         LeaguePage.nameSport = selectedSport!.name
         self.navigationController?.pushViewController(LeaguePage, animated: true)
+            } else {
+                       self.present(showAlert(), animated: true)
+                   }
         }
     
+    func showAlert() -> UIAlertController{
+           let alert = UIAlertController(title: "Error!", message: "please check your connection and try again later", preferredStyle: UIAlertController.Style.alert)
 
+           alert.addAction(UIAlertAction(title: "OK",style: UIAlertAction.Style.default,handler:nil))
+           return alert
+       }
  func collectionView(
          _ collectionView: UICollectionView,
          layout collectionViewLayout: UICollectionViewLayout,
