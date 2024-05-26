@@ -189,10 +189,14 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     
     @IBAction func favBtn(_ sender: Any) {
  //save
-        eventsViewModel?.saveDisplayedEventsAndTeams()
+       // eventsViewModel?.saveDisplayedEventsAndTeams()
         //fetch
 //        let coreDataServices = DependencyInjector.shared.resolveCoreDataServices()
 //           coreDataServices.fetchSavedEventsAndTeams()
+        
+        //********
+        if let leagueId = leagueId, let leagueName = eventsViewModel?.eventResult?.first?.leagueName, let logo =  eventsViewModel?.eventResult?.first?.leagueLogo, let sportName = nameSport {
+            eventsViewModel?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
     }
-    
+    }
 }

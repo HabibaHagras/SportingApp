@@ -88,5 +88,9 @@ class EventsViewModle{
         
         print("Displayed events and teams saved successfully!")
     }
+    func saveLeague(id: Int, name: String, logo: String, sport: String) {
+    coreDataServices.saveLeague(id: id, name: name, logo: logo, sport: sport)
+    // Print saved leagues (optional)
+    coreDataServices.printSavedLeagues()
 }
-
+}

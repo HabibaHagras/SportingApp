@@ -98,5 +98,36 @@ class CoreDataServices {
              print("Failed to fetch saved events and teams: \(error)")
          }
      }
+    
+    func saveLeague(id: Int, name: String,logo: String ,sport: String) {
+           let entity = NSEntityDescription.entity(forEntityName: "LeagueEntitiy", in: context)!
+           let league = NSManagedObject(entity: entity, insertInto: context)
+           league.setValue(id, forKey: "leagueKey")
+           league.setValue(name, forKey: "leagueName")
+        league.setValue(logo, forKey: "leagueLogo")
+           league.setValue(sport, forKey: "sportName")
+
+           do {
+               try context.save()
+           } catch let error as NSError {
+               print("Could not save. \(error), \(error.userInfo)")
+           }
+       }
+    func printSavedLeagues() {
+         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueEntitiy")
+
+         do {
+             let leagues = try context.fetch(fetchRequest)
+             for league in leagues {
+                 let id = league.value(forKey: "leagueKey") as? Int ?? 0
+                 let name = league.value(forKey: "leagueName") as? String ?? "Unknown"
+                 let sport = league.value(forKey: "sportName") as? String ?? "Unknown"
+                let logo = league.value(forKey: "leagueLogo") as? String ?? "Unknown"
+                 print("League ID: \(id), Name: \(name), Sport: \(sport),logo: \(logo)")
+             }
+         } catch let error as NSError {
+             print("Could not fetch. \(error), \(error.userInfo)")
+         }
+     }
     }
 
