@@ -10,6 +10,7 @@ import Foundation
 import Reachability
 class HomeViewModel {
     var reachability: Reachability?
+    var bindNetworkStatusToViewController: (() -> ())?
     var leagueResponseVar: LeagueResponse?
     var LeagueResultVar : [League]? = []
     var videoResponseVar: VideoResponse?
@@ -18,7 +19,11 @@ class HomeViewModel {
     var bindResultToViewController :(()->()) = {}
     var bindResultNetworkToViewController :(()->()) = {}
     var bindResultNetworkVideosToViewController :(()->()) = {}
-
+    var isNetworkAvailable: Bool = true {
+          didSet {
+              bindNetworkStatusToViewController?()
+          }
+      }
     
      func fetchLeaguesViewModel(for sport: String) {
         NetworkServices.fetchLeagues(for: sport) { [weak self] league in
@@ -53,35 +58,38 @@ class HomeViewModel {
           ]
       }
     
-    func checkNetwork() {
-         do {
-                     reachability = try Reachability()
-                 } catch {
-                     print("Unable to create Reachability")
-                 }
-                 
-                  NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
-
-                 do {
-                     try reachability?.startNotifier()
-                   
-
-                 } catch {
-                     print("Unable to start Reachability notifier")
-                 }
+    init() {
+        setupReachability()
     }
-    
-    @objc func reachabilityChanged(_ notification: Notification) {
-          guard let reachability = notification.object as? Reachability else { return }
-          
-          if reachability.connection != .unavailable {
-            self.bindResultToViewController()
-            }
 
-     else {
-              print("Network is unavailable")
-          }
-      }
+    private func setupReachability() {
+        do {
+            reachability = try Reachability()
+        } catch {
+            print("Unable to create Reachability")
+            return
+        }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: .reachabilityChanged, object: reachability)
+
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start Reachability notifier")
+        }
+
+        checkNetwork()
+    }
+
+    @objc private func reachabilityChanged(_ notification: Notification) {
+        guard let reachability = notification.object as? Reachability else { return }
+        isNetworkAvailable = reachability.connection != .unavailable
+    }
+
+    func checkNetwork() {
+        isNetworkAvailable = reachability?.connection != .unavailable
+    }
+
 
 
 }

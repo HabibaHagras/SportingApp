@@ -10,6 +10,8 @@ import UIKit
 
 class FavoriteTableViewController: UITableViewController {
     var favViewModel:FavoriteViewModel!
+    
+    @IBOutlet weak var NoFavview: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
                 super.viewDidLoad()
@@ -21,8 +23,11 @@ class FavoriteTableViewController: UITableViewController {
                          print("Data fetched successfully")
                      } else {
                          print("No data")
+                    
                      }
                      self?.tableView.reloadData()
+                    self?.updateNoFavViewVisibility()
+
                  }
              }
   
@@ -42,11 +47,18 @@ class FavoriteTableViewController: UITableViewController {
                  if let error = error {
                      print("Error fetching data: \(error)")
                  }
+                self.updateNoFavViewVisibility()
 
 
            }
     
     }
+    
+    private func updateNoFavViewVisibility() {
+          let hasFavorites = (favViewModel?.news.count ?? 0) > 0
+          NoFavview.isHidden = hasFavorites
+      }
+
     override func viewWillAppear(_ animated: Bool) {
         favViewModel = DependencyInjector.shared.resolveFavoriteViewModel()
 
