@@ -156,9 +156,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
        if let event = eventsViewModel?.legueTeams, indexPath.item < event.count {
        let eventItem = event[indexPath.item]
         if let urlString = eventItem.teamLogo, let url = URL(string: urlString) {
-            cell.teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "team"))
+            cell.teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "hands"))
         } else {
-            cell.teamImage.image = UIImage(named: "team")
+            cell.teamImage.image = UIImage(named: "hands")
         }
         
         }
@@ -167,11 +167,13 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == teamsCollectionView {
-            // Ensure the storyboard identifier is correct
+            
             if let viewController = storyboard?.instantiateViewController(withIdentifier: "TeamsDetails") as? TeamDetailsViewController {
 
                 if let team = eventsViewModel?.legueTeams?[indexPath.item] {
-                    viewController.team = team
+                   // viewController.team = team
+                    let teamDetailsViewModel = TeamDetailsViewModel(team: team)
+               viewController.viewModel = teamDetailsViewModel
                 }
 
                  viewController.modalPresentationStyle = .fullScreen
