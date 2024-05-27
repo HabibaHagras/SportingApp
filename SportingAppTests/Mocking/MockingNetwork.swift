@@ -37,7 +37,7 @@ extension MockNetwork {
         case responseError
     }
     
-    func fetchDataFromApi(completionHandler: @escaping (LeagueResponse?, Error?) -> Void) {
+    func fetchLeaguesFromApi(completionHandler: @escaping (LeagueResponse?, Error?) -> Void) {
         do {
             let data = try JSONSerialization.data(withJSONObject: fakeJSONObj)
             let decodedResult = try JSONDecoder().decode(LeagueResponse.self, from: data)

@@ -8,6 +8,7 @@
 
 import Foundation
 class EventsViewModle{
+    var apiService  = NetworkServices()
      var eventResponse: EventsResponse?
     var teamsResponse: Teams?
         var eventResult: [Event]? = []
@@ -35,7 +36,7 @@ class EventsViewModle{
             print("----------------------------------")
                 let url = "\(Constants.bseUrl)\(sportName!)?met=Fixtures&leagueId=\(leagueId!)&from=\(Utlies.currentTime!)&to=\(Utlies.futureTime!)&APIkey=\(Constants.apiKey)"
             print("after fetch")
-            fetchData(url: url) { [weak self]  (league: EventsResponse?) in
+            apiService.fetchData(url: url) { [weak self]  (league: EventsResponse?) in
                              self?.eventResponse = league
                   self?.eventResult = league?.result
                           self?.bindResultToViewController()
@@ -53,7 +54,7 @@ class EventsViewModle{
     func fetchLatestResults(){
         let url = "\(Constants.bseUrl)\(sportName!)?met=Fixtures&leagueId=\(leagueId!)&from=\(Utlies.pastTime!)&to=\(Utlies.myCurrentTime!)&APIkey=\(Constants.apiKey)"
                   print("after fetch")
-                  fetchData(url: url) { [weak self]  (league: EventsResponse?) in
+        apiService.fetchData(url: url) { [weak self]  (league: EventsResponse?) in
                                    self?.eventResponse = league
                         self?.latestResults = league?.result
                                 self?.bindResultToViewController()
@@ -62,10 +63,10 @@ class EventsViewModle{
     }
 }
     func fetchTeams()  {
-        //https://apiv2.allsportsapi.com/football/?met=Teams&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644&leagueId=152
+        
        let url = "\(Constants.bseUrl)\(sportName!)?met=Teams&leagueId=\(leagueId!)&APIkey=\(Constants.apiKey)"
                       print("after fetch")
-                      fetchData(url: url) { [weak self]  (league: Teams?) in
+        apiService.fetchData(url: url) { [weak self]  (league: Teams?) in
                                        self?.teamsResponse = league
                         self?.legueTeams = league?.result
                                     self?.bindResultToViewController()

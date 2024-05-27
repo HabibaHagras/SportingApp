@@ -30,8 +30,8 @@ class MockingTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    func testMockFetchData(){
-        mockObject.fetchDataFromApi{
+    func testMockFetchLeagues(){
+        mockObject.fetchLeaguesFromApi{
             result , error in
             if let error = error {
                 XCTFail()

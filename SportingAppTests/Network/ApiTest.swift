@@ -29,7 +29,7 @@ class ApiTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
- func testFetchData() {
+ func testFetchLeagues() {
      let ex = expectation(description: "Fetch leagues expectation")
      NetworkServices.fetchLeagues(for: "football") { (leagueResponse) in
          if let leagueResponse = leagueResponse {
@@ -41,7 +41,26 @@ class ApiTest: XCTestCase {
      }
      waitForExpectations(timeout: 5, handler: nil)
  }
+ func testFetchData() {
+     var apiService  = NetworkServices()
+        let ex = expectation(description: "Fetch data expectation")
+        
+        
+        let url = "https://apiv2.allsportsapi.com/football?met=Fixtures&leagueId=200&from=2023-01-18&to=2024-01-18&APIkey=5875401c7bbc5187abf58be03796ab2a39d557ac08f6ff6a22d8f57dff7a62ef"
 
+        
+    apiService.fetchData(url: url) { (response: EventsResponse?) in
+            if let response = response {
+                XCTAssertEqual(response.success, 1, "Result should be 1 if the correct call api ")
+                ex.fulfill()
+            } else {
+                XCTFail("Failed to fetch data")
+            }
+        }
+
+        // Wait for expectations
+        waitForExpectations(timeout: 5, handler: nil)
+    }
 
     }
 
