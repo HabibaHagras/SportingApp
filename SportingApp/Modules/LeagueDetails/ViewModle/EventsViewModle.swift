@@ -40,7 +40,7 @@ class EventsViewModle{
                   self?.eventResult = league?.result
                           self?.bindResultToViewController()
             print("fetch on view modle")
-            print("************\(self?.eventResult?[0])")
+          //  print("************\(self?.eventResult?[0])")
             print("----------------------------------")
            
 
@@ -69,7 +69,9 @@ class EventsViewModle{
                                        self?.teamsResponse = league
                         self?.legueTeams = league?.result
                                     self?.bindResultToViewController()
-                      print("fetch on view modle")
+                        print("============================")
+                        print("fetch teamsdata*****\(self?.legueTeams?[0])")
+                        print("============================")
             
         }
     }

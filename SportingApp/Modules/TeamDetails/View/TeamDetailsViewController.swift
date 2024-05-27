@@ -11,7 +11,8 @@ import UIKit
 class TeamDetailsViewController: UIViewController,UICollectionViewDataSource ,UICollectionViewDelegate {
    
     
-     var team: Team?
+     //var team: Team?
+     var viewModel: TeamDetailsViewModel?
         @IBOutlet weak var teamImage: UIImageView!
         
         @IBOutlet weak var teamNameLB: UILabel!
@@ -21,18 +22,38 @@ class TeamDetailsViewController: UIViewController,UICollectionViewDataSource ,UI
             playersCollectionView.delegate = self
                   playersCollectionView.dataSource = self
             super.viewDidLoad()
-            teamNameLB.text = team?.teamName
-            if let imageUrl = team?.teamLogo, let url = URL(string: imageUrl) {
-                       teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "1.jpeg"))
-                   } else {
-                       teamImage.image = UIImage(named: "1.jpeg")
-                   }
-       
+//            teamNameLB.text = team?.teamName
+//            if let imageUrl = team?.teamLogo, let url = URL(string: imageUrl) {
+//                       teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "team"))
+//                   } else {
+//                       teamImage.image = UIImage(named: "team")
+//                   }
+       updateUI()
            
         }
+    private func updateUI() {
+        if let team = viewModel?.team {
+            teamNameLB.text = team.teamName
+            if let urlString = team.teamLogo, let url = URL(string: urlString) {
+                teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "team"))
+            } else {
+                teamImage.image = UIImage(named: "team")
+            }
+            if let players = viewModel?.team?.players {
+                       for player in players {
+                           print("Player Name: \(player.playerName)")
+                           // Add more properties if needed
+                       }
+                   } else {
+                       print("No players found")
+                   }
+            playersCollectionView.reloadData()
+        }
+          
+    }
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-          return 10
+        return viewModel?.team?.players?.count ?? 0
        }
        
           
@@ -54,9 +75,9 @@ class TeamDetailsViewController: UIViewController,UICollectionViewDataSource ,UI
           }
           
           func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-              return 10 // Adjust spacing as needed
+              return 5// Adjust spacing as needed
           }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    /*func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
         // Configure the cell
@@ -64,15 +85,67 @@ class TeamDetailsViewController: UIViewController,UICollectionViewDataSource ,UI
             let playerNameLabel = cell.viewWithTag(1) as? UILabel
             let playerImageView = cell.viewWithTag(2) as? UIImageView
             
-            playerNameLabel?.text = team?.teamName
-        if let imageUrl = team?.teamLogo, let url = URL(string: imageUrl) {
-                playerImageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder.jpeg"))
-            } else {
-                playerImageView?.image = UIImage(named: "placeholder.jpeg")
-            }
-       // }
+//
+        // }  playerNameLabel?.text = team?.teamName
+        //        if let imageUrl = team?.teamLogo, let url = URL(string: imageUrl) {
+        //                playerImageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder.jpeg"))
+        //            } else {
+        //                playerImageView?.image = UIImage(named: "placeholder.jpeg")
+        //            }
+ 
+//        if let player = team?.players?[indexPath.item] {
+//            let playerNameLabel = cell.viewWithTag(1) as? UILabel
+//            let playerImageView = cell.viewWithTag(2) as? UIImageView
+//
+//            playerNameLabel?.text = player.playerName
+//            if let imageUrl = player.playerImage, let url = URL(string: imageUrl) {
+//                playerImageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "team"))
+//            } else {
+//                playerImageView?.image = UIImage(named: "team")
+//            }
+//        }
         
         return cell
+    }
+ */
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+//
+//        if let player = viewModel?.team?.players?[indexPath.item] {
+//               let playerNameLabel = cell.viewWithTag(1) as? UILabel
+//               let playerImageView = cell.viewWithTag(2) as? UIImageView
+//
+//            playerNameLabel?.text = player.playerName
+//               if let imageUrl = player.playerImage, let url = URL(string: imageUrl) {
+//                   playerImageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "team"))
+//               } else {
+//                   playerImageView?.image = UIImage(named: "team")
+//               }
+//           }
+//
+//           return cell
+//       }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+                  
+               if let player = viewModel?.team?.players?[indexPath.item] {
+                      let playerNameLabel = cell.viewWithTag(2) as? UILabel
+                      let playerImageView = cell.viewWithTag(1) as? UIImageView
+                      
+                   playerNameLabel?.text = player.playerName
+                      if let imageUrl = player.playerImage, let url = URL(string: imageUrl) {
+                          playerImageView?.sd_setImage(with: url, placeholderImage: UIImage(named: "player"))
+                      } else {
+                          playerImageView?.image = UIImage(named: "player")
+                      }
+                
+                      if let playerImageView = playerImageView {
+                          playerImageView.layer.cornerRadius = playerImageView.frame.size.width / 2
+                          playerImageView.clipsToBounds = true
+                      }
+                  }
+                  
+                  return cell
     }
     
     @IBAction func backBtn(_ sender: Any) {
