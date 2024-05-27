@@ -36,6 +36,7 @@
 		177172142BFF9078000A00C9 /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177172132BFF9078000A00C9 /* CoreDataServices.swift */; };
 		1771721A2BFFA2CF000A00C9 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177172192BFFA2CF000A00C9 /* DependencyInjector.swift */; };
 		1771721C2BFFA839000A00C9 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771721B2BFFA839000A00C9 /* Video.swift */; };
+		17850DDD2C051BA600C14225 /* FavoriteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17850DDC2C051BA600C14225 /* FavoriteViewModelTests.swift */; };
 		17864DF22C01282800BA55B4 /* _EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17864DEF2C01282800BA55B4 /* _EventsResponse.swift */; };
 		17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CC2BF6250600472B10 /* AppDelegate.swift */; };
 		17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */; };
@@ -106,6 +107,7 @@
 		177172132BFF9078000A00C9 /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
 		177172192BFFA2CF000A00C9 /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
 		1771721B2BFFA839000A00C9 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		17850DDC2C051BA600C14225 /* FavoriteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModelTests.swift; sourceTree = "<group>"; };
 		17864DEF2C01282800BA55B4 /* _EventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _EventsResponse.swift; sourceTree = "<group>"; };
 		17A8E3C92BF6250600472B10 /* SportingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A8E3CC2BF6250600472B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				17A8E3E62BF6253300472B10 /* SportingAppTests.swift */,
 				17A8E3E82BF6253300472B10 /* Info.plist */,
 				17E9382A2C03C4C20072B490 /* CoreDataServicesTests.swift */,
+				17850DDC2C051BA600C14225 /* FavoriteViewModelTests.swift */,
 			);
 			path = SportingAppTests;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 			files = (
 				17A8E3E72BF6253300472B10 /* SportingAppTests.swift in Sources */,
 				173D00322BFD1EBA00DF1206 /* MockingTest.swift in Sources */,
+				17850DDD2C051BA600C14225 /* FavoriteViewModelTests.swift in Sources */,
 				173D00352BFD207300DF1206 /* ApiTest.swift in Sources */,
 				17E9382B2C03C4C20072B490 /* CoreDataServicesTests.swift in Sources */,
 				173D00302BFD18F500DF1206 /* MockingNetwork.swift in Sources */,
