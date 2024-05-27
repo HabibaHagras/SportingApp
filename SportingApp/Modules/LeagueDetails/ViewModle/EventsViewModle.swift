@@ -77,22 +77,7 @@ class EventsViewModle{
     }
     
   
-    func saveDisplayedEventsAndTeams() {
-        guard let events = eventResult, let teams = legueTeams else {
-            print("No events or teams to save")
-            return
-        }
-        
-        for event in events {
-            coreDataServices.saveEvent(event: event)
-        }
-        
-        for team in teams {
-            coreDataServices.saveTeam(team: team)
-        }
-        
-        print("Displayed events and teams saved successfully!")
-    }
+  
 
     func saveLeague(id: Int, name: String, logo: String, sport: String) {
     coreDataServices.saveLeague(id: id, name: name, logo: logo, sport: sport)
