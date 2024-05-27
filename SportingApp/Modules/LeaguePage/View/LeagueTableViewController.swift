@@ -14,18 +14,31 @@ class LeagueTableViewController: UITableViewController {
     var nameSport:String?
     var leagueName:String?
     var eventsViewModel:EventsViewModle?
-    
+    var indictor: UIActivityIndicatorView?
+
     
     @IBOutlet weak var noDataView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
            homeViewModel = HomeViewModel()
         self.noDataView.isHidden = true
-       
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+       indictor = UIActivityIndicatorView(style: .large)
+        indictor?.color = UIColor.gray
+        if let indictor = indictor {
+            indictor.center = self.view.center
+            self.view.addSubview(indictor)
+            indictor.startAnimating()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             if let count = self.homeViewModel?.LeagueResultVar?.count, count == 0 {
                 self.noDataView.isHidden = false
+          
+                self.indictor?.stopAnimating()
+
             } else {
+                self.indictor?.stopAnimating()
+
                 self.noDataView.isHidden = true
             }
         }
@@ -36,9 +49,15 @@ class LeagueTableViewController: UITableViewController {
                     [weak self] in
                       DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                               if let count = self?.homeViewModel?.LeagueResultVar?.count, count == 0 {
+                                self?.indictor?.stopAnimating()
+
                                   self?.noDataView.isHidden = false
+                                
                               } else {
+                                self?.indictor?.stopAnimating()
+
                                   self?.noDataView.isHidden = true
+
                         }
                         
                         self?.tableView!.reloadData()

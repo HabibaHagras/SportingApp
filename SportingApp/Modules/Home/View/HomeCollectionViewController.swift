@@ -19,9 +19,12 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     var homeViewModel:HomeViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+             self.present(showAlert(), animated: true)
+        }
         homeViewModel = HomeViewModel()
- 
+        self.noconnection.isHidden = true
         homeViewModel?.bindResultToViewController = {
             [weak self] in
             DispatchQueue.main.async {
@@ -39,7 +42,10 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-      
+      let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+             self.present(showAlert(), animated: true)
+        }
         
     }
 
@@ -93,17 +99,33 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
          _ collectionView: UICollectionView,
          layout collectionViewLayout: UICollectionViewLayout,
          minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat { return 10.9 }
+    ) -> CGFloat { return 8.9 }
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAt section: Int
-    ) -> CGFloat {return 4.9 }
+    ) -> CGFloat {return 0.9 }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 16, bottom: 3, right: 16)
+//    }
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 3, right: 16)
+        // Calculate the width of the screen
+        let screenWidth = UIScreen.main.bounds.width
+
+        // Calculate the total desired horizontal inset (left + right)
+        // Adjust this value as needed to achieve the desired look
+        let totalHorizontalInset: CGFloat = 32
+
+        // Calculate the individual left and right insets
+        let horizontalInset = (screenWidth - collectionView.frame.width + totalHorizontalInset) / 2
+
+        // Return the insets with dynamic left and right values
+        return UIEdgeInsets(top: 0, left: horizontalInset, bottom: 3, right: horizontalInset)
     }
-    
+
  
 }
