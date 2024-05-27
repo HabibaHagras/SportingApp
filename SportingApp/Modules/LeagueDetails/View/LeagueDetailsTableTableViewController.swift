@@ -103,9 +103,11 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         if indexPath.section == 0 {
                // Change this value to the desired height for the first section
                return 50
-        } else if  indexPath.section == 2 {
-            return 150
-        } else  {
+        } else if  indexPath.section == 1 {
+            return 250
+         } else if  indexPath.section == 2 {
+                   return 150
+               }else  {
                // Change this value to the desired height for the second section
                return 300
            }
