@@ -48,6 +48,13 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         }
         
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+         return CGSize(width: collectionView.frame.width, height: 60) // 
+     }
+   
+    //    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 100
+//    }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -66,7 +73,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
     if let sport = homeViewModel?.getSports()[indexPath.item] {
-             cell.cellLabel.text = sport.name
+             cell.cellLabel.text = sport.nameHome
              cell.cellImg.image = UIImage(named: sport.imageName)
          }
 
