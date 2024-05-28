@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class EventsViewModle{
+class LeagueDetailsViewModle{
     var apiService  = NetworkServices()
      var eventResponse: EventsResponse?
     var teamsResponse: Teams?

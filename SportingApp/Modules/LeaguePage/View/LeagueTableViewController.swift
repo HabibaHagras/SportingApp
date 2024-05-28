@@ -13,7 +13,7 @@ class LeagueTableViewController: UITableViewController {
     var homeViewModel:HomeViewModel?
     var nameSport:String?
     var leagueName:String?
-    var eventsViewModel:EventsViewModle?
+    var eventsViewModel: League?
     override func viewDidLoad() {
         super.viewDidLoad()
            homeViewModel = HomeViewModel()

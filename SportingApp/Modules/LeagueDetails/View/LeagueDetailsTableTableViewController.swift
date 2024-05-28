@@ -19,7 +19,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     //var reachability: Reachability?
-        var eventsViewModel:EventsViewModle?
+    var leagueDetailsViewModle: LeagueDetailsViewModle?
     var favViewModel: FavoriteViewModel?
     var nameSport :String?
     var leagueId :Int!
@@ -35,12 +35,12 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         view.addSubview(idinticator!)
            //eventsViewModel = EventsViewModle()
         let coreDataServices = DependencyInjector.shared.resolveCoreDataServices()
-        eventsViewModel = EventsViewModle(coreDataServices: coreDataServices)
+        leagueDetailsViewModle = LeagueDetailsViewModle(coreDataServices: coreDataServices)
         favViewModel = FavoriteViewModel(coreDataServices: coreDataServices)
-        eventsViewModel?.sportName = nameSport
-        eventsViewModel?.leagueId = leagueId
-        eventsViewModel?.leagueName = leagueName
-        eventsViewModel?.leagueLogo = leagueLogo
+        leagueDetailsViewModle?.sportName = nameSport
+        leagueDetailsViewModle?.leagueId = leagueId
+        leagueDetailsViewModle?.leagueName = leagueName
+        leagueDetailsViewModle?.leagueLogo = leagueLogo
         Utlies.dateForCurrentEvents()
         Utlies.dateForLatestResEvents()
        print("past time\(Utlies.pastTime)")
@@ -65,11 +65,11 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
 //        eventsViewModel?.fetchLatestResults()
 //        eventsViewModel?.fetchTeams()
         DispatchQueue.global().async {
-            self.eventsViewModel?.fetchUpcomingEvents()
-            self.eventsViewModel?.fetchLatestResults()
-            self.eventsViewModel?.fetchTeams()
+            self.leagueDetailsViewModle?.fetchUpcomingEvents()
+            self.leagueDetailsViewModle?.fetchLatestResults()
+            self.leagueDetailsViewModle?.fetchTeams()
         }
-           eventsViewModel?.bindResultToViewController = { [weak self] in
+           leagueDetailsViewModle?.bindResultToViewController = { [weak self] in
              
                DispatchQueue.main.async {
 
@@ -80,13 +80,13 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
 
                }
            }
-        isInFavorites = (eventsViewModel?.isLeagueSavedToCoreData(leagueId: leagueId))!
+        isInFavorites = (leagueDetailsViewModle?.isLeagueSavedToCoreData(leagueId: leagueId))!
         
         udateFvoriteButton()
        }
        
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return eventsViewModel?.eventResult?.count ?? 0
+           return leagueDetailsViewModle?.eventResult?.count ?? 0
        }
        
      
@@ -123,7 +123,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        if collectionView == eventsCollection {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
-           if let event = eventsViewModel?.eventResult, indexPath.item < event.count {
+           if let event = leagueDetailsViewModle?.eventResult, indexPath.item < event.count {
                let eventItem = event[indexPath.item]
                cell.dateLB.text = eventItem.eventDate
                cell.timeLB.text = eventItem.eventTime
@@ -144,7 +144,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            return cell
        } else if collectionView == resultsCollectionView {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
-           if let event = eventsViewModel?.latestResults, indexPath.item < event.count {
+           if let event = leagueDetailsViewModle?.latestResults, indexPath.item < event.count {
                let eventItem = event[indexPath.item]
                cell.dateLB.text = eventItem.eventDate
                cell.timeLB.text = eventItem.eventTime
@@ -166,7 +166,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
        } else {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomTeamsCell
            // Set up your cell for teams collection view
-       if let event = eventsViewModel?.legueTeams, indexPath.item < event.count {
+       if let event = leagueDetailsViewModle?.legueTeams, indexPath.item < event.count {
        let eventItem = event[indexPath.item]
         if let urlString = eventItem.teamLogo, let url = URL(string: urlString) {
             cell.teamImage.sd_setImage(with: url, placeholderImage: UIImage(named: "hands"))
@@ -183,7 +183,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
             
             if let viewController = storyboard?.instantiateViewController(withIdentifier: "TeamsDetails") as? TeamDetailsViewController {
 
-                if let team = eventsViewModel?.legueTeams?[indexPath.item] {
+                if let team = leagueDetailsViewModle?.legueTeams?[indexPath.item] {
                    // viewController.team = team
                     let teamDetailsViewModel = TeamDetailsViewModel(team: team)
                viewController.viewModel = teamDetailsViewModel
@@ -207,13 +207,13 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         udateFvoriteButton()
         if (isInFavorites){
              addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        if let leagueId = leagueId, let leagueName = eventsViewModel?.eventResult?.first?.leagueName, let logo =  eventsViewModel?.eventResult?.first?.leagueLogo, let sportName = nameSport {
-            eventsViewModel?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
+        if let leagueId = leagueId, let leagueName = leagueDetailsViewModle?.eventResult?.first?.leagueName, let logo =  leagueDetailsViewModle?.eventResult?.first?.leagueLogo, let sportName = nameSport {
+            leagueDetailsViewModle?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
             }
             
         }else{
             addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-            eventsViewModel?.removeLeagueFromCoreData(leagueId: leagueId)
+            leagueDetailsViewModle?.removeLeagueFromCoreData(leagueId: leagueId)
         }
         
     }
