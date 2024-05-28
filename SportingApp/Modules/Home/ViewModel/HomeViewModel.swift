@@ -49,10 +49,10 @@ class HomeViewModel {
     
     func getSports() -> [Sport] {
           return [
-              Sport(name: "football", imageName: "fooot"),
-              Sport(name: "basketball", imageName: "basketball_image"),
-              Sport(name: "cricket", imageName: "cricket_image"),
-              Sport(name: "tennis", imageName: "tennis_image"),
+            Sport(name: "football", imageName: "fooot", nameHome: "Football"),
+            Sport(name: "basketball", imageName: "basketball_image", nameHome: "Basketball"),
+            Sport(name: "cricket", imageName: "cricket_image", nameHome: "Cricket"),
+            Sport(name: "tennis", imageName: "tennis_image", nameHome: "Tennis"),
 //              Sport(name: "baseball", imageName: "baseball_image"),
 //              Sport(name: "american Football", imageName: "american_football_image")
           ]

@@ -43,6 +43,7 @@
 		1771721C2BFFA839000A00C9 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771721B2BFFA839000A00C9 /* Video.swift */; };
 		17850DDD2C051BA600C14225 /* FavoriteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17850DDC2C051BA600C14225 /* FavoriteViewModelTests.swift */; };
 		17864DF22C01282800BA55B4 /* _EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17864DEF2C01282800BA55B4 /* _EventsResponse.swift */; };
+		178BF9A92C0612AC004109A0 /* CustomHeaderVieww.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178BF9A82C0612AC004109A0 /* CustomHeaderVieww.swift */; };
 		17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CC2BF6250600472B10 /* AppDelegate.swift */; };
 		17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */; };
 		17A8E3D12BF6250600472B10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3D02BF6250600472B10 /* ViewController.swift */; };
@@ -119,6 +120,7 @@
 		1771721B2BFFA839000A00C9 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		17850DDC2C051BA600C14225 /* FavoriteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModelTests.swift; sourceTree = "<group>"; };
 		17864DEF2C01282800BA55B4 /* _EventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _EventsResponse.swift; sourceTree = "<group>"; };
+		178BF9A82C0612AC004109A0 /* CustomHeaderVieww.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderVieww.swift; sourceTree = "<group>"; };
 		17A8E3C92BF6250600472B10 /* SportingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A8E3CC2BF6250600472B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 			children = (
 				17A8E40B2BF645F800472B10 /* HomeCollectionViewController.swift */,
 				17A8E40D2BF6471B00472B10 /* HomeCollectionViewCell.swift */,
+				178BF9A82C0612AC004109A0 /* CustomHeaderVieww.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				10FA9DBF2C019AFE00A391AE /* EventsViewModle.swift in Sources */,
 				10FA9DC62C019BA000A391AE /* Constants.swift in Sources */,
 				17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */,
+				178BF9A92C0612AC004109A0 /* CustomHeaderVieww.swift in Sources */,
 				10FA9DB52C019A5600A391AE /* CustomEventCell.swift in Sources */,
 				10FA9DB92C019A7700A391AE /* CustomTeamsCell.swift in Sources */,
 				17399B3E2BF8F44500EE238A /* LeagueViewModel.swift in Sources */,

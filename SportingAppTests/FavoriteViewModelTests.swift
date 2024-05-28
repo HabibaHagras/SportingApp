@@ -10,109 +10,82 @@ import XCTest
 import CoreData
 @testable import SportingApp
 class FavoriteViewModelTests: XCTestCase {
-            var viewModel: FavoriteViewModel!
-            var coreDataServices: CoreDataServices!
-            var managedObjectContext: NSManagedObjectContext!
+             var mockPersistentContainer: NSPersistentContainer!
+               var coreDataServices: CoreDataServices!
+               var viewModel: FavoriteViewModel!
 
-            override func setUp() {
-                super.setUp()
+               override func setUp() {
+                   super.setUp()
 
-                // Setting up the in-memory Core Data stack
-                let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))])!
-                let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-                do {
-                    try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
-                } catch {
-                    XCTFail("Failed to initialize in-memory Core Data stack: \(error)")
-                }
+                   mockPersistentContainer = {
+                       let container = NSPersistentContainer(name: "SportingApp")
+                       let description = NSPersistentStoreDescription()
+                       description.type = NSInMemoryStoreType
+                       container.persistentStoreDescriptions = [description]
+                       container.loadPersistentStores { description, error in
+                           if let error = error {
+                               fatalError("Failed to load persistent stores: \(error)")
+                           }
+                       }
+                       return container
+                   }()
 
-                managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-                managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+                   coreDataServices = CoreDataServices(context: mockPersistentContainer.viewContext)
+                   viewModel = FavoriteViewModel(coreDataServices: coreDataServices)
+               }
 
-                coreDataServices = CoreDataServices(context: managedObjectContext)
-                viewModel = FavoriteViewModel(coreDataServices: coreDataServices)
-            }
+               override func tearDown() {
+                   super.tearDown()
 
-            override func tearDown() {
-                viewModel = nil
-                coreDataServices = nil
-                managedObjectContext = nil
-                super.tearDown()
-            }
+                   viewModel = nil
+                   coreDataServices = nil
+                   mockPersistentContainer = nil
+               }
 
-            func testFetchData() {
-                // Given
-                let id = 1
-                let name = "Test League"
-                let logo = "test_logo.png"
-                let sport = "Football"
-                coreDataServices.saveLeague(id: id, name: name, logo: logo, sport: sport)
+               func testFetchData() {
+                   let expectation = self.expectation(description: "Fetch data")
 
-                let expectation = self.expectation(description: "FetchData")
+                   // Insert mock data
+                   coreDataServices.saveLeague(id: 1, name: "Test League", logo: "logo.png", sport: "Soccer")
 
-                // When
-                viewModel.bindResultCoreDataToViewController = {
-                    expectation.fulfill()
-                }
+                   viewModel.bindResultCoreDataToViewController = {
+                       expectation.fulfill()
+                   }
 
-                var fetchError: Error?
-                viewModel.fetchData { error in
-                    fetchError = error
-                }
+                   viewModel.fetchData { error in
+                       XCTAssertNil(error, "Fetch data should not produce an error")
+                       XCTAssertEqual(self.viewModel.news.count, 1, "There should be one item in news array")
+                   }
 
-                waitForExpectations(timeout: 2, handler: nil)
+                   waitForExpectations(timeout: 1, handler: nil)
+               }
 
-                // Then
-                XCTAssertNil(fetchError, "Error should be nil")
-                XCTAssertEqual(viewModel.news.count, 1, "One league should be fetched")
-                XCTAssertEqual(viewModel.news.first?.value(forKey: "leagueName") as? String, name, "Fetched league name should match")
-            }
+               func testDelete() {
+                   let fetchExpectation = self.expectation(description: "Fetch data")
+                   let deleteExpectation = self.expectation(description: "Delete data")
 
-          
-//                func testDelete() {
-//                         let id = 1
-//                       let name = "Test League"
-//                       let logo = "test_logo.png"
-//                       let sport = "Football"
-//
-//                       coreDataServices.saveLeague(id: id, name: name, logo: logo, sport: sport)
-//
-//                    let fetchRequest: NSFetchRequest<LeagueEntitiy> = LeagueEntitiy.fetchRequest()
-//                    var savedLeagues: [LeagueEntitiy] = []
-//                    do {
-//                        savedLeagues = try managedObjectContext.fetch(fetchRequest)
-//                    } catch {
-//                        XCTFail("Failed to fetch leagues: \(error)")
-//                    }
-//
-//                    guard let leagueToDelete = savedLeagues.first else {
-//                        XCTFail("No leagues found to delete")
-//                        return
-//                    }
-//
-//                    let expectation = self.expectation(description: "DeleteData")
-//
-//                    viewModel.bindResultDeleteCoreDataToViewController = {
-//                        expectation.fulfill()
-//                    }
-//
-//                    var deleteError: Error?
-//                    viewModel.delete(item: leagueToDelete) { error in
-//                        deleteError = error
-//                    }
-//
-//                    waitForExpectations(timeout: 10, handler: nil)
-//
-//                    XCTAssertNil(deleteError, "Error should be nil")
-//
-//                    let remainingLeagues: Int
-//                    do {
-//                        remainingLeagues = try managedObjectContext.count(for: fetchRequest)
-//                    } catch {
-//                        XCTFail("Failed to fetch remaining leagues: \(error)")
-//                        return
-//                    }
-//                    XCTAssertEqual(remainingLeagues, 0, "All leagues should be deleted")
-//                }
-            
+                   coreDataServices.saveLeague(id: 1, name: "Test League", logo: "logo.png", sport: "Soccer")
+
+                   viewModel.bindResultCoreDataToViewController = {
+                       fetchExpectation.fulfill()
+                   }
+
+                   viewModel.fetchData { error in
+                       XCTAssertNil(error, "Fetch data should not produce an error")
+                       XCTAssertEqual(self.viewModel.news.count, 1, "There should be one item in news array")
+
+                       if let item = self.viewModel.news.first {
+                           self.viewModel.bindResultDeleteCoreDataToViewController = {
+                               deleteExpectation.fulfill()
+                           }
+
+                           self.viewModel.delete(item: item) { error in
+                               XCTAssertNil(error, "Delete data should not produce an error")
+                               XCTAssertEqual(self.viewModel.news.count, 0, "News array should be empty after deletion")
+                           }
+                       }
+                   }
+
+                   waitForExpectations(timeout: 1, handler: nil)
+               }
         }
