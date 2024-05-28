@@ -11,24 +11,27 @@ import Reachability
 
 
 class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
-    var reachability: Reachability?
+    //var reachability: Reachability?
     var networkCheckTimer: Timer?
     @IBOutlet weak var noconnection: UIView!
     var noConnectionView: UIView!
-
+    let reachability = try! Reachability()
     var homeViewModel:HomeViewModel?
+    var conntictions: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        let reachability = try! Reachability()
-        if reachability.connection == .unavailable {
-             self.present(showAlert(), animated: true)
-        }
+         if reachability.connection == .unavailable {
+                print("viewDidLoadUnnnnnnnnnnnnnNetWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+                     self.present(showAlert(), animated: true)
+            conntictions = false
+
+                }
         homeViewModel = HomeViewModel()
         self.noconnection.isHidden = true
         homeViewModel?.bindResultToViewController = {
             [weak self] in
             DispatchQueue.main.async {
-                print(self?.homeViewModel?.LeagueResultVar as? [League])
+//                print(self?.homeViewModel?.LeagueResultVar as? [League])
               
 
                 self?.collectionView!.reloadData()
@@ -42,12 +45,24 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-      let reachability = try! Reachability()
         if reachability.connection == .unavailable {
+            print("viewWillAppearUnnnnnnnnnnnnnNetWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+            conntictions = false
              self.present(showAlert(), animated: true)
         }
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            if reachability.connection == .unavailable {
+                print("viewDidAppearUnnnnnnnnnnnnnNetWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+                conntictions = false
+
+                 self.present(showAlert(), animated: true)
+            }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
          return CGSize(width: collectionView.frame.width, height: 60) //
      }

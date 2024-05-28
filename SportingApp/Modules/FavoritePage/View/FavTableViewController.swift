@@ -11,7 +11,7 @@ import Reachability
 
 class FavTableViewController: UIViewController , UITableViewDelegate , UITableViewDataSource{
     var favViewModel:FavoriteViewModel!
-    
+    var homeConnection : HomeCollectionViewController?
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -171,8 +171,9 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
         
         
          func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let reachability = try! Reachability()
-                    if reachability.connection != .unavailable {
+           let reachability = try! Reachability()
+                if reachability.connection != .unavailable {
+                
                  let storyBoard = UIStoryboard(name: "SecondMain", bundle: nil)
 
                guard let league = favViewModel?.news[indexPath.item] else { return }
