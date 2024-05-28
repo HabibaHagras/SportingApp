@@ -42,6 +42,17 @@ class ApiTest: XCTestCase {
      waitForExpectations(timeout: 5, handler: nil)
  }
 
-
+    func testFetchVideos() {
+           let ex = expectation(description: "Fetch videos expectation")
+           NetworkServices.fetchVideos(for: "football") { (videoResponse) in
+               if let videoResponse = videoResponse {
+                   XCTAssertEqual(videoResponse.success, 1, "Result should be 1 if the API call is correct")
+                   ex.fulfill()
+               } else {
+                   XCTFail("Failed to fetch videos")
+               }
+           }
+           waitForExpectations(timeout: 5, handler: nil)
+       }
     }
 

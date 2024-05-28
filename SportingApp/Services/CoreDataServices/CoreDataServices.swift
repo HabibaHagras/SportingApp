@@ -165,5 +165,8 @@ class CoreDataServices {
                print("Error deleting saved leagues: \(error)")
            }
        }
+    
+
+    
     }
 

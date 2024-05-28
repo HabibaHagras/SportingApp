@@ -40,5 +40,13 @@ class MockingTest: XCTestCase {
             }
         }
     }
-
+    func testMockFetchVideos() {
+           mockObject.fetchVideosFromApi { result, error in
+               if let error = error {
+                   XCTFail("Error: \(error)")
+               } else {
+                   XCTAssertNotNil(result)
+               }
+           }
+       }
 }
