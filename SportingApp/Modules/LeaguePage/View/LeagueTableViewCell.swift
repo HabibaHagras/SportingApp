@@ -15,8 +15,12 @@ class LeagueTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgLeague.layer.cornerRadius = imgLeague.frame.size.width/2
-        imgLeague.layer.masksToBounds = true
+//        imgLeague.layer.cornerRadius = imgLeague.frame.size.width/2
+//        imgLeague.layer.masksToBounds = true
+         imgLeague.layer.cornerRadius = imgLeague.frame.width / 1.9
+        //    imgLeague.masksToBounds =
+            imgLeague.clipsToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,7 +35,7 @@ class LeagueTableViewCell: UITableViewCell {
         //imgLeague.layer.borderWidth = 2.0
         //imgLeague.layer.borderColor = UIColor.black.cgColor
        // imgLeague.round()
-        imgLeague.layer.cornerRadius = imgLeague.frame.height / 1.8
+        imgLeague.layer.cornerRadius = imgLeague.frame.width / 1.9
     //    imgLeague.masksToBounds =
         imgLeague.clipsToBounds = true
         
