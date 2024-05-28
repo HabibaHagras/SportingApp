@@ -79,12 +79,13 @@ class LeagueDetailsViewModle{
     
   
   
-
+// save to favorite
     func saveLeague(id: Int, name: String, logo: String, sport: String) {
     coreDataServices.saveLeague(id: id, name: name, logo: logo, sport: sport)
     // Print saved leagues (optional)
-    coreDataServices.printSavedLeagues()
+    //coreDataServices.printSavedLeagues()
 }
+    // fav button
     func isLeagueSavedToCoreData(leagueId: Int) -> Bool {
            return coreDataServices.isLeagueSaved(leagueId: leagueId)
        }

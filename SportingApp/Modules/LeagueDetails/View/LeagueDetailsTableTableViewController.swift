@@ -203,18 +203,34 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     }
     
     @IBAction func favBtn(_ sender: Any) {
-       isInFavorites.toggle()
-        udateFvoriteButton()
-        if (isInFavorites){
-             addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        if let leagueId = leagueId, let leagueName = leagueDetailsViewModle?.eventResult?.first?.leagueName, let logo =  leagueDetailsViewModle?.eventResult?.first?.leagueLogo, let sportName = nameSport {
-            leagueDetailsViewModle?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
-            }
-            
-        }else{
-            addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-            leagueDetailsViewModle?.removeLeagueFromCoreData(leagueId: leagueId)
-        }
+//       isInFavorites.toggle()
+//        udateFvoriteButton()
+//        if (isInFavorites){
+//             addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        if let leagueId = leagueId, let leagueName = leagueDetailsViewModle?.eventResult?.first?.leagueName, let logo =  leagueDetailsViewModle?.eventResult?.first?.leagueLogo, let sportName = nameSport {
+//            leagueDetailsViewModle?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
+//            }
+//
+//        }else{
+//            addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+//            leagueDetailsViewModle?.removeLeagueFromCoreData(leagueId: leagueId)
+//        }
+        isInFavorites.toggle()
+           udateFvoriteButton()
+           
+           if isInFavorites {
+               addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+               
+               if let leagueId = leagueId, let leagueName = leagueDetailsViewModle?.eventResult?.first?.leagueName {
+                   let logo = leagueDetailsViewModle?.eventResult?.first?.leagueLogo ?? "https://cdn.logojoy.com/wp-content/uploads/2018/05/30161640/1329-768x591.png"
+                   let sportName = nameSport ?? ""
+                   
+                   leagueDetailsViewModle?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
+               }
+           } else {
+               addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+               leagueDetailsViewModle?.removeLeagueFromCoreData(leagueId: leagueId)
+           }
         
     }
     func udateFvoriteButton()

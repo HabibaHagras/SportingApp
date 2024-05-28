@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		10A537822C045E5E00DD0BD4 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A537812C045E5E00DD0BD4 /* Team.swift */; };
 		10A537842C045E6700DD0BD4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A537832C045E6600DD0BD4 /* Player.swift */; };
-		10BEC81C2C05B0C6001D0AF2 /* EventViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BEC81B2C05B0C6001D0AF2 /* EventViewModelTest.swift */; };
 		10FA9DA22C018FCC00A391AE /* SecondMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10FA9DA12C018FCC00A391AE /* SecondMain.storyboard */; };
 		10FA9DB12C019A4200A391AE /* LatestResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FA9DB02C019A4200A391AE /* LatestResultsCell.swift */; };
 		10FA9DB32C019A4C00A391AE /* LatestResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10FA9DB22C019A4C00A391AE /* LatestResultsCell.xib */; };
@@ -39,7 +38,7 @@
 		177172142BFF9078000A00C9 /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177172132BFF9078000A00C9 /* CoreDataServices.swift */; };
 		1771721A2BFFA2CF000A00C9 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177172192BFFA2CF000A00C9 /* DependencyInjector.swift */; };
 		1771721C2BFFA839000A00C9 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771721B2BFFA839000A00C9 /* Video.swift */; };
-		17864DF22C01282800BA55B4 /* _EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17864DEF2C01282800BA55B4 /* _EventsResponse.swift */; };
+		17864DF22C01282800BA55B4 /* EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17864DEF2C01282800BA55B4 /* EventsResponse.swift */; };
 		17A8E3CD2BF6250600472B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CC2BF6250600472B10 /* AppDelegate.swift */; };
 		17A8E3CF2BF6250600472B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */; };
 		17A8E3D12BF6250600472B10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8E3D02BF6250600472B10 /* ViewController.swift */; };
@@ -79,7 +78,6 @@
 		0EB208FF14662030E3751399 /* Pods-SportingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportingAppTests.debug.xcconfig"; path = "Target Support Files/Pods-SportingAppTests/Pods-SportingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		10A537812C045E5E00DD0BD4 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Team.swift; path = ../../../../../../Downloads/Team.swift; sourceTree = "<group>"; };
 		10A537832C045E6600DD0BD4 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../../../../../../Downloads/Player.swift; sourceTree = "<group>"; };
-		10BEC81B2C05B0C6001D0AF2 /* EventViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModelTest.swift; sourceTree = "<group>"; };
 		10FA9DA12C018FCC00A391AE /* SecondMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondMain.storyboard; sourceTree = "<group>"; };
 		10FA9DB02C019A4200A391AE /* LatestResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestResultsCell.swift; sourceTree = "<group>"; };
 		10FA9DB22C019A4C00A391AE /* LatestResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LatestResultsCell.xib; sourceTree = "<group>"; };
@@ -109,7 +107,7 @@
 		177172132BFF9078000A00C9 /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
 		177172192BFFA2CF000A00C9 /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
 		1771721B2BFFA839000A00C9 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		17864DEF2C01282800BA55B4 /* _EventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _EventsResponse.swift; sourceTree = "<group>"; };
+		17864DEF2C01282800BA55B4 /* EventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsResponse.swift; sourceTree = "<group>"; };
 		17A8E3C92BF6250600472B10 /* SportingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A8E3CC2BF6250600472B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A8E3CE2BF6250600472B10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 				17A8E3E62BF6253300472B10 /* SportingAppTests.swift */,
 				17A8E3E82BF6253300472B10 /* Info.plist */,
 				17E9382A2C03C4C20072B490 /* CoreDataServicesTests.swift */,
-				10BEC81B2C05B0C6001D0AF2 /* EventViewModelTest.swift */,
 			);
 			path = SportingAppTests;
 			sourceTree = "<group>";
@@ -416,7 +413,7 @@
 			children = (
 				17399B322BF8B29800EE238A /* League.swift */,
 				17399B342BF8CE7400EE238A /* Sport.swift */,
-				17864DEF2C01282800BA55B4 /* _EventsResponse.swift */,
+				17864DEF2C01282800BA55B4 /* EventsResponse.swift */,
 				1771721B2BFFA839000A00C9 /* Video.swift */,
 				10A537812C045E5E00DD0BD4 /* Team.swift */,
 				10A537832C045E6600DD0BD4 /* Player.swift */,
@@ -746,7 +743,7 @@
 				173D00372BFD295E00DF1206 /* CustomHeaderView.swift in Sources */,
 				1771721A2BFFA2CF000A00C9 /* DependencyInjector.swift in Sources */,
 				17399B3A2BF8EC0E00EE238A /* LeagueTableViewController.swift in Sources */,
-				17864DF22C01282800BA55B4 /* _EventsResponse.swift in Sources */,
+				17864DF22C01282800BA55B4 /* EventsResponse.swift in Sources */,
 				10A537842C045E6700DD0BD4 /* Player.swift in Sources */,
 				177172142BFF9078000A00C9 /* CoreDataServices.swift in Sources */,
 				17A8E3D72BF6250600472B10 /* SportingApp.xcdatamodeld in Sources */,
@@ -769,7 +766,6 @@
 				173D00352BFD207300DF1206 /* ApiTest.swift in Sources */,
 				17E9382B2C03C4C20072B490 /* CoreDataServicesTests.swift in Sources */,
 				173D00302BFD18F500DF1206 /* MockingNetwork.swift in Sources */,
-				10BEC81C2C05B0C6001D0AF2 /* EventViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
