@@ -49,12 +49,19 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-         return CGSize(width: collectionView.frame.width, height: 60) // 
+         return CGSize(width: collectionView.frame.width, height: 60) //
      }
    
-    //    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 100
-//    }
+//     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//          if kind == UICollectionView.elementKindSectionHeader {
+//              guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CustomHeaderView", for: indexPath) as? CustomHeaderVieww else {
+//                  fatalError("Cannot create header view")
+//              }
+//              headerView.titleLabel.text = "Welcom Home" // Set your header title
+//              return headerView
+//          }
+//          return UICollectionReusableView()
+//      }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
