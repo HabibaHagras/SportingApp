@@ -11,8 +11,9 @@ import Reachability
 
 class FavTableViewController: UIViewController , UITableViewDelegate , UITableViewDataSource{
     var favViewModel:FavoriteViewModel!
-    var homeConnection : HomeCollectionViewController?
-    
+    var homeViewModel:HomeViewModel?
+    var nameSport:String?
+
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var NoFavview: UIView!
@@ -47,6 +48,7 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
                      }
                  }
       
+
             favViewModel.bindResultDeleteCoreDataToViewController = { [weak self] in
                  DispatchQueue.main.async {
                 print("Data Deleted successfully")
@@ -67,8 +69,32 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
 
 
                }
-        
+        homeViewModel?.bindResultNetworkVideosToViewController = {
+                      
+                      [weak self] in DispatchQueue.main.async {
+                          let alert = UIAlertController(title: "No Video Available", message: "There is no video available right now. Please try again later.", preferredStyle: .alert)
+                                        
+                                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                        
+                                        self?.present(alert, animated: true, completion: nil)
+                          
+                      }
+                      
+                  }
         }
+    
+    
+    
+    @IBAction func BtnYoutupe(_ sender: UIButton) {
+        homeViewModel?.fetchVideoViewModel(for: nameSport!)
+        let alert = UIAlertController(title: "No Video Available", message: "There is no video available right now. Please try again later.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
+    }
+    
+    
+    
        private func updateNoFavViewVisibility() {
                      let hasFavorites = (favViewModel?.news.count ?? 0) > 0
 //                NoFavview.isHidden = hasFavorites
