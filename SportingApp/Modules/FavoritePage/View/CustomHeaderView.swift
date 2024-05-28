@@ -23,13 +23,10 @@ class CustomHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        // Set the background color
         contentView.backgroundColor = .black
         
-        // Add titleLabel to contentView
         contentView.addSubview(titleLabel)
 
-        // Set constraints for titleLabel
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),

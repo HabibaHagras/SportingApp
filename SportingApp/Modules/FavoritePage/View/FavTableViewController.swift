@@ -106,7 +106,6 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
                   alertController.addAction(UIAlertAction(title: "OK",style: UIAlertAction.Style.default,handler:nil))
                
 
-                // Present the alert controller
                 present(alertController, animated: true, completion: nil)
             }
         }

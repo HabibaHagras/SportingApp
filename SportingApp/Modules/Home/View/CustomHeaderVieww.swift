@@ -16,10 +16,8 @@ class CustomHeaderVieww: UICollectionReusableView {
         titleLabel = UILabel(frame: .zero)
         super.init(frame: frame)
         
-        // Set the background color
         self.backgroundColor = .black
 
-        // Customize titleLabel
         titleLabel.text = "Welcome Home"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
@@ -27,7 +25,6 @@ class CustomHeaderVieww: UICollectionReusableView {
         
         addSubview(titleLabel)
         
-        // Set constraints for titleLabel
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
