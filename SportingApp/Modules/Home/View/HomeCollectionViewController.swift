@@ -20,6 +20,8 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     var conntictions: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.register(CustomHeaderVieww.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CustomHeaderView")
+
          if reachability.connection == .unavailable {
                 print("viewDidLoadUnnnnnnnnnnnnnNetWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
                      self.present(showAlert(), animated: true)
@@ -67,16 +69,16 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
          return CGSize(width: collectionView.frame.width, height: 60) //
      }
    
-//     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//          if kind == UICollectionView.elementKindSectionHeader {
-//              guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CustomHeaderView", for: indexPath) as? CustomHeaderVieww else {
-//                  fatalError("Cannot create header view")
-//              }
-//              headerView.titleLabel.text = "Welcom Home" // Set your header title
-//              return headerView
-//          }
-//          return UICollectionReusableView()
-//      }
+     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+          if kind == UICollectionView.elementKindSectionHeader {
+              guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CustomHeaderView", for: indexPath) as? CustomHeaderVieww else {
+                  fatalError("Cannot create header view")
+              }
+              //headerView.titleLabel.text = "Wellcom Home" // Set your header title
+              return headerView
+          }
+          return UICollectionReusableView()
+      }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

@@ -102,7 +102,7 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
             if !hasFavorites {
         
                 
-                let alertController = UIAlertController(title: "You have no favorite news.", message: nil, preferredStyle: .alert)
+                let alertController = UIAlertController(title: "You have no favorite List.", message: nil, preferredStyle: .alert)
                   alertController.addAction(UIAlertAction(title: "OK",style: UIAlertAction.Style.default,handler:nil))
                
 
@@ -139,6 +139,7 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
                 if let error = error {
                     print("Error fetching data: \(error)")
                 }}
+               tableView.register(CustomHeaderView.self, forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
         }
 
         // MARK: - Table view data source
@@ -193,7 +194,16 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
                   
                   return cell
         }
-        
+         func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+              return 100
+          }
+           func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+              guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as? CustomHeaderView else {
+                  return nil
+              }
+              headerView.titleLabel.text = "Favorite List"
+              return headerView
+          }
         
         
          func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
