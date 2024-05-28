@@ -85,5 +85,11 @@ class EventsViewModle{
     // Print saved leagues (optional)
     coreDataServices.printSavedLeagues()
 }
+    func isLeagueSavedToCoreData(leagueId: Int) -> Bool {
+           return coreDataServices.isLeagueSaved(leagueId: leagueId)
+       }
 
+       func removeLeagueFromCoreData(leagueId: Int) {
+           coreDataServices.removeLeague(leagueId: leagueId)
+       }
 }

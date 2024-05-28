@@ -11,13 +11,16 @@ import SDWebImage
 
 class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDataSource ,UICollectionViewDelegate{
     var idinticator: UIActivityIndicatorView?
+    var isInFavorites: Bool = false
     @IBOutlet weak var resultsCollectionView: UICollectionView!
 
+    @IBOutlet weak var addFavBtn: UIButton!
     @IBOutlet weak var eventsCollection: UICollectionView!
     
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     //var reachability: Reachability?
         var eventsViewModel:EventsViewModle?
+    var favViewModel: FavoriteViewModel?
     var nameSport :String?
     var leagueId :Int!
     var leagueName  :String!
@@ -33,6 +36,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            //eventsViewModel = EventsViewModle()
         let coreDataServices = DependencyInjector.shared.resolveCoreDataServices()
         eventsViewModel = EventsViewModle(coreDataServices: coreDataServices)
+        favViewModel = FavoriteViewModel(coreDataServices: coreDataServices)
         eventsViewModel?.sportName = nameSport
         eventsViewModel?.leagueId = leagueId
         eventsViewModel?.leagueName = leagueName
@@ -76,6 +80,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
 
                }
            }
+        isInFavorites = (eventsViewModel?.isLeagueSavedToCoreData(leagueId: leagueId))!
+        
+        udateFvoriteButton()
        }
        
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -196,20 +203,30 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     }
     
     @IBAction func favBtn(_ sender: Any) {
- //save
-
-       // eventsViewModel?.saveDisplayedEventsAndTeams()
-
-
-       // eventsViewModel?.saveDisplayedEventsAndTeams()
-
-        //fetch
-//        let coreDataServices = DependencyInjector.shared.resolveCoreDataServices()
-//           coreDataServices.fetchSavedEventsAndTeams()
-        
-        //********
+       isInFavorites.toggle()
+        udateFvoriteButton()
+        if (isInFavorites){
+             addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         if let leagueId = leagueId, let leagueName = eventsViewModel?.eventResult?.first?.leagueName, let logo =  eventsViewModel?.eventResult?.first?.leagueLogo, let sportName = nameSport {
             eventsViewModel?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
+            }
+            
+        }else{
+            addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            eventsViewModel?.removeLeagueFromCoreData(leagueId: leagueId)
+        }
+        
     }
-    }
+    func udateFvoriteButton()
+       {
+           if isInFavorites {
+               addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+           }else{
+                  addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            
+           }
+       }
+    
+ 
+    
 }

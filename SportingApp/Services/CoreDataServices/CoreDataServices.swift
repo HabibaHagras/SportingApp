@@ -94,5 +94,34 @@ class CoreDataServices {
                print("Error deleting saved leagues: \(error)")
            }
        }
+    
+    // for favorite button
+    func isLeagueSaved(leagueId: Int) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LeagueEntitiy")
+        fetchRequest.predicate = NSPredicate(format: "leagueKey == %d", leagueId)
+        print("---Saved To Favorite--")
+        do {
+            let result = try context.fetch(fetchRequest)
+            return !result.isEmpty
+        } catch {
+            print("Error fetching league: \(error.localizedDescription)")
+            return false
+        }
+    }
+
+    func removeLeague(leagueId: Int) {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueEntitiy")
+        fetchRequest.predicate = NSPredicate(format: "leagueKey == %d", leagueId)
+        do {
+            let data = try context.fetch(fetchRequest)
+            for item in data {
+                context.delete(item)
+            }
+            try context.save()
+            print("Deleted league from favorite")
+        } catch let error {
+            print("Failed to delete league: \(error.localizedDescription)")
+        }
+    }
     }
 

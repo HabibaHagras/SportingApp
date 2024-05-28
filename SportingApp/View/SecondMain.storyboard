@@ -32,20 +32,20 @@
                                                         <constraint firstAttribute="height" constant="40" id="yuS-Yn-O3I"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="5"/>
-                                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Button" image="star" catalog="system"/>
                                                     <connections>
-                                                        <action selector="favBtn:" destination="qJh-Uc-mBc" eventType="touchUpInside" id="sFe-YV-4bp"/>
+                                                        <action selector="favBtn:" destination="qJh-Uc-mBc" eventType="touchUpInside" id="kfT-O9-Kxi"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkI-oE-PIg">
-                                                    <rect key="frame" x="20" y="11" width="42.5" height="40"/>
+                                                    <rect key="frame" x="20" y="11" width="38" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="soR-z8-pbI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="5"/>
                                                     <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Button" image="arrowshape.turn.up.left.2" catalog="system"/>
+                                                    <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system"/>
                                                     <connections>
                                                         <action selector="backBtn:" destination="qJh-Uc-mBc" eventType="touchUpInside" id="uk3-tD-dU4"/>
                                                     </connections>
@@ -193,6 +193,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="addFavBtn" destination="94k-Nk-AAL" id="gY6-6H-IV0"/>
                         <outlet property="eventsCollection" destination="rsP-FM-ldr" id="w0T-T3-fJL"/>
                         <outlet property="resultsCollectionView" destination="rdv-wN-P0x" id="VHe-vY-JKb"/>
                         <outlet property="teamsCollectionView" destination="rIa-Jd-oT3" id="9Va-Ek-TpF"/>
@@ -329,7 +330,6 @@
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="64" height="52"/>
-        <image name="arrowshape.turn.up.left.2" catalog="system" width="64" height="42"/>
         <image name="cricket_image" width="275" height="183"/>
         <image name="d" width="360" height="364"/>
         <image name="star" catalog="system" width="64" height="58"/>
