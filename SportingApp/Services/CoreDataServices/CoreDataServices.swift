@@ -11,10 +11,7 @@ import CoreData
 
 class CoreDataServices {
             var fetchedItems: [NSManagedObject] = []
- 
-
            let context: NSManagedObjectContext
-           
            init(context: NSManagedObjectContext) {
                self.context = context
            }

@@ -170,6 +170,7 @@
 			children = (
 				10FA9DAE2C019A1D00A391AE /* ViewModle */,
 				10FA9DAD2C019A0E00A391AE /* View */,
+				10FA9DBC2C019AB800A391AE /* LeagueDetailsTableTableViewController.swift */,
 			);
 			path = LeagueDetails;
 			sourceTree = "<group>";
@@ -178,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				10FA9DAF2C019A2F00A391AE /* cell */,
-				10FA9DBC2C019AB800A391AE /* LeagueDetailsTableTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

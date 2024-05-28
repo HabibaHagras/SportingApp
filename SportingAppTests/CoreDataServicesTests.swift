@@ -140,5 +140,51 @@ class CoreDataServicesTests: XCTestCase {
         XCTAssertEqual(savedLeague?.value(forKey: "sportName") as? String, sport)
        
     }
+    
+    func testIsLeagueSaved() {
+        // Given
+        let leagueId = 123
+        let leagueEntity = NSEntityDescription.insertNewObject(forEntityName: "LeagueEntitiy", into: managedObjectContext)
+        leagueEntity.setValue(leagueId, forKey: "leagueKey")
 
+        do {
+            try managedObjectContext.save()
+        } catch {
+            XCTFail("Failed to save context: \(error)")
+        }
+
+        // When
+        let isSaved = coreDataServices.isLeagueSaved(leagueId: leagueId)
+        XCTAssertTrue(isSaved, "The league should be saved in Core Data")
+
+        let isNotSaved = coreDataServices.isLeagueSaved(leagueId: 999)
+        XCTAssertFalse(isNotSaved, "The league should not be found in Core Data")
+    }
+    
+    func testRemoveLeague() {
+           // Given
+           let leagueId = 123
+           let leagueEntity = NSEntityDescription.insertNewObject(forEntityName: "LeagueEntitiy", into: managedObjectContext)
+           leagueEntity.setValue(leagueId, forKey: "leagueKey")
+
+           do {
+               try managedObjectContext.save()
+           } catch {
+               XCTFail("Failed to save context: \(error)")
+           }
+
+           // When
+           coreDataServices.removeLeague(leagueId: leagueId)
+
+           // Then
+           let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LeagueEntitiy")
+           fetchRequest.predicate = NSPredicate(format: "leagueKey == %d", leagueId)
+
+           do {
+               let result = try managedObjectContext.fetch(fetchRequest)
+               XCTAssertTrue(result.isEmpty, "The league should be removed from Core Data")
+           } catch {
+               XCTFail("Failed to fetch leagues: \(error)")
+           }
+       }
 }
