@@ -7,9 +7,10 @@
 //
 
 import XCTest
-
+@testable import SportingApp
 class MockingTest: XCTestCase {
     let mockObject = MockNetwork(shouldreturnError: false)
+    
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -40,5 +41,16 @@ class MockingTest: XCTestCase {
             }
         }
     }
+ func testFetchDataSuccess() {
+
+           
+           mockObject.fetchData(url: "") { (result: EventsResponse?) in
+               XCTAssertNotNil(result)
+             
+           }
+           
+        
+
+}
 
 }
