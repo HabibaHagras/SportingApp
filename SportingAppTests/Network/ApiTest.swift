@@ -48,18 +48,7 @@ class ApiTest: XCTestCase {
         
         let url = "https://apiv2.allsportsapi.com/football?met=Fixtures&leagueId=200&from=2023-01-18&to=2024-01-18&APIkey=5875401c7bbc5187abf58be03796ab2a39d557ac08f6ff6a22d8f57dff7a62ef"
 
-    func testFetchVideos() {
-           let ex = expectation(description: "Fetch videos expectation")
-           NetworkServices.fetchVideos(for: "football") { (videoResponse) in
-               if let videoResponse = videoResponse {
-                   XCTAssertEqual(videoResponse.success, 1, "Result should be 1 if the API call is correct")
-                   ex.fulfill()
-               } else {
-                   XCTFail("Failed to fetch videos")
-               }
-           }
-           waitForExpectations(timeout: 5, handler: nil)
-       }
+ 
 
         
     apiService.fetchData(url: url) { (response: EventsResponse?) in
@@ -74,7 +63,18 @@ class ApiTest: XCTestCase {
         // Wait for expectations
         waitForExpectations(timeout: 5, handler: nil)
     }
-
+    func testFetchVideos() {
+            let ex = expectation(description: "Fetch videos expectation")
+            NetworkServices.fetchVideos(for: "football") { (videoResponse) in
+                if let videoResponse = videoResponse {
+                    XCTAssertEqual(videoResponse.success, 1, "Result should be 1 if the API call is correct")
+                    ex.fulfill()
+                } else {
+                    XCTFail("Failed to fetch videos")
+                }
+            }
+            waitForExpectations(timeout: 5, handler: nil)
+        }
 
     }
 
