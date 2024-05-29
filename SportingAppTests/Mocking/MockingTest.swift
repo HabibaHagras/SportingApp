@@ -7,9 +7,10 @@
 //
 
 import XCTest
-
+@testable import SportingApp
 class MockingTest: XCTestCase {
     let mockObject = MockNetwork(shouldreturnError: false)
+    
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -30,8 +31,8 @@ class MockingTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    func testMockFetchData(){
-        mockObject.fetchDataFromApi{
+    func testMockFetchLeagues(){
+        mockObject.fetchLeaguesFromApi{
             result , error in
             if let error = error {
                 XCTFail()
@@ -40,6 +41,7 @@ class MockingTest: XCTestCase {
             }
         }
     }
+
     func testMockFetchVideos() {
            mockObject.fetchVideosFromApi { result, error in
                if let error = error {
@@ -49,4 +51,17 @@ class MockingTest: XCTestCase {
                }
            }
        }
+ func testFetchDataSuccess() {
+
+           
+           mockObject.fetchData(url: "") { (result: EventsResponse?) in
+               XCTAssertNotNil(result)
+             
+           }
+           
+        
+
+}
+
+
 }

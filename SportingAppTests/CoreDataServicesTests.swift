@@ -112,39 +112,79 @@ class CoreDataServicesTests: XCTestCase {
         XCTAssertEqual(fetchedLeague?.value(forKey: "leagueLogo") as? String, logo, "Fetched league logo should match")
         XCTAssertEqual(fetchedLeague?.value(forKey: "sportName") as? String, sport, "Fetched league sport should match")
     }
-    func testFetchSavedEventsAndTeams() {
+    
+    func testSaveLeague() {
         // Given
-        let event1 = Event(eventKey: nil, eventDate: "2024-05-26", eventTime: "12:00", eventHomeTeam: "Home Team 1", homeTeamKey: nil, eventAwayTeam: "Away Team 1", awayTeamKey: nil, eventFinalResult: "2-1", eventQuarter: nil, eventStatus: nil, countryName: nil, leagueName: nil, leagueKey: nil, leagueRound: nil, leagueSeason: nil, eventLive: nil, eventHomeTeamLogo: "home_logo1.png", eventAwayTeamLogo: "away_logo1.png", homeTeamLogo: nil, awayTeamLogo: nil, eventFirstPlayer: nil, firstPlayerKey: nil, eventSecondPlayer: nil, secondPlayerKey: nil, eventFirstPlayerLogo: nil, eventSecondPlayerLogo: nil, leagueLogo: nil)
-        coreDataServices.saveEvent(event: event1)
-
-        let event2 = Event(eventKey: nil, eventDate: "2024-05-27", eventTime: "13:00", eventHomeTeam: "Home Team 2", homeTeamKey: nil, eventAwayTeam: "Away Team 2", awayTeamKey: nil, eventFinalResult: "3-2", eventQuarter: nil, eventStatus: nil, countryName: nil, leagueName: nil, leagueKey: nil, leagueRound: nil, leagueSeason: nil, eventLive: nil, eventHomeTeamLogo: "home_logo2.png", eventAwayTeamLogo: "away_logo2.png", homeTeamLogo: nil, awayTeamLogo: nil, eventFirstPlayer: nil, firstPlayerKey: nil, eventSecondPlayer: nil, secondPlayerKey: nil, eventFirstPlayerLogo: nil, eventSecondPlayerLogo: nil, leagueLogo: nil)
-
-        coreDataServices.saveEvent(event: event2)
-
-        let team1 = Team(teamKey: 1, teamName: "Team 1", teamLogo: "team_logo1.png")
-        coreDataServices.saveTeam(team: team1)
-
-        let team2 = Team(teamKey: 2, teamName: "Team 2", teamLogo: "team_logo2.png")
-        coreDataServices.saveTeam(team: team2)
+        let id = 1
+        let name = "Premier League"
+        let logo = "premier_league_logo.png"
+        let sport = "Football"
 
         // When
-        coreDataServices.fetchSavedEventsAndTeams { fetchedItems, error in
-            // Then
-            XCTAssertNil(error, "Error should be nil")
-            XCTAssertNotNil(fetchedItems, "Fetched items should not be nil")
+        coreDataServices.saveLeague(id: id, name: name, logo: logo, sport: sport)
 
-            // Verify fetched events
-            let savedEvents = fetchedItems?.filter { $0 is Event } as? [Event]
-            XCTAssertEqual(savedEvents?.count, 2, "Expected two events to be fetched")
-            XCTAssertEqual(savedEvents?[0].eventHomeTeam, "Home Team 1", "First event home team should match")
-            XCTAssertEqual(savedEvents?[1].eventHomeTeam, "Home Team 2", "Second event home team should match")
-
-            // Verify fetched teams
-            let savedTeams = fetchedItems?.filter { $0 is Team } as? [Team]
-            XCTAssertEqual(savedTeams?.count, 2, "Expected two teams to be fetched")
-            XCTAssertEqual(savedTeams?[0].teamName, "Team 1", "First team name should match")
-            XCTAssertEqual(savedTeams?[1].teamName, "Team 2", "Second team name should match")
+        // Then
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "LeagueEntitiy")
+        var fetchedLeagues: [NSManagedObject] = []
+        do {
+            fetchedLeagues = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+        } catch {
+            XCTFail("Failed to fetch leagues: \(error)")
         }
-    }
 
+        XCTAssertEqual(fetchedLeagues.count, 1)
+        let savedLeague = fetchedLeagues.first
+        XCTAssertEqual(savedLeague?.value(forKey: "leagueKey") as? Int, id)
+        XCTAssertEqual(savedLeague?.value(forKey: "leagueName") as? String, name)
+        XCTAssertEqual(savedLeague?.value(forKey: "leagueLogo") as? String, logo)
+        XCTAssertEqual(savedLeague?.value(forKey: "sportName") as? String, sport)
+       
+    }
+    
+    func testIsLeagueSaved() {
+        // Given
+        let leagueId = 123
+        let leagueEntity = NSEntityDescription.insertNewObject(forEntityName: "LeagueEntitiy", into: managedObjectContext)
+        leagueEntity.setValue(leagueId, forKey: "leagueKey")
+
+        do {
+            try managedObjectContext.save()
+        } catch {
+            XCTFail("Failed to save context: \(error)")
+        }
+
+        // When
+        let isSaved = coreDataServices.isLeagueSaved(leagueId: leagueId)
+        XCTAssertTrue(isSaved, "The league should be saved in Core Data")
+
+        let isNotSaved = coreDataServices.isLeagueSaved(leagueId: 999)
+        XCTAssertFalse(isNotSaved, "The league should not be found in Core Data")
+    }
+    
+    func testRemoveLeague() {
+           // Given
+           let leagueId = 123
+           let leagueEntity = NSEntityDescription.insertNewObject(forEntityName: "LeagueEntitiy", into: managedObjectContext)
+           leagueEntity.setValue(leagueId, forKey: "leagueKey")
+
+           do {
+               try managedObjectContext.save()
+           } catch {
+               XCTFail("Failed to save context: \(error)")
+           }
+
+           // When
+           coreDataServices.removeLeague(leagueId: leagueId)
+
+           // Then
+           let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LeagueEntitiy")
+           fetchRequest.predicate = NSPredicate(format: "leagueKey == %d", leagueId)
+
+           do {
+               let result = try managedObjectContext.fetch(fetchRequest)
+               XCTAssertTrue(result.isEmpty, "The league should be removed from Core Data")
+           } catch {
+               XCTFail("Failed to fetch leagues: \(error)")
+           }
+       }
 }
