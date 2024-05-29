@@ -9,7 +9,10 @@
 import Foundation
 class Constants {
     static  var bseUrl = "https://apiv2.allsportsapi.com/"
-    static var apiKey = "5875401c7bbc5187abf58be03796ab2a39d557ac08f6ff6a22d8f57dff7a62ef"
+    static var apiKey = "15217216adc4a8d0eb9fc199593c980ada1693e793d69f681e94a7685b0359b4"
+    
+    
+    //"5875401c7bbc5187abf58be03796ab2a39d557ac08f6ff6a22d8f57dff7a62ef"
 }
 
 //    let url = "\(Constants.bseUrl)football?met=Fixtures&leagueId=200&from=\(Utlies.currentTime!)&to=\(Utlies.futureTime!)&APIkey=\(Constants.apiKey)"
