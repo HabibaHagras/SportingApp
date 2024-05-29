@@ -14,12 +14,12 @@ class LeagueTableViewController: UITableViewController {
     var nameSport:String?
     var leagueName:String?
 
-    var eventsViewModel:EventsViewModle?
+    var eventsViewModel:LeagueDetailsViewModle?
     var indictor: UIActivityIndicatorView?
 
     
     @IBOutlet weak var noDataView: UIView!
-    var eventsViewModel: League?
+   // var eventsViewModel: League?
 
     override func viewDidLoad() {
         super.viewDidLoad()
