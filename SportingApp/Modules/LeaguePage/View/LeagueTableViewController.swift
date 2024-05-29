@@ -122,15 +122,13 @@ class LeagueTableViewController: UITableViewController {
         return homeViewModel?.LeagueResultVar?.count ?? 0
     }
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueTableViewCell
-        let currentLeague =  homeViewModel?.LeagueResultVar?[indexPath.item]
-        
+        let currentLeague = homeViewModel?.LeagueResultVar?[indexPath.item]
         
         var placeholderImageName: String
         if let sportName = nameSport {
-            switch sportName{
+            switch sportName {
             case "football":
                 placeholderImageName = "fooot"
             case "basketball":
@@ -143,16 +141,18 @@ class LeagueTableViewController: UITableViewController {
         } else {
             placeholderImageName = "tennis_image"
         }
-        
-      if let logoURLString = currentLeague?.leagueLogo, let logoURL = URL(string: logoURLString) {
+
+        if let logoURLString = currentLeague?.leagueLogo, let logoURL = URL(string: logoURLString), logoURLString != "https://apiv2.allsportsapi.com/logo/logo_leagues/" {
             cell.imgLeague.sd_setImage(with: logoURL, completed: nil)
         } else {
             cell.imgLeague.image = UIImage(named: placeholderImageName)
         }
+
         cell.labelLeagueCell.text = currentLeague?.leagueName
         
         return cell
     }
+
 //   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //       return 1000
 //   }
