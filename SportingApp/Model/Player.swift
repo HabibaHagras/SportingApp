@@ -2,11 +2,12 @@
 //  Player.swift
 //  SportingApp
 //
-//  Created by maha on 5/24/24.
+//  Created by habiba on 5/31/24.
 //  Copyright © 2024 habiba. All rights reserved.
 //
 
 import Foundation
+
 struct PlayerResponse: Codable {
     let success: Int?
     let result: [TeamOfPlayers]?

@@ -2,7 +2,7 @@
 //  Team.swift
 //  SportingApp
 //
-//  Created by maha on 5/23/24.
+//  Created by habiba on 5/31/24.
 //  Copyright © 2024 habiba. All rights reserved.
 //
 
@@ -18,11 +18,14 @@ struct Team: Codable {
     let teamKey: Int?
     let teamName: String?
     let teamLogo: String?
+    let players: [Player]?
+
 
 
     enum CodingKeys: String, CodingKey {
         case teamKey = "team_key"
         case teamName = "team_name"
         case teamLogo = "team_logo"
+        case players
     }
 }
