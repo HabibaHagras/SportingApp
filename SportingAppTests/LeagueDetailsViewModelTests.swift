@@ -38,13 +38,13 @@ class LeagueDetailsViewModelTests: XCTestCase {
 
     func testSaveLeague() {
         viewModel.saveLeague(id: 1, name: "Test League", logo: "logo.png", sport: "Football")
-        XCTAssertTrue(viewModel.isLeagueSavedToCoreData(leagueId: 1), "League should be saved to Core Data")
+        XCTAssertTrue(viewModel.isLeagueSavedToCoreData(leagueId: 1))
     }
 
     func testRemoveLeague() {
         viewModel.saveLeague(id: 1, name: "Test League", logo: "logo.png", sport: "Football")
         viewModel.removeLeagueFromCoreData(leagueId: 1)
-        XCTAssertFalse(viewModel.isLeagueSavedToCoreData(leagueId: 1), "League should be removed from Core Data")
+        XCTAssertFalse(viewModel.isLeagueSavedToCoreData(leagueId: 1))
     }
 }
 
