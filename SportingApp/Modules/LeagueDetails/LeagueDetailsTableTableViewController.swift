@@ -9,7 +9,7 @@ import UIKit
 import Reachability
 import SDWebImage
 
-class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDataSource ,UICollectionViewDelegate{
+class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDataSource ,UICollectionViewDelegate  {
     var idinticator: UIActivityIndicatorView?
     var isInFavorites: Bool = false
     @IBOutlet weak var resultsCollectionView: UICollectionView!
@@ -25,6 +25,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     var leagueId :Int!
     var leagueName  :String!
     var leagueLogo:String!
+    let sectionTitles = ["", "Upcoming Events", "Latest Results", "Teams"]
 
 
     override func viewDidLoad() {
@@ -53,6 +54,8 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "cell")
            //let resultNib = UINib(nibName: "CustomEventCell", bundle: nil)
            //resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "/*")
+    
+
            eventsCollection.delegate = self
            eventsCollection.dataSource = self
            resultsCollectionView.delegate = self
@@ -83,6 +86,9 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         isInFavorites = (leagueDetailsViewModle?.isLeagueSavedToCoreData(leagueId: leagueId))!
         
         udateFvoriteButton()
+         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
+
+        
        }
        
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,7 +117,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
                // Change this value to the desired height for the first section
                return 50
         } else if  indexPath.section == 1 {
-            return 250
+            return 220
          } else if  indexPath.section == 2 {
                    return 150
                }else  {
@@ -242,7 +248,29 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
             
            }
        }
-    
- 
+   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 1...3:
+            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as? CustomHeader else {
+                return nil
+            }
+            headerView.titleLabel.text = sectionTitles[section]
+            return headerView
+        default:
+            return nil
+        }
+    }
+
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      switch section {
+      case 1...3:
+          return 50 // Adjust the height as needed
+      default:
+          return 0
+      }
+  }
+
+
+
     
 }

@@ -32,7 +32,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         // Customize the content view
-        self.contentView.layer.cornerRadius = 10  // Set your desired corner radius
+        self.contentView.layer.cornerRadius = 16
         self.contentView.layer.masksToBounds = true
         
         // Optionally customize any other subview

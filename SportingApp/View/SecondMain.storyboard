@@ -27,25 +27,29 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94k-Nk-AAL">
-                                                    <rect key="frame" x="355" y="11" width="39" height="40"/>
+                                                    <rect key="frame" x="366" y="11" width="28" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="yuS-Yn-O3I"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="5"/>
                                                     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Button" image="star" catalog="system"/>
+                                                    <state key="normal" image="star" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="favBtn:" destination="qJh-Uc-mBc" eventType="touchUpInside" id="kfT-O9-Kxi"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkI-oE-PIg">
-                                                    <rect key="frame" x="20" y="11" width="38" height="40"/>
+                                                    <rect key="frame" x="20" y="11" width="27" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="soR-z8-pbI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="5"/>
                                                     <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system"/>
+                                                    <state key="normal" image="arrowshape.turn.up.left" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="backBtn:" destination="qJh-Uc-mBc" eventType="touchUpInside" id="uk3-tD-dU4"/>
                                                     </connections>
@@ -60,10 +64,11 @@
                                                 <constraint firstItem="AkI-oE-PIg" firstAttribute="leading" secondItem="ZXD-ZZ-9Ub" secondAttribute="leadingMargin" id="yA0-z5-fru"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="0.84705882352941175" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Upcoming Events" id="qUN-oP-aKd">
+                            <tableViewSection id="qUN-oP-aKd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="291" id="CFy-EP-SnV">
                                         <rect key="frame" x="0.0" y="136" width="414" height="291"/>
@@ -104,7 +109,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Teams" id="i4l-kf-M16">
+                            <tableViewSection id="i4l-kf-M16">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="228" id="nCy-8U-sFh">
                                         <rect key="frame" x="0.0" y="483" width="414" height="228"/>
@@ -145,7 +150,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Latest Results" id="8U3-LI-Bvu">
+                            <tableViewSection id="8U3-LI-Bvu">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="228" id="B9G-lL-hZD">
                                         <rect key="frame" x="0.0" y="767" width="414" height="228"/>
@@ -212,38 +217,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caA-RH-piD">
-                                <rect key="frame" x="16" y="44" width="75" height="40"/>
+                                <rect key="frame" x="16" y="44" width="118" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oLg-mI-N8X"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system"/>
+                                <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                </state>
                                 <connections>
                                     <action selector="backBtn:" destination="Vfi-Ym-EQQ" eventType="touchUpInside" id="sdA-OA-V3z"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCz-ac-UAZ">
-                                <rect key="frame" x="158" y="44" width="132.5" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCz-ac-UAZ">
+                                <rect key="frame" x="134" y="44" width="146.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="acG-3W-UwM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teame Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyl-E7-ObM">
-                                <rect key="frame" x="145" y="266.5" width="124.5" height="40"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <rect key="frame" x="144.5" y="266.5" width="125" height="40"/>
+                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfz-Xu-UAM">
-                                <rect key="frame" x="16" y="326.5" width="382" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <rect key="frame" x="28" y="326.5" width="370" height="25.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ooR-7V-pKD">
-                                <rect key="frame" x="0.0" y="375.5" width="414" height="486.5"/>
+                                <rect key="frame" x="0.0" y="372" width="414" height="490"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m7B-E8-xYQ">
                                     <size key="itemSize" width="243" height="224"/>
@@ -271,7 +278,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Dvh-9z-Jim"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -296,7 +303,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="GCz-ac-UAZ" firstAttribute="leading" secondItem="caA-RH-piD" secondAttribute="trailing" constant="67" id="06y-aE-Fe7"/>
+                            <constraint firstItem="GCz-ac-UAZ" firstAttribute="leading" secondItem="caA-RH-piD" secondAttribute="trailing" id="06y-aE-Fe7"/>
                             <constraint firstItem="pRv-t6-yCm" firstAttribute="width" secondItem="88n-GV-AAz" secondAttribute="width" multiplier="0.369565" id="4cE-TE-Fsn"/>
                             <constraint firstItem="ooR-7V-pKD" firstAttribute="top" secondItem="sfz-Xu-UAM" secondAttribute="bottom" constant="20" id="62D-is-jTE"/>
                             <constraint firstItem="eOT-gc-P9d" firstAttribute="trailing" secondItem="sfz-Xu-UAM" secondAttribute="trailing" constant="16" id="6gt-SC-UR6"/>
@@ -304,8 +311,9 @@
                             <constraint firstItem="eOT-gc-P9d" firstAttribute="trailing" secondItem="ooR-7V-pKD" secondAttribute="trailing" id="BgH-Ju-Mhy"/>
                             <constraint firstItem="pRv-t6-yCm" firstAttribute="top" secondItem="GCz-ac-UAZ" secondAttribute="bottom" constant="30" id="FqL-p0-56s"/>
                             <constraint firstItem="Eyl-E7-ObM" firstAttribute="centerX" secondItem="88n-GV-AAz" secondAttribute="centerX" id="GV2-5A-SBG"/>
-                            <constraint firstItem="sfz-Xu-UAM" firstAttribute="leading" secondItem="eOT-gc-P9d" secondAttribute="leading" constant="16" id="JbY-cx-a8y"/>
+                            <constraint firstItem="sfz-Xu-UAM" firstAttribute="leading" secondItem="eOT-gc-P9d" secondAttribute="leading" constant="28" id="JbY-cx-a8y"/>
                             <constraint firstItem="sfz-Xu-UAM" firstAttribute="top" secondItem="Eyl-E7-ObM" secondAttribute="bottom" constant="20" id="Qdx-aM-Rzo"/>
+                            <constraint firstItem="GCz-ac-UAZ" firstAttribute="centerX" secondItem="eOT-gc-P9d" secondAttribute="centerX" id="U6a-F4-Xgy"/>
                             <constraint firstItem="pRv-t6-yCm" firstAttribute="centerX" secondItem="88n-GV-AAz" secondAttribute="centerX" id="fxV-AS-nsd"/>
                             <constraint firstItem="pRv-t6-yCm" firstAttribute="height" secondItem="88n-GV-AAz" secondAttribute="height" multiplier="0.150112" id="fzz-bB-VZI"/>
                             <constraint firstItem="ooR-7V-pKD" firstAttribute="leading" secondItem="eOT-gc-P9d" secondAttribute="leading" id="kyY-T6-AEe"/>
@@ -325,12 +333,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqJ-Kx-7f6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="771.01449275362324" y="42.857142857142854"/>
+            <point key="canvasLocation" x="1352" y="50"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="64" height="52"/>
-        <image name="cricket_image" width="275" height="183"/>
+        <image name="cricket_image" width="612" height="522"/>
         <image name="d" width="360" height="364"/>
         <image name="star" catalog="system" width="64" height="58"/>
     </resources>
