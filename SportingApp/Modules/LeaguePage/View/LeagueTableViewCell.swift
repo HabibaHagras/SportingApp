@@ -17,7 +17,7 @@ class LeagueTableViewCell: UITableViewCell {
         // Initialization code
 //        imgLeague.layer.cornerRadius = imgLeague.frame.size.width/2
 //        imgLeague.layer.masksToBounds = true
-         imgLeague.layer.cornerRadius = imgLeague.frame.width / 1.9
+         imgLeague.layer.cornerRadius = imgLeague.frame.width / 2
         //    imgLeague.masksToBounds =
             imgLeague.clipsToBounds = true
         
@@ -35,7 +35,7 @@ class LeagueTableViewCell: UITableViewCell {
         //imgLeague.layer.borderWidth = 2.0
         //imgLeague.layer.borderColor = UIColor.black.cgColor
        // imgLeague.round()
-        imgLeague.layer.cornerRadius = imgLeague.frame.width / 1.9
+        imgLeague.layer.cornerRadius = imgLeague.frame.width / 2
     //    imgLeague.masksToBounds =
         imgLeague.clipsToBounds = true
         

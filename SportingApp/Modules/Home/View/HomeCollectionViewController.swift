@@ -144,17 +144,12 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        // Calculate the width of the screen
         let screenWidth = UIScreen.main.bounds.width
 
-        // Calculate the total desired horizontal inset (left + right)
-        // Adjust this value as needed to achieve the desired look
         let totalHorizontalInset: CGFloat = 32
 
-        // Calculate the individual left and right insets
         let horizontalInset = (screenWidth - collectionView.frame.width + totalHorizontalInset) / 2
 
-        // Return the insets with dynamic left and right values
         return UIEdgeInsets(top: 0, left: horizontalInset, bottom: 3, right: horizontalInset)
     }
 

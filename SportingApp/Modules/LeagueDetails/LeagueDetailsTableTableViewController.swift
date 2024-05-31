@@ -9,7 +9,7 @@ import UIKit
 import Reachability
 import SDWebImage
 
-class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDataSource ,UICollectionViewDelegate{
+class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDataSource ,UICollectionViewDelegate  {
     var idinticator: UIActivityIndicatorView?
     var isInFavorites: Bool = false
     @IBOutlet weak var resultsCollectionView: UICollectionView!
@@ -25,6 +25,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     var leagueId :Int!
     var leagueName  :String!
     var leagueLogo:String!
+    let sectionTitles = ["", "Upcoming Events","Teams", "Latest Results"]
 
 
     override func viewDidLoad() {
@@ -48,11 +49,14 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            
            let nib = UINib(nibName: "CustomEventCell", bundle: nil)
         let teamNib = UINib(nibName: "CustomTeamsCell", bundle: nil)
+   
            eventsCollection.register(nib, forCellWithReuseIdentifier: "cell")
            resultsCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
         teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "cell")
            //let resultNib = UINib(nibName: "CustomEventCell", bundle: nil)
            //resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "/*")
+      
+
            eventsCollection.delegate = self
            eventsCollection.dataSource = self
            resultsCollectionView.delegate = self
@@ -83,13 +87,23 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
         isInFavorites = (leagueDetailsViewModle?.isLeagueSavedToCoreData(leagueId: leagueId))!
         
         udateFvoriteButton()
+         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
+
+        
        }
-       
-       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return leagueDetailsViewModle?.eventResult?.count ?? 0
-       }
+
        
      
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == eventsCollection {
+            return leagueDetailsViewModle?.eventResult?.isEmpty == false ? leagueDetailsViewModle?.eventResult?.count ?? 0 : 1
+        }else if collectionView == teamsCollectionView {
+            return leagueDetailsViewModle?.legueTeams?.isEmpty == false ? leagueDetailsViewModle?.legueTeams?.count ?? 0 : 1
+        } else if collectionView == resultsCollectionView {
+            return leagueDetailsViewModle?.latestResults?.isEmpty == false ? leagueDetailsViewModle?.latestResults?.count ?? 0 : 1
+        }
+        return 0
+    }
     
  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.frame.width
@@ -105,13 +119,13 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
 
        
        override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    
+
       //  return 300
         if indexPath.section == 0 {
                // Change this value to the desired height for the first section
                return 50
         } else if  indexPath.section == 1 {
-            return 250
+            return 220
          } else if  indexPath.section == 2 {
                    return 150
                }else  {
@@ -119,7 +133,8 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
                return 300
            }
        }
- 
+    
+
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        if collectionView == eventsCollection {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
@@ -140,8 +155,10 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
                    cell.awayImage.image = UIImage(named: "team")
                }
                cell.resultLb.text = ""
-           }
-           return cell
+     
+               }
+                   return cell
+               
        } else if collectionView == resultsCollectionView {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
            if let event = leagueDetailsViewModle?.latestResults, indexPath.item < event.count {
@@ -178,6 +195,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            return cell
        }
    }
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == teamsCollectionView {
             
@@ -203,18 +221,6 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
     }
     
     @IBAction func favBtn(_ sender: Any) {
-//       isInFavorites.toggle()
-//        udateFvoriteButton()
-//        if (isInFavorites){
-//             addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//        if let leagueId = leagueId, let leagueName = leagueDetailsViewModle?.eventResult?.first?.leagueName, let logo =  leagueDetailsViewModle?.eventResult?.first?.leagueLogo, let sportName = nameSport {
-//            leagueDetailsViewModle?.saveLeague(id: leagueId, name: leagueName, logo: logo, sport: sportName)
-//            }
-//
-//        }else{
-//            addFavBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-//            leagueDetailsViewModle?.removeLeagueFromCoreData(leagueId: leagueId)
-//        }
         isInFavorites.toggle()
            udateFvoriteButton()
            
@@ -242,7 +248,31 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
             
            }
        }
-    
- 
+   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 1...3:
+            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as? CustomHeader else {
+                return nil
+            }
+            headerView.titleLabel.text = sectionTitles[section]
+            return headerView
+        default:
+            return nil
+        }
+    }
+
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      switch section {
+      case 1...3:
+          return 50 
+      default:
+          return 0
+      }
+  }
+
+
+  
+
+
     
 }

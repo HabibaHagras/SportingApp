@@ -29,19 +29,18 @@ class LeagueDetailsViewModle{
 
         
          func fetchUpcomingEvents() {
-            print("----------------------------------")
-            print(sportName!)
-            print("----------------------------------")
-            print("----------------------------------")
-            print("----------------------------------")
+      
+         //   print(sportName!)
+        
                 let url = "\(Constants.bseUrl)\(sportName!)?met=Fixtures&leagueId=\(leagueId!)&from=\(Utlies.currentTime!)&to=\(Utlies.futureTime!)&APIkey=\(Constants.apiKey)"
             print("after fetch")
             apiService.fetchData(url: url) { [weak self]  (league: EventsResponse?) in
                              self?.eventResponse = league
                   self?.eventResult = league?.result
                           self?.bindResultToViewController()
-            print("fetch on view modle")
-          //  print("************\(self?.eventResult?[0])")
+                 print("----------------------------------")
+            print("fetchUpcomingEvents")
+          print("************\(self?.eventResult?[0])")
             print("----------------------------------")
            
 
@@ -58,8 +57,10 @@ class LeagueDetailsViewModle{
                                    self?.eventResponse = league
                         self?.latestResults = league?.result
                                 self?.bindResultToViewController()
-                  print("fetch on view modle")
-        
+                 print("----------------------------------")
+                         print("fetchLatestResults")
+                       print("************\(self?.latestResults?[0])")
+                         print("----------------------------------")
     }
 }
     func fetchTeams()  {

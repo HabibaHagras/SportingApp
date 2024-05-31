@@ -109,6 +109,5 @@ class CoreDataServices {
             print("Failed to delete league: \(error.localizedDescription)")
         }
     }
-
     }
 
