@@ -234,7 +234,7 @@
         <!--Favorite-->
         <scene sceneID="V4S-Lz-TLI">
             <objects>
-                <tableViewController id="qXf-gT-U6N" customClass="FavoriteTableViewController" customModule="SportingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qXf-gT-U6N" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wYo-EE-vzR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,9 +339,6 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Favorite" image="heart" catalog="system" selectedImage="heart" id="dgZ-Fv-KjH"/>
-                    <connections>
-                        <outlet property="NoFavview" destination="zNF-tG-XDJ" id="gUy-0Z-gfO"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8U-fI-sJd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -413,7 +410,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" id="kks-fN-Xp2">
-                                <rect key="frame" x="0.0" y="85" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="112" width="406" height="698"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry Empty Favroite List !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ob-bk-aE2">
@@ -449,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ly-KP-eZq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2093" y="-157"/>
+            <point key="canvasLocation" x="2092.753623188406" y="-157.36607142857142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="byp-aL-fZu">

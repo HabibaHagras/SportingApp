@@ -194,7 +194,7 @@ class FavTableViewController: UIViewController , UITableViewDelegate , UITableVi
                   return cell
         }
          func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-              return 100
+              return 60
           }
            func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
               guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as? CustomHeaderView else {

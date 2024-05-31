@@ -16,7 +16,7 @@ class CustomHeaderVieww: UICollectionReusableView {
         titleLabel = UILabel(frame: .zero)
         super.init(frame: frame)
         
-        self.backgroundColor = .black
+        self.backgroundColor = .darkGray
 
         titleLabel.text = "Welcome Home"
         titleLabel.textColor = .white
