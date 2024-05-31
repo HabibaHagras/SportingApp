@@ -227,7 +227,7 @@ class LeagueDetailsTableViewController: UITableViewController,UICollectionViewDa
            if isInFavorites {
                addFavBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                
-               if let leagueId = leagueId, let leagueName = leagueDetailsViewModle?.eventResult?.first?.leagueName {
+               if let leagueId = leagueId, let leagueName = leagueName {
                    let logo = leagueDetailsViewModle?.eventResult?.first?.leagueLogo ?? "https://cdn.logojoy.com/wp-content/uploads/2018/05/30161640/1329-768x591.png"
                    let sportName = nameSport ?? ""
                    
