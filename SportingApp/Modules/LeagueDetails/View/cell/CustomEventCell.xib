@@ -16,14 +16,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="307" height="175"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basketball_image" translatesAutoresizingMaskIntoConstraints="NO" id="ySh-Ng-u0r">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hands" translatesAutoresizingMaskIntoConstraints="NO" id="ySh-Ng-u0r">
                         <rect key="frame" x="5" y="16" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="0Wc-xe-sdC"/>
                             <constraint firstAttribute="width" constant="100" id="HCE-Bj-AgM"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basketball_image" translatesAutoresizingMaskIntoConstraints="NO" id="qAb-Gl-3Jz">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team" translatesAutoresizingMaskIntoConstraints="NO" id="qAb-Gl-3Jz">
                         <rect key="frame" x="202" y="16" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="X7L-RO-ihi"/>
@@ -125,6 +125,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="basketball_image" width="594" height="612"/>
+        <image name="hands" width="416" height="416"/>
+        <image name="team" width="1000" height="600"/>
     </resources>
 </document>

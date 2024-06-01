@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cricket_image" translatesAutoresizingMaskIntoConstraints="NO" id="hdI-QG-tck">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noteam" translatesAutoresizingMaskIntoConstraints="NO" id="hdI-QG-tck">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="SmO-sR-6KC"/>
@@ -41,6 +41,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="cricket_image" width="275" height="183"/>
+        <image name="noteam" width="1633" height="980"/>
     </resources>
 </document>

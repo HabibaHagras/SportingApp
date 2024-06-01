@@ -48,7 +48,7 @@ import Alamofire
 class NetworkServices {
 
 static func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?) -> Void) {
-    let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Leagues&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644"
+    let urlString = "\(Constants.bseUrl)\(sport)/?met=Leagues&APIkey=\(Constants.apiKey)"
 
     Alamofire.request(urlString).responseJSON { response in
         switch response.result {
