@@ -48,7 +48,7 @@ import Alamofire
 class NetworkServices {
 
 static func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?) -> Void) {
-    let urlString = "https://apiv2.allsportsapi.com/\(sport)/?met=Leagues&APIkey=c89682f0a5d6ea43d1961761ea5adfb507df5320a61e1918ed0781e03ad20081&fbclid=IwZXh0bgNhZW0CMTAAAR3O-bHItUbdiNodf1zmAi48ZNdhsGe46gNYq972gXP-i-XPCsH--77FzX4_aem_AU8yYQORBt5XB1HWT_K3V6a4Zba6exdup7WqhG7ZbImoNE5nf3tt1KmwX3vtuLlQWPmZqksrypWvPPLjjMjhBU51"
+    let urlString = "\(Constants.bseUrl)\(sport)/?met=Leagues&APIkey=\(Constants.apiKey)"
 
     Alamofire.request(urlString).responseJSON { response in
         switch response.result {
@@ -71,7 +71,7 @@ static func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?)
     
     
     static func fetchVideos(for sport: String, handler: @escaping (VideoResponse?) -> Void) {
-        let urlString = "https://apiv2.allsportsapi.com/\(sport)/?&met=Videos&eventId=86392&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644"
+        let urlString = "\(Constants.bseUrl)\(sport)/?&met=Videos&eventId=86392&APIkey=\(Constants.apiKey)"
 
         Alamofire.request(urlString).responseJSON { response in
             switch response.result {
@@ -100,7 +100,7 @@ static func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?)
                 let leagueResponse = try JSONDecoder().decode(T.self, from: jsonData)
                 handler(leagueResponse)
                 print("success")
-                // print(leagueResponse.result?[0] ?? "not received")
+               //  print(leagueResponse.result?[0] ?? "not received")
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")
                 handler(nil)
@@ -113,3 +113,9 @@ static func fetchLeagues(for sport: String, handler: @escaping (LeagueResponse?)
     
     }
 }
+
+/*
+ ?met=Leagues&APIkey=c89682f0a5d6ea43d1961761ea5adfb507df5320a61e1918ed0781e03ad20081&fbclid=IwZXh0bgNhZW0CMTAAAR3O-bHItUbdiNodf1zmAi48ZNdhsGe46gNYq972gXP-i-XPCsH--77FzX4_aem_AU8yYQORBt5XB1HWT_K3V6a4Zba6exdup7WqhG7ZbImoNE5nf3tt1KmwX3vtuLlQWPmZqksrypWvPPLjjMjhBU51
+ */
+
+//?met=Leagues&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644
